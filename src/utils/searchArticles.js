@@ -50,17 +50,39 @@ export function findRelevantArticles(query, articles, topN = 5) {
     .map(({ a }) => a)
 }
 
+// ── Prompt-injection sanitizer (mirrors api/_sanitize.js) ─────────────
+const INJECTION_PATTERNS = [
+  /<\/?\s*news_context\s*>/gi,
+  /\[INST\]|\[\/INST\]/g,
+  /<<SYS>>|<<\/SYS>>/g,
+  /<\/?s>/g,
+  /ignore\s+(all\s+)?(previous|prior|above)\s+instructions?/gi,
+  /new\s+(system\s+)?instructions?/gi,
+  /you\s+are\s+now\s+/gi,
+  /\bsystem\s*:/gi,
+  /\bassistant\s*:/gi,
+  /\buser\s*:/gi,
+]
+
+function sanitize(text, maxLen = 400) {
+  if (!text || typeof text !== 'string') return ''
+  let s = text.slice(0, maxLen)
+  for (const p of INJECTION_PATTERNS) s = s.replace(p, ' ')
+  return s.replace(/\s{2,}/g, ' ').trim()
+}
+
 /**
- * Format matched articles into a compact context block for the LLM.
+ * Format matched articles into a compact, injection-safe context block for the LLM.
  */
 export function buildContextBlock(articles) {
   if (!articles.length) return ''
   return articles
     .map((a, i) => {
+      const title  = sanitize(a.title, 200)
+      const desc   = sanitize(a.description, 300)
       const date   = a.pubDate ? new Date(a.pubDate).toDateString() : 'Recent'
-      const source = a.source_id || a.provider || 'Unknown'
-      const desc   = a.description ? `\n${a.description.slice(0, 220)}` : ''
-      return `[${i + 1}] ${a.title}\nSource: ${source} | ${date}${desc}`
+      const source = sanitize(a.source_id || a.provider || 'Unknown', 60)
+      return `[${i + 1}] ${title}\nSource: ${source} | ${date}${desc ? '\n' + desc : ''}`
     })
     .join('\n\n')
 }

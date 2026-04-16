@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Flag, Globe, Shield, ShoppingBag, Cpu, Map, Rocket, BookOpen, Crosshair, TrendingUp, Clock } from 'lucide-react'
 import { useNews } from '../hooks/useNews'
 import NewsCard from '../components/news/NewsCard'
+import GenieIntro from '../components/common/GenieIntro'
 
 const sections = [
   { title: 'National',         path: '/national',       icon: Flag,        color: '#FF6B00', desc: 'India\'s domestic affairs, governance & economy' },
@@ -75,6 +76,7 @@ function HomeNewsSection({ title, icon: Icon, color, path, category, query }) {
 export default function Home() {
   return (
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
+      <GenieIntro />
 
       {/* ── Hero ── */}
       <div className="animate-fade-up" style={{

@@ -28,6 +28,31 @@ function readBody(req) {
   })
 }
 
+// ── Inline rate limiter (mirrors api/_rateLimit.js for local dev) ──
+const _rateLimitStore = new Map()
+setInterval(() => { const now = Date.now(); for (const [k, v] of _rateLimitStore) if (now > v.resetAt) _rateLimitStore.delete(k) }, 5 * 60 * 1000)
+function devRateLimit(ip, max = 20, windowMs = 30 * 60 * 1000) {
+  const now = Date.now()
+  let e = _rateLimitStore.get(ip)
+  if (!e || now > e.resetAt) { e = { count: 0, resetAt: now + windowMs }; _rateLimitStore.set(ip, e) }
+  e.count++
+  return { allowed: e.count <= max, resetIn: Math.ceil((e.resetAt - now) / 1000) }
+}
+
+// ── Inline sanitizer (mirrors api/_sanitize.js for local dev) ──
+const _INJECTION = [
+  /<\/?\s*news_context\s*>/gi, /\[INST\]|\[\/INST\]/g, /<<SYS>>|<<\/SYS>>/g, /<\/?s>/g,
+  /ignore\s+(all\s+)?(previous|prior|above)\s+instructions?/gi,
+  /new\s+(system\s+)?instructions?/gi, /you\s+are\s+now\s+/gi,
+  /\bsystem\s*:/gi, /\bassistant\s*:/gi, /\buser\s*:/gi,
+]
+function devSanitize(text, max = 500) {
+  if (!text) return ''
+  let s = String(text).slice(0, max)
+  for (const p of _INJECTION) s = s.replace(p, ' ')
+  return s.replace(/\s{2,}/g, ' ').trim()
+}
+
 function chatApiPlugin(env) {
   return {
     name: 'chat-api',
@@ -36,6 +61,14 @@ function chatApiPlugin(env) {
         if (req.method !== 'POST') {
           res.writeHead(405, { 'Content-Type': 'application/json' })
           return res.end(JSON.stringify({ error: 'Method not allowed' }))
+        }
+
+        // Rate limiting
+        const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket?.remoteAddress || 'local'
+        const rl = devRateLimit(ip)
+        if (!rl.allowed) {
+          res.writeHead(429, { 'Content-Type': 'application/json' })
+          return res.end(JSON.stringify({ error: `Too many requests. Try again in ${Math.ceil(rl.resetIn / 60)} minutes.` }))
         }
 
         let messages, context
@@ -49,17 +82,29 @@ function chatApiPlugin(env) {
           return res.end(JSON.stringify({ error: 'Invalid JSON body' }))
         }
 
+        // Input validation
+        if (!Array.isArray(messages) || messages.length > 40) {
+          res.writeHead(400, { 'Content-Type': 'application/json' })
+          return res.end(JSON.stringify({ error: 'Invalid messages payload' }))
+        }
+
         const GROQ_KEY = env.GROQ_API_KEY
         if (!GROQ_KEY) {
           res.writeHead(500, { 'Content-Type': 'application/json' })
           return res.end(JSON.stringify({ error: 'GROQ_API_KEY not set in .env.local' }))
         }
 
-        const fullSystemPrompt = context
-          ? `${CHAT_SYSTEM_PROMPT}\n\n--- LIVE NEWS CONTEXT (today\'s fetched articles — use these for current affairs questions) ---\n${context}\n--- END CONTEXT ---\nWhen answering current affairs questions, prefer information from the context above. Cite the source name when using it.`
-          : CHAT_SYSTEM_PROMPT
+        // Build injection-safe system prompt
+        let fullSystemPrompt = CHAT_SYSTEM_PROMPT
+        if (context && typeof context === 'string') {
+          const safeCtx = context.split('\n').map(l => devSanitize(l, 500)).join('\n')
+          fullSystemPrompt = CHAT_SYSTEM_PROMPT +
+            '\n\n<news_context>\nThe following are real news articles fetched today. ' +
+            'Use them to answer current affairs questions and cite the source name.\n\n' +
+            safeCtx + '\n</news_context>'
+        }
 
-        console.log(`[chat] ${messages.length} messages, context articles: ${context ? context.split('\n\n').length : 0}`)
+        console.log(`[chat] ip=${ip} msgs=${messages.length} ctx=${!!context}`)
 
         const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
           method: 'POST',

@@ -8,8 +8,18 @@ const IMP = {
   low:      { bar: '#475569', badge: '#1e293b', text: '#94a3b8', label: '● STANDARD', glow: 'rgba(71,85,105,0.1)'  },
 }
 
+function safeHref(url) {
+  try {
+    const { protocol } = new URL(url)
+    return protocol === 'https:' || protocol === 'http:' ? url : '#'
+  } catch {
+    return '#'
+  }
+}
+
 export default function NewsCard({ article, featured = false }) {
-  const imp = IMP[article.importance] || IMP.low
+  const imp  = IMP[article.importance] || IMP.low
+  const href = safeHref(article.link)
 
   const timeAgo = (() => {
     try { return formatDistanceToNow(new Date(article.pubDate), { addSuffix: true }) }
@@ -19,7 +29,7 @@ export default function NewsCard({ article, featured = false }) {
   if (featured) {
     return (
       <a
-        href={article.link}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className="card-hover animate-fade-up"
@@ -82,7 +92,7 @@ export default function NewsCard({ article, featured = false }) {
 
   return (
     <a
-      href={article.link}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="card-hover-x animate-fade-up"
