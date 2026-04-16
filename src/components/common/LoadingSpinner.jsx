@@ -1,11 +1,17 @@
-export default function LoadingSpinner({ text = 'Fetching intelligence...' }) {
+export default function LoadingSpinner({ text = 'Fetching intelligence…' }) {
   return (
-    <div className="flex flex-col items-center justify-center py-24 gap-4">
-      <div className="relative w-12 h-12">
-        <div className="absolute inset-0 rounded-full border-2 border-[#1e2d4a]" />
-        <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#FF6B00] animate-spin" />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '80px 16px', gap: 14 }}>
+      <div style={{ position: 'relative', width: 40, height: 40 }}>
+        <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid #1a2d4a' }} />
+        <div style={{
+          position: 'absolute', inset: 0, borderRadius: '50%',
+          border: '2px solid transparent',
+          borderTopColor: '#FF6B00',
+          animation: 'spin 0.8s linear infinite',
+        }} />
       </div>
-      <p className="text-[#475569] text-sm">{text}</p>
+      <p style={{ color: '#475569', fontSize: 13 }}>{text}</p>
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   )
 }

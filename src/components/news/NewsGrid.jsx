@@ -2,19 +2,23 @@ import NewsCard from './NewsCard'
 import LoadingSpinner from '../common/LoadingSpinner'
 import { AlertCircle, RefreshCw } from 'lucide-react'
 
-export default function NewsGrid({ articles, isLoading, isError, refetch, label = 'articles' }) {
-  if (isLoading) return <LoadingSpinner text="Fetching latest intelligence..." />
+export default function NewsGrid({ articles, isLoading, isError, refetch }) {
+  if (isLoading) return <LoadingSpinner text="Fetching latest intelligence…" />
 
   if (isError) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 gap-4">
-        <AlertCircle className="w-10 h-10 text-red-400" />
-        <p className="text-[#94a3b8]">Failed to fetch news. Check your API key in .env</p>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '64px 16px', gap: 14 }}>
+        <AlertCircle size={36} color="#ef4444" />
+        <p style={{ color: '#94a3b8', fontSize: 14 }}>Could not fetch news — check your API keys in .env.local</p>
         <button
           onClick={refetch}
-          className="flex items-center gap-2 px-4 py-2 bg-[#FF6B00] text-white rounded-lg text-sm hover:bg-[#e55f00] transition-colors"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            background: '#FF6B00', color: '#fff', border: 'none',
+            padding: '8px 18px', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer',
+          }}
         >
-          <RefreshCw className="w-4 h-4" /> Retry
+          <RefreshCw size={14} /> Retry
         </button>
       </div>
     )
@@ -22,9 +26,9 @@ export default function NewsGrid({ articles, isLoading, isError, refetch, label 
 
   if (!articles || articles.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 gap-3">
-        <p className="text-[#475569] text-lg">No {label} found</p>
-        <p className="text-[#334155] text-sm">Try a different category or check back later</p>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '64px 16px', gap: 8 }}>
+        <p style={{ color: '#475569', fontSize: 15 }}>No articles found</p>
+        <p style={{ color: '#334155', fontSize: 12 }}>Add API keys and run <code style={{ color: '#FF6B00' }}>vercel dev</code></p>
       </div>
     )
   }
@@ -33,20 +37,15 @@ export default function NewsGrid({ articles, isLoading, isError, refetch, label 
   const rest = articles.slice(3)
 
   return (
-    <div className="space-y-6">
-      {/* Featured row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {featured.map((article, i) => (
-          <NewsCard key={article.link || i} article={article} featured />
-        ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      {/* Featured 3-col grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 14 }}>
+        {featured.map((a, i) => <NewsCard key={a.link || i} article={a} featured />)}
       </div>
-
-      {/* List view */}
+      {/* List */}
       {rest.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {rest.map((article, i) => (
-            <NewsCard key={article.link || i} article={article} />
-          ))}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: 10 }}>
+          {rest.map((a, i) => <NewsCard key={a.link || i} article={a} />)}
         </div>
       )}
     </div>

@@ -1,68 +1,84 @@
 import { Shield, ExternalLink } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+const sections = ['National', 'International', 'Defence', 'Procurement', 'Indigenization', 'Geopolitics']
+
+const sources = [
+  { name: 'Ministry of Defence', url: 'https://mod.gov.in' },
+  { name: 'DRDO', url: 'https://drdo.gov.in' },
+  { name: 'PIB India', url: 'https://pib.gov.in' },
+  { name: 'Indian Army', url: 'https://indianarmy.nic.in' },
+  { name: 'Indian Navy', url: 'https://indiannavy.nic.in' },
+  { name: 'Indian Air Force', url: 'https://indianairforce.nic.in' },
+]
+
 export default function Footer() {
   return (
-    <footer className="bg-[#070c1a] border-t border-[#1e2d4a] mt-16">
-      <div className="max-w-[1400px] mx-auto px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 bg-[#FF6B00] rounded-lg flex items-center justify-center">
-                <Shield className="w-4 h-4 text-white" />
+    <footer style={{ background: '#070c1a', borderTop: '1px solid #1a2d4a', marginTop: 'auto' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '40px 16px 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 32, marginBottom: 32 }}>
+          {/* Brand */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+              <div style={{ width: 34, height: 34, background: '#FF6B00', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Shield size={16} color="#fff" />
               </div>
-              <span className="text-white font-bold text-lg">SSB<span className="text-[#FF6B00]">Pulse</span></span>
+              <span style={{ fontSize: 16, fontWeight: 800, color: '#fff' }}>
+                BABA <span style={{ color: '#FF6B00' }}>YAGA</span>
+              </span>
             </div>
-            <p className="text-[#64748b] text-sm leading-relaxed max-w-sm">
-              A comprehensive intelligence hub for SSB aspirants. Stay updated with national, international, and defence affairs. All news sourced from verified, credible outlets.
+            <p style={{ color: '#475569', fontSize: 12.5, lineHeight: 1.6, maxWidth: 280 }}>
+              Comprehensive intelligence hub for SSB aspirants. All news sourced from verified, credible outlets. Updated daily.
             </p>
           </div>
 
+          {/* Sections */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wider">Sections</h4>
-            <ul className="space-y-2">
-              {['National', 'International', 'Defence', 'Procurement', 'Indigenization', 'Geopolitics'].map(s => (
-                <li key={s}>
-                  <Link to={`/${s.toLowerCase()}`} className="text-[#64748b] hover:text-[#FF6B00] text-sm transition-colors">
-                    {s}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 style={{ color: '#94a3b8', fontSize: 11, fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 12 }}>
+              Sections
+            </h4>
+            {sections.map(s => (
+              <Link
+                key={s}
+                to={`/${s.toLowerCase()}`}
+                style={{ display: 'block', color: '#475569', fontSize: 13, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#FF6B00'}
+                onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+              >
+                {s}
+              </Link>
+            ))}
           </div>
 
+          {/* Official sources */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wider">Official Sources</h4>
-            <ul className="space-y-2">
-              {[
-                { name: 'Ministry of Defence', url: 'https://mod.gov.in' },
-                { name: 'DRDO', url: 'https://drdo.gov.in' },
-                { name: 'PIB India', url: 'https://pib.gov.in' },
-                { name: 'Indian Army', url: 'https://indianarmy.nic.in' },
-                { name: 'Indian Navy', url: 'https://indiannavy.nic.in' },
-                { name: 'Indian Air Force', url: 'https://indianairforce.nic.in' },
-              ].map(item => (
-                <li key={item.name}>
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#64748b] hover:text-[#FF6B00] text-sm transition-colors flex items-center gap-1"
-                  >
-                    {item.name} <ExternalLink className="w-3 h-3" />
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h4 style={{ color: '#94a3b8', fontSize: 11, fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 12 }}>
+              Official Sources
+            </h4>
+            {sources.map(item => (
+              <a
+                key={item.name}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#475569', fontSize: 13, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#FF6B00'}
+                onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+              >
+                {item.name}
+                <ExternalLink size={10} />
+              </a>
+            ))}
           </div>
         </div>
 
-        <div className="border-t border-[#1e2d4a] mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-[#475569] text-xs">
-            &copy; {new Date().getFullYear()} SSBPulse. For educational & SSB preparation use only.
+        {/* Bottom row */}
+        <div style={{ borderTop: '1px solid #1a2d4a', paddingTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center' }}>
+          <p style={{ color: '#334155', fontSize: 11 }}>
+            &copy; {new Date().getFullYear()} BABA YAGA. For SSB preparation use only.
           </p>
-          <p className="text-[#475569] text-xs">
-            News sourced from NewsData.io, GNews, PIB & official MoD channels
+          <p style={{ color: '#334155', fontSize: 11 }}>
+            News: NewsData.io · GNews · PIB · MoD
           </p>
         </div>
       </div>

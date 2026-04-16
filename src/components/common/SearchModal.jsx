@@ -3,12 +3,14 @@ import { Search, X } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const quickLinks = [
-  { label: 'Rafale Fighter Jet', path: '/weapons' },
-  { label: 'INS Vikrant', path: '/weapons' },
-  { label: 'DRDO Akash Missile', path: '/indigenization' },
-  { label: 'LAC Border News', path: '/national' },
-  { label: 'Defence Budget 2025', path: '/procurement' },
-  { label: 'Agni V Missile', path: '/weapons' },
+  { label: 'Rafale Fighter Jet',   path: '/weapons' },
+  { label: 'INS Vikrant Carrier',  path: '/weapons' },
+  { label: 'Tejas Mk1A',           path: '/weapons' },
+  { label: 'Agni-V ICBM',          path: '/weapons' },
+  { label: 'LAC Border — Ladakh',  path: '/geopolitics' },
+  { label: 'Defence Budget 2025',  path: '/procurement' },
+  { label: 'DRDO Achievements',    path: '/indigenization' },
+  { label: 'Agnipath Scheme',      path: '/schemes' },
 ]
 
 export default function SearchModal({ open, onClose }) {
@@ -17,58 +19,77 @@ export default function SearchModal({ open, onClose }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 100)
-      setQuery('')
-    }
+    if (open) { setTimeout(() => inputRef.current?.focus(), 80); setQuery('') }
   }, [open])
 
   useEffect(() => {
-    const handler = (e) => { if (e.key === 'Escape') onClose() }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
+    const fn = e => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', fn)
+    return () => window.removeEventListener('keydown', fn)
   }, [onClose])
 
   if (!open) return null
 
-  const handleSearch = (e) => {
+  const handleSearch = e => {
     e.preventDefault()
-    if (query.trim()) {
-      navigate(`/search?q=${encodeURIComponent(query.trim())}`)
-      onClose()
-    }
+    if (query.trim()) { navigate(`/?q=${encodeURIComponent(query.trim())}`); onClose() }
   }
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-start justify-center pt-20 px-4"
       onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 200,
+        background: 'rgba(0,0,0,0.75)',
+        backdropFilter: 'blur(4px)',
+        display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+        paddingTop: 80, paddingLeft: 16, paddingRight: 16,
+      }}
     >
       <div
-        className="w-full max-w-2xl bg-[#0f172a] rounded-2xl border border-[#1e2d4a] shadow-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
+        style={{
+          width: '100%', maxWidth: 600,
+          background: '#0f1b2e',
+          border: '1px solid #1a2d4a',
+          borderRadius: 16,
+          overflow: 'hidden',
+          boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
+        }}
       >
-        <form onSubmit={handleSearch} className="flex items-center gap-3 px-4 py-4 border-b border-[#1e2d4a]">
-          <Search className="w-5 h-5 text-[#64748b] shrink-0" />
+        {/* Search input */}
+        <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', borderBottom: '1px solid #1a2d4a' }}>
+          <Search size={17} color="#475569" style={{ flexShrink: 0 }} />
           <input
             ref={inputRef}
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Search news, equipment, schemes..."
-            className="flex-1 bg-transparent text-white placeholder-[#475569] text-base outline-none"
+            placeholder="Search news, equipment, schemes…"
+            style={{ flex: 1, background: 'none', border: 'none', outline: 'none', color: '#f1f5f9', fontSize: 15 }}
           />
-          <button type="button" onClick={onClose} className="p-1 text-[#64748b] hover:text-white rounded">
-            <X className="w-4 h-4" />
+          <button type="button" onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#475569', padding: 2, display: 'flex' }}>
+            <X size={16} />
           </button>
         </form>
-        <div className="p-4">
-          <p className="text-[#475569] text-xs uppercase tracking-wider mb-3">Quick Access</p>
-          <div className="grid grid-cols-2 gap-2">
+
+        {/* Quick links */}
+        <div style={{ padding: 16 }}>
+          <p style={{ color: '#475569', fontSize: 10.5, fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 10 }}>
+            Quick Access
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
             {quickLinks.map(link => (
               <button
                 key={link.label}
                 onClick={() => { navigate(link.path); onClose() }}
-                className="text-left px-3 py-2.5 bg-[#0a0f1e] hover:bg-[#1e2d4a] rounded-lg text-sm text-[#94a3b8] hover:text-white transition-colors"
+                style={{
+                  textAlign: 'left', padding: '9px 12px',
+                  background: '#0a0f1e', border: '1px solid #1a2d4a',
+                  borderRadius: 8, fontSize: 12.5, color: '#94a3b8',
+                  cursor: 'pointer', transition: 'all 0.15s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#253d60' }}
+                onMouseLeave={e => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.borderColor = '#1a2d4a' }}
               >
                 {link.label}
               </button>

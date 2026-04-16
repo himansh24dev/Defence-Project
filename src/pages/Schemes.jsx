@@ -3,53 +3,42 @@ import { useNews } from '../hooks/useNews'
 import NewsGrid from '../components/news/NewsGrid'
 import SectionHeader from '../components/common/SectionHeader'
 
-const majorSchemes = [
-  { name: 'Agnipath', dept: 'Ministry of Defence', desc: 'Short-term military recruitment scheme for youth aged 17.5–21.' },
-  { name: 'Make in India (Defence)', dept: 'MoD / DPIIT', desc: 'Promotes domestic defence manufacturing; two positive indigenisation lists issued.' },
-  { name: 'PM Gati Shakti', dept: 'Ministry of Commerce', desc: 'National Master Plan for infrastructure connectivity.' },
-  { name: 'Atmanirbhar Bharat', dept: 'GoI', desc: 'Self-reliance across sectors including defence, pharma, electronics.' },
-  { name: 'iDEX (Innovations for Defence)', dept: 'MoD', desc: 'Startup ecosystem for defence tech innovation.' },
-  { name: 'ADITI Scheme', dept: 'MoD / iDEX', desc: 'Acing Development of Innovative Technologies with iDEX — ₹25 cr grants for deep-tech.' },
-  { name: 'Defence Corridors', dept: 'MoD', desc: 'UP (Lucknow–Aligarh–Agra) and Tamil Nadu corridors for defence manufacturing.' },
-  { name: 'PM KUSUM', dept: 'MNRE', desc: 'Solar energy for farmers — dual-use with strategic energy security aspects.' },
-  { name: 'Digital India', dept: 'MeitY', desc: 'Digital infrastructure, governance, services, and empowerment.' },
-  { name: 'Ayushman Bharat', dept: 'Ministry of Health', desc: 'Health insurance for 50 cr beneficiaries — also covers armed forces families.' },
-  { name: 'SWAYAM', dept: 'MoE', desc: 'National online education platform — includes NCC, defence studies content.' },
-  { name: 'Sagarmala', dept: 'Ministry of Ports', desc: 'Port-led development — strategic coastal security implications.' },
+const schemes = [
+  { name: 'Agnipath / Agniveer',    dept: 'MoD',       desc: 'Short-term military recruitment for youth 17.5–21 yrs. 4-year engagement; 25% retained as regular soldiers.' },
+  { name: 'Make in India (Defence)',dept: 'MoD/DPIIT', desc: 'Two Positive Indigenisation Lists barring import of 509 items. 75% defence procurement from domestic sources by 2047.' },
+  { name: 'iDEX',                   dept: 'MoD',       desc: 'Innovations for Defence Excellence — startup ecosystem for defence tech. ₹500 cr+ committed. 350+ contracts.' },
+  { name: 'ADITI Scheme',           dept: 'MoD/iDEX',  desc: 'Acing Development of Innovative Technologies with iDEX — ₹25 cr grants for deep-tech defence startups.' },
+  { name: 'Defence Corridors',      dept: 'MoD',       desc: 'UP (Lucknow–Aligarh–Agra–Kanpur) and Tamil Nadu corridors. Target: ₹35,000 cr manufacturing by 2025.' },
+  { name: 'PM Gati Shakti',         dept: 'MoCI',      desc: 'National Master Plan for multimodal connectivity. 16 ministries on one platform. Key for strategic infrastructure.' },
+  { name: 'Atmanirbhar Bharat',     dept: 'GoI',       desc: 'Self-reliance mission across sectors. Defence: ₹1.72 lakh cr domestic procurement in 2025–26 budget.' },
+  { name: 'Sagarmala',              dept: 'MoPSW',     desc: 'Port-led development, coastal shipping modernisation — dual-use with coastal defence and SSBN basing.' },
+  { name: 'Digital India',          dept: 'MeitY',     desc: 'Digital infrastructure + governance. Cybersecurity angle increasingly important for defence preparedness.' },
+  { name: 'PM KUSUM',               dept: 'MNRE',      desc: 'Solar for farmers — strategic energy independence reduces import dependence.' },
+  { name: 'Ayushman Bharat',        dept: 'MoHFW',     desc: 'Health cover ₹5 lakh/family for 50 cr beneficiaries. Ex-servicemen also covered under ECHS.' },
+  { name: 'SWAYAM / NCC',           dept: 'MoE/MoD',   desc: 'Free online courses + NCC expansion to 20 lakh cadets by 2024. SSB-relevant military preparedness.' },
 ]
 
 export default function Schemes() {
-  const { data, isLoading, isError, refetch } = useNews('politics', 'india government scheme policy yojana programme launch welfare infrastructure')
-
+  const { data, isLoading, isError, refetch } = useNews('politics', 'india government scheme policy yojana programme welfare infrastructure budget')
   return (
-    <div className="max-w-[1400px] mx-auto px-4 py-8">
-      <SectionHeader
-        title="Government Schemes & Policies"
-        subtitle="Key central government schemes, policies, and programmes relevant for SSB GD"
-        icon={BookOpen}
-        accent="#a855f7"
-      />
+    <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
+      <SectionHeader title="Government Schemes & Policies" subtitle="Key central government schemes — defence, economic, social | SSB GD quick reference" icon={BookOpen} accent="#a855f7" />
 
-      {/* Static scheme reference */}
-      <div className="mb-10">
-        <h2 className="text-[#94a3b8] text-xs uppercase tracking-wider mb-4">Key Schemes — Quick Reference</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {majorSchemes.map(s => (
-            <div key={s.name} className="bg-[#0f172a] border border-[#1e2d4a] rounded-xl p-4 hover:border-[#a855f7]/40 transition-colors">
-              <div className="flex items-start justify-between mb-1.5">
-                <p className="text-white font-semibold text-sm">{s.name}</p>
-                <span className="text-[9px] text-[#475569] bg-[#0a0f1e] px-2 py-0.5 rounded-full border border-[#1e2d4a] shrink-0 ml-2">
-                  {s.dept}
-                </span>
-              </div>
-              <p className="text-[#64748b] text-xs leading-relaxed">{s.desc}</p>
+      <p style={{ fontSize: 11, color: '#475569', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 12 }}>Key Schemes — Quick Reference</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 10, marginBottom: 32 }}>
+        {schemes.map(s => (
+          <div key={s.name} style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 10, padding: '14px 16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
+              <p style={{ color: '#f1f5f9', fontWeight: 700, fontSize: 13, margin: 0 }}>{s.name}</p>
+              <span style={{ fontSize: 9.5, color: '#475569', background: '#0a0f1e', padding: '2px 7px', borderRadius: 4, border: '1px solid #1a2d4a', flexShrink: 0 }}>{s.dept}</span>
             </div>
-          ))}
-        </div>
+            <p style={{ color: '#64748b', fontSize: 12, margin: 0, lineHeight: 1.55 }}>{s.desc}</p>
+          </div>
+        ))}
       </div>
 
-      <h2 className="text-white font-semibold text-lg mb-4">Latest Policy News</h2>
-      <NewsGrid articles={data} isLoading={isLoading} isError={isError} refetch={refetch} label="policy news" />
+      <SectionHeader title="Latest Policy News" subtitle="" icon={null} accent="#a855f7" />
+      <NewsGrid articles={data} isLoading={isLoading} isError={isError} refetch={refetch} />
     </div>
   )
 }

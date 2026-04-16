@@ -1,32 +1,55 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
+/* ── Custom theme tokens ─────────────────────────────────────────────── */
+@theme {
+  --color-void:    #070c1a;
+  --color-base:    #0a0f1e;
+  --color-panel:   #0d1526;
+  --color-card:    #0f1b2e;
+  --color-card2:   #111d35;
+  --color-rim:     #1a2d4a;
+  --color-trim:    #253d60;
+  --color-trimmer: #2d4a72;
+  --color-accent:  #f97316;
+  --color-accent2: #fb923c;
+  --color-saffron: #FF6B00;
+  --color-india-green: #138808;
+  --color-bright:  #f1f5f9;
+  --color-muted:   #94a3b8;
+  --color-dim:     #64748b;
+  --color-faint:   #475569;
+  --color-fainter: #334155;
+}
+
+/* ── Base reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  margin: 0;
+  padding: 0;
   background-color: #0a0f1e;
   color: #e2e8f0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0f172a;
-}
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ff6b00;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
 }
 
+/* ── Scrollbar ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #070c1a; }
+::-webkit-scrollbar-thumb { background: #253d60; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #FF6B00; }
+
+/* ── Utility helpers ─────────────────────────────────────────────────── */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -39,3 +62,10 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ── Animations ──────────────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }

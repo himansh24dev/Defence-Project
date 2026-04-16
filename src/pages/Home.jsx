@@ -1,61 +1,72 @@
 import { Link } from 'react-router-dom'
-import { Flag, Globe, Shield, ShoppingBag, Cpu, Map, Rocket, BookOpen, Crosshair, TrendingUp, RefreshCw, Clock } from 'lucide-react'
+import { Flag, Globe, Shield, ShoppingBag, Cpu, Map, Rocket, BookOpen, Crosshair, TrendingUp, Clock } from 'lucide-react'
 import { useNews } from '../hooks/useNews'
 import NewsCard from '../components/news/NewsCard'
-import LoadingSpinner from '../components/common/LoadingSpinner'
 
 const sections = [
-  { title: 'National',         path: '/national',       icon: Flag,       color: '#FF6B00', desc: 'India\'s domestic affairs, governance & economy' },
-  { title: 'International',    path: '/international',   icon: Globe,      color: '#3b82f6', desc: 'Global diplomacy, conflicts & bilateral ties' },
-  { title: 'Defence',          path: '/defence',         icon: Shield,     color: '#ef4444', desc: 'Armed forces operations, exercises & strategy' },
-  { title: 'Procurement',      path: '/procurement',     icon: ShoppingBag,color: '#8b5cf6', desc: 'Arms deals, MOD contracts & acquisitions' },
-  { title: 'Indigenization',   path: '/indigenization',  icon: Cpu,        color: '#10b981', desc: 'Make in India — DRDO, HAL, Atmanirbhar Bharat' },
-  { title: 'Geopolitics',      path: '/geopolitics',     icon: Map,        color: '#f59e0b', desc: 'Strategic competition, alliances & flashpoints' },
-  { title: 'Sci & Tech',       path: '/science-tech',    icon: Rocket,     color: '#06b6d4', desc: 'DRDO, ISRO, space, AI & nuclear programs' },
-  { title: 'Schemes',          path: '/schemes',         icon: BookOpen,   color: '#a855f7', desc: 'Key government policies & programmes' },
-  { title: 'Weapons & Equip.', path: '/weapons',         icon: Crosshair,  color: '#FF6B00', desc: 'Complete military inventory — Army, Navy, IAF' },
+  { title: 'National',         path: '/national',       icon: Flag,        color: '#FF6B00', desc: 'India\'s domestic affairs, governance & economy' },
+  { title: 'International',    path: '/international',   icon: Globe,       color: '#3b82f6', desc: 'Global diplomacy, conflicts & bilateral ties' },
+  { title: 'Defence',          path: '/defence',         icon: Shield,      color: '#ef4444', desc: 'Armed forces operations, exercises & strategy' },
+  { title: 'Procurement',      path: '/procurement',     icon: ShoppingBag, color: '#8b5cf6', desc: 'Arms deals, MoD contracts & acquisitions' },
+  { title: 'Indigenization',   path: '/indigenization',  icon: Cpu,         color: '#10b981', desc: 'Make in India — DRDO, HAL, Atmanirbhar Bharat' },
+  { title: 'Geopolitics',      path: '/geopolitics',     icon: Map,         color: '#f59e0b', desc: 'Strategic competition, alliances & flashpoints' },
+  { title: 'Sci & Tech',       path: '/science-tech',    icon: Rocket,      color: '#06b6d4', desc: 'DRDO, ISRO, space, AI & nuclear programs' },
+  { title: 'Schemes',          path: '/schemes',          icon: BookOpen,    color: '#a855f7', desc: 'Key government policies & programmes' },
+  { title: 'Weapons & Equip.', path: '/weapons',          icon: Crosshair,   color: '#FF6B00', desc: 'Complete military inventory — Army, Navy, IAF' },
 ]
 
 const quickFacts = [
   { label: 'Active Military Personnel', value: '~1.45 million', sub: '4th largest active force' },
-  { label: 'Defence Budget 2024–25', value: '₹6.21 lakh crore', sub: '2.04% of GDP' },
-  { label: 'Nuclear Warheads (est.)', value: '~172', sub: 'SIPRI 2024 estimate' },
-  { label: 'Aircraft Carriers', value: '2', sub: 'INS Vikrant + Vikramaditya' },
-  { label: 'ICBM Range (Agni-V)', value: '8,000 km', sub: 'Covers all of China' },
-  { label: 'Indigenization Target', value: '75%', sub: 'Defence procurement by 2047' },
+  { label: 'Defence Budget 2025–26',    value: '₹6.81 lakh crore', sub: '2.08% of GDP' },
+  { label: 'Nuclear Warheads (est.)',   value: '~175', sub: 'SIPRI 2025 estimate' },
+  { label: 'Aircraft Carriers',         value: '2', sub: 'INS Vikrant + INS Vikramaditya' },
+  { label: 'ICBM (Agni-V MIRV)',        value: '8,000 km', sub: 'Mission Divyastra — MIRV tested' },
+  { label: 'Indigenization Target',     value: '75%', sub: 'Domestic procurement by 2047' },
 ]
 
 function HomeNewsSection({ title, icon: Icon, color, path, category, query }) {
-  const { data, isLoading } = useNews(category, query)
+  const { data, isLoading, isError } = useNews(category, query)
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${color}20` }}>
-            <Icon className="w-4 h-4" style={{ color }} />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ width: 32, height: 32, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: `${color}22` }}>
+            <Icon size={16} style={{ color }} />
           </div>
-          <h2 className="text-white font-semibold text-base">{title}</h2>
+          <span style={{ color: '#f1f5f9', fontWeight: 600, fontSize: 14 }}>{title}</span>
         </div>
-        <Link to={path} className="text-xs text-[#FF6B00] hover:text-[#ff8c33] font-medium transition-colors">
+        <Link
+          to={path}
+          style={{ fontSize: 11, color: '#FF6B00', fontWeight: 600, textDecoration: 'none' }}
+          onMouseEnter={e => e.target.style.color = '#ff8c33'}
+          onMouseLeave={e => e.target.style.color = '#FF6B00'}
+        >
           See all →
         </Link>
       </div>
+
       {isLoading ? (
-        <div className="space-y-2">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="h-20 bg-[#0f172a] rounded-xl animate-pulse" />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {[0, 1, 2].map(i => (
+            <div key={i} style={{ height: 72, borderRadius: 10, background: '#0f1b2e', animation: 'pulse 1.5s infinite' }} />
           ))}
         </div>
+      ) : isError ? (
+        <div style={{ padding: '20px 16px', borderRadius: 10, border: '1px dashed #1a2d4a', textAlign: 'center' }}>
+          <p style={{ color: '#475569', fontSize: 11, margin: 0 }}>
+            Add API keys &amp; run{' '}
+            <code style={{ color: '#FF6B00', background: 'rgba(255,107,0,0.12)', padding: '2px 6px', borderRadius: 4 }}>vercel dev</code>
+            {' '}to see live news
+          </p>
+        </div>
       ) : (
-        <div className="space-y-2">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {(data || []).slice(0, 3).map((article, i) => (
             <NewsCard key={article.link || i} article={article} />
           ))}
           {(!data || data.length === 0) && (
-            <div className="text-center py-8 text-[#475569] text-sm">
-              Add API keys to see live news
-            </div>
+            <p style={{ textAlign: 'center', padding: '28px 0', color: '#475569', fontSize: 13 }}>No articles found</p>
           )}
         </div>
       )}
@@ -65,89 +76,114 @@ function HomeNewsSection({ title, icon: Icon, color, path, category, query }) {
 
 export default function Home() {
   return (
-    <div className="max-w-[1400px] mx-auto px-4 py-8">
+    <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
 
-      {/* Hero */}
-      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e2d4a] to-[#0a0f1e] border border-[#1e2d4a] p-8 mb-8">
-        <div className="absolute inset-0 opacity-5"
-          style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 30px, #ffffff 30px, #ffffff 31px), repeating-linear-gradient(90deg, transparent, transparent 30px, #ffffff 30px, #ffffff 31px)' }}
-        />
-        <div className="relative">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs font-medium uppercase tracking-widest">Live Intelligence Feed</span>
+      {/* ── Hero ── */}
+      <div style={{
+        position: 'relative', borderRadius: 16, overflow: 'hidden',
+        background: 'linear-gradient(135deg, #0f1b2e 0%, #172640 50%, #0a0f1e 100%)',
+        border: '1px solid #1a2d4a', padding: '40px 36px', marginBottom: 28,
+      }}>
+        {/* grid overlay */}
+        <div style={{
+          position: 'absolute', inset: 0, opacity: 0.04, pointerEvents: 'none',
+          backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 30px,#fff 30px,#fff 31px),repeating-linear-gradient(90deg,transparent,transparent 30px,#fff 30px,#fff 31px)',
+        }} />
+        {/* tricolor accent */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg,#FF6B00 33.3%,#fff 33.3%,#fff 66.6%,#138808 66.6%)' }} />
+
+        <div style={{ position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', display: 'inline-block', animation: 'pulse 2s infinite' }} />
+            <span style={{ color: '#22c55e', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px' }}>Live Intelligence Feed</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-white mb-3 leading-tight">
+
+          <h1 style={{ color: '#f1f5f9', fontSize: 'clamp(26px, 5vw, 48px)', fontWeight: 900, lineHeight: 1.15, margin: '0 0 10px', letterSpacing: '-0.5px' }}>
             Your Complete<br />
-            <span className="text-[#FF6B00]">SSB Preparation</span> Hub
+            <span style={{ color: '#FF6B00' }}>SSB Preparation</span> Hub
           </h1>
-          <p className="text-[#64748b] text-base max-w-2xl mb-6">
-            Real-time national & international current affairs, defence updates, weapons inventory, government schemes, and geopolitics — everything you need for SSB GTO, Interview, and GD rounds.
+          <p style={{ color: '#64748b', fontSize: 14, maxWidth: 640, margin: '0 0 24px', lineHeight: 1.7 }}>
+            Real-time national &amp; international current affairs, defence updates, weapons inventory, government schemes, and geopolitics — everything for SSB GTO, Interview, and GD rounds.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/defence" className="px-5 py-2.5 bg-[#FF6B00] text-white rounded-xl font-semibold text-sm hover:bg-[#e55f00] transition-colors shadow-lg">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+            <Link
+              to="/defence"
+              style={{ padding: '10px 22px', background: '#FF6B00', color: '#fff', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 20px rgba(255,107,0,0.35)' }}
+            >
               Defence News →
             </Link>
-            <Link to="/weapons" className="px-5 py-2.5 bg-[#1e2d4a] text-white rounded-xl font-semibold text-sm hover:bg-[#2d4a7a] transition-colors border border-[#2d4a7a]">
+            <Link
+              to="/weapons"
+              style={{ padding: '10px 22px', background: '#1a2d4a', color: '#f1f5f9', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', border: '1px solid #253d60' }}
+            >
               Weapons DB →
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Quick facts */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+      {/* ── Quick facts ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 10, marginBottom: 28 }}>
         {quickFacts.map(f => (
-          <div key={f.label} className="bg-[#0f172a] border border-[#1e2d4a] rounded-xl p-3 hover:border-[#FF6B00]/30 transition-colors">
-            <p className="text-[#475569] text-[9px] uppercase tracking-wider leading-tight">{f.label}</p>
-            <p className="text-white font-bold text-sm mt-1">{f.value}</p>
-            <p className="text-[#475569] text-[9px] mt-0.5">{f.sub}</p>
+          <div key={f.label} style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 12, padding: '12px 14px' }}>
+            <p style={{ color: '#475569', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.8px', margin: '0 0 4px', lineHeight: 1.4 }}>{f.label}</p>
+            <p style={{ color: '#f1f5f9', fontWeight: 800, fontSize: 15, margin: '0 0 2px' }}>{f.value}</p>
+            <p style={{ color: '#475569', fontSize: 9, margin: 0 }}>{f.sub}</p>
           </div>
         ))}
       </div>
 
-      {/* Section navigation cards */}
-      <div className="mb-10">
-        <h2 className="text-[#94a3b8] text-xs uppercase tracking-wider mb-4">Browse by Section</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+      {/* ── Section nav ── */}
+      <div style={{ marginBottom: 36 }}>
+        <p style={{ color: '#475569', fontSize: 10, textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: 12 }}>Browse by Section</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(165px, 1fr))', gap: 10 }}>
           {sections.map(s => {
             const Icon = s.icon
             return (
               <Link
                 key={s.path}
                 to={s.path}
-                className="group bg-[#0f172a] border border-[#1e2d4a] rounded-xl p-4 hover:border-[#2d4a7a] hover:scale-[1.02] transition-all duration-200"
+                style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 12, padding: '14px 14px', textDecoration: 'none', display: 'block', transition: 'border-color 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = '#253d60'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = '#1a2d4a'}
               >
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-3 transition-transform group-hover:scale-110"
-                  style={{ backgroundColor: `${s.color}20` }}>
-                  <Icon className="w-5 h-5" style={{ color: s.color }} />
+                <div style={{ width: 36, height: 36, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${s.color}1a`, marginBottom: 10 }}>
+                  <Icon size={18} style={{ color: s.color }} />
                 </div>
-                <p className="text-white font-semibold text-sm">{s.title}</p>
-                <p className="text-[#475569] text-[10px] mt-1 leading-snug">{s.desc}</p>
+                <p style={{ color: '#f1f5f9', fontWeight: 700, fontSize: 13, margin: '0 0 4px' }}>{s.title}</p>
+                <p style={{ color: '#475569', fontSize: 10, margin: 0, lineHeight: 1.5 }}>{s.desc}</p>
               </Link>
             )
           })}
         </div>
       </div>
 
-      {/* Live news grid */}
-      <div className="mb-4 flex items-center gap-2">
-        <TrendingUp className="w-5 h-5 text-[#FF6B00]" />
-        <h2 className="text-white font-bold text-xl">Today's Intelligence Brief</h2>
-        <div className="flex items-center gap-1 ml-auto text-[#475569] text-xs">
-          <Clock className="w-3 h-3" />
-          <span>Auto-refreshes every 15 min</span>
+      {/* ── Today's brief header ── */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+        <TrendingUp size={20} style={{ color: '#FF6B00' }} />
+        <span style={{ color: '#f1f5f9', fontWeight: 700, fontSize: 18 }}>Today's Intelligence Brief</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginLeft: 'auto', color: '#475569' }}>
+          <Clock size={12} />
+          <span style={{ fontSize: 11 }}>Auto-refreshes every 15 min</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <HomeNewsSection title="National" icon={Flag} color="#FF6B00" path="/national" category="national" query="india government" />
-        <HomeNewsSection title="Defence" icon={Shield} color="#ef4444" path="/defence" category="defence" query="india military army defence" />
-        <HomeNewsSection title="International" icon={Globe} color="#3b82f6" path="/international" category="world" query="global geopolitics" />
-        <HomeNewsSection title="Indigenization" icon={Cpu} color="#10b981" path="/indigenization" category="science" query="india DRDO HAL BEL make in india defence" />
-        <HomeNewsSection title="Geopolitics" icon={Map} color="#f59e0b" path="/geopolitics" category="politics" query="india china pakistan border security strategic" />
-        <HomeNewsSection title="Science & Tech" icon={Rocket} color="#06b6d4" path="/science-tech" category="science" query="India ISRO technology space innovation" />
+      {/* ── News grid ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: 28 }}>
+        <HomeNewsSection title="National"        icon={Flag}    color="#FF6B00" path="/national"      category="national" query="india government" />
+        <HomeNewsSection title="Defence"         icon={Shield}  color="#ef4444" path="/defence"       category="defence"  query="india military army defence" />
+        <HomeNewsSection title="International"   icon={Globe}   color="#3b82f6" path="/international" category="world"    query="global geopolitics" />
+        <HomeNewsSection title="Indigenization"  icon={Cpu}     color="#10b981" path="/indigenization" category="science" query="india DRDO HAL BEL make in india defence" />
+        <HomeNewsSection title="Geopolitics"     icon={Map}     color="#f59e0b" path="/geopolitics"   category="politics" query="india china pakistan border security strategic" />
+        <HomeNewsSection title="Science & Tech"  icon={Rocket}  color="#06b6d4" path="/science-tech"  category="science"  query="India ISRO technology space innovation" />
       </div>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+      `}</style>
     </div>
   )
 }

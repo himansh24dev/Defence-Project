@@ -4,17 +4,11 @@ import NewsGrid from '../components/news/NewsGrid'
 import SectionHeader from '../components/common/SectionHeader'
 
 export default function Procurement() {
-  const { data, isLoading, isError, refetch } = useNews('defence', 'india defence procurement contract acquisition weapons deal MoD')
-
+  const { data, isLoading, isError, refetch } = useNews('defence', 'india defence procurement contract acquisition weapons deal MoD DAC')
   return (
-    <div className="max-w-[1400px] mx-auto px-4 py-8">
-      <SectionHeader
-        title="Defence Procurement"
-        subtitle="Arms deals, MOD acquisitions, defence contracts, and equipment purchases"
-        icon={ShoppingBag}
-        accent="#8b5cf6"
-      />
-      <NewsGrid articles={data} isLoading={isLoading} isError={isError} refetch={refetch} label="procurement news" />
+    <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
+      <SectionHeader title="Defence Procurement" subtitle="Arms deals, MOD acquisitions, DAC approvals, defence contracts" icon={ShoppingBag} accent="#8b5cf6" />
+      <NewsGrid articles={data} isLoading={isLoading} isError={isError} refetch={refetch} />
     </div>
   )
 }

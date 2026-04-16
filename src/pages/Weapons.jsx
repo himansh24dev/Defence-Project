@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { Crosshair, Anchor, Wind, Search, Filter } from 'lucide-react'
+import { Crosshair, Anchor, Wind, Search } from 'lucide-react'
 import { armyEquipment } from '../data/armyEquipment'
 import { navyEquipment } from '../data/navyEquipment'
 import { airforceEquipment } from '../data/airforceEquipment'
@@ -7,130 +7,116 @@ import WeaponCard from '../components/weapons/WeaponCard'
 import SectionHeader from '../components/common/SectionHeader'
 
 const TABS = [
-  { id: 'army',     label: 'Indian Army',     icon: Crosshair, color: '#FF6B00', data: armyEquipment },
-  { id: 'navy',     label: 'Indian Navy',     icon: Anchor,    color: '#3b82f6', data: navyEquipment },
-  { id: 'airforce', label: 'Indian Air Force', icon: Wind,     color: '#06b6d4', data: airforceEquipment },
+  { id: 'army',     label: 'Indian Army',      icon: Crosshair, color: '#f97316', data: armyEquipment },
+  { id: 'navy',     label: 'Indian Navy',      icon: Anchor,    color: '#3b82f6', data: navyEquipment },
+  { id: 'airforce', label: 'Indian Air Force', icon: Wind,      color: '#22d3ee', data: airforceEquipment },
 ]
-
-const ALL_TYPES = {
-  army:     [...new Set(armyEquipment.map(e => e.type.split('(')[0].trim()))],
-  navy:     [...new Set(navyEquipment.map(e => e.type.split('(')[0].trim()))],
-  airforce: [...new Set(airforceEquipment.map(e => e.type.split('(')[0].trim()))],
-}
 
 const ORIGIN_FILTERS = ['All', 'Indigenous', 'Imported', 'Licensed']
 
-const stats = {
-  army: {
-    'Personnel': '~1.46 million (active)',
-    'Tanks': '~4,000+',
-    'Artillery Pieces': '~9,700+',
-    'Attack Helicopters': '~80+',
-    'Theatre Commands': 'Western, Northern, Southern, Eastern, Central',
-  },
-  navy: {
-    'Personnel': '~67,000 (active)',
-    'Major Warships': '~130+',
-    'Submarines': '~16',
-    'Aircraft Carriers': '2',
-    'Aircraft': '~230+',
-  },
-  airforce: {
-    'Personnel': '~140,000',
-    'Combat Aircraft': '~600+',
-    'Transport Aircraft': '~200+',
-    'Helicopters': '~400+',
-    'AEW&C Aircraft': '5',
-  },
+const SERVICE_STATS = {
+  army:     [['Active Personnel','~1.46 million'],['Main Battle Tanks','~4,000+'],['Artillery Pieces','~9,700+'],['Attack Helicopters','~80+'],['Regiments','~350+']],
+  navy:     [['Active Personnel','~67,500'],['Total Warships','~130+'],['Submarines','~17'],['Aircraft Carriers','2'],['Naval Aircraft','~230+']],
+  airforce: [['Active Personnel','~1,40,000'],['Combat Aircraft','~600+'],['Transport/LIFT','~200+'],['Helicopters','~400+'],['UAVs/Drones','~70+']],
 }
 
 export default function Weapons() {
-  const [activeTab, setActiveTab] = useState('army')
-  const [search, setSearch] = useState('')
-  const [originFilter, setOriginFilter] = useState('All')
-  const [typeFilter, setTypeFilter] = useState('All')
+  const [tab, setTab]         = useState('army')
+  const [search, setSearch]   = useState('')
+  const [origin, setOrigin]   = useState('All')
+  const [typeFilter, setType] = useState('All')
 
-  const current = TABS.find(t => t.id === activeTab)
-  const currentStats = stats[activeTab]
+  const current = TABS.find(t => t.id === tab)
+  const types   = useMemo(() => ['All', ...new Set(current.data.map(e => e.type.split('(')[0].split('—')[0].trim()))], [tab, current.data])
 
   const filtered = useMemo(() => {
+    const q = search.toLowerCase()
     return current.data.filter(item => {
-      const q = search.toLowerCase()
-      const matchSearch = !q || item.name.toLowerCase().includes(q) ||
-        item.type.toLowerCase().includes(q) ||
-        item.description?.toLowerCase().includes(q)
-      const matchOrigin = originFilter === 'All' ||
-        (originFilter === 'Indigenous' && item.tags?.includes('indigenous')) ||
-        (originFilter === 'Imported' && item.tags?.includes('imported')) ||
-        (originFilter === 'Licensed' && item.tags?.includes('licensed'))
-      const matchType = typeFilter === 'All' || item.type.startsWith(typeFilter)
+      const matchSearch = !q || item.name.toLowerCase().includes(q) || item.type.toLowerCase().includes(q) || item.description?.toLowerCase().includes(q)
+      const matchOrigin = origin === 'All'
+        || (origin === 'Indigenous' && item.tags?.includes('indigenous'))
+        || (origin === 'Imported'   && item.tags?.includes('imported'))
+        || (origin === 'Licensed'   && item.tags?.includes('licensed'))
+      const matchType = typeFilter === 'All' || item.type.split('(')[0].split('—')[0].trim() === typeFilter
       return matchSearch && matchOrigin && matchType
     })
-  }, [activeTab, search, originFilter, typeFilter, current.data])
+  }, [tab, search, origin, typeFilter, current.data])
 
   return (
-    <div className="max-w-[1400px] mx-auto px-4 py-8">
+    <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
       <SectionHeader
         title="Weapons & Equipment"
-        subtitle="Complete inventory of Indian Armed Forces — Army, Navy & Air Force"
+        subtitle="Complete inventory of Indian Armed Forces — Army, Navy & Air Force | Updated April 2026"
         icon={Crosshair}
-        accent="#FF6B00"
+        accent="#f97316"
       />
 
-      {/* Service Tabs */}
-      <div className="flex flex-wrap gap-3 mb-6">
-        {TABS.map(tab => {
-          const Icon = tab.icon
-          const isActive = activeTab === tab.id
+      {/* Service tabs */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 20 }}>
+        {TABS.map(t => {
+          const Icon = t.icon
+          const active = tab === t.id
           return (
             <button
-              key={tab.id}
-              onClick={() => { setActiveTab(tab.id); setTypeFilter('All'); setSearch('') }}
-              className={`flex items-center gap-2.5 px-5 py-3 rounded-xl font-semibold text-sm transition-all border ${
-                isActive
-                  ? 'text-white border-transparent shadow-lg'
-                  : 'bg-[#0f172a] text-[#64748b] border-[#1e2d4a] hover:text-white hover:border-[#2d4a7a]'
-              }`}
-              style={isActive ? { backgroundColor: tab.color, borderColor: tab.color } : {}}
+              key={t.id}
+              onClick={() => { setTab(t.id); setType('All'); setSearch('') }}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 8,
+                padding: '10px 18px', borderRadius: 10, border: '1px solid',
+                fontWeight: 600, fontSize: 13, cursor: 'pointer',
+                background: active ? t.color : '#0f1b2e',
+                color: active ? '#fff' : '#94a3b8',
+                borderColor: active ? t.color : '#1a2d4a',
+                transition: 'all 0.15s',
+              }}
             >
-              <Icon className="w-4 h-4" />
-              {tab.label}
+              <Icon size={15} />
+              {t.label}
             </button>
           )
         })}
       </div>
 
-      {/* Stats bar */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-6">
-        {Object.entries(currentStats).map(([key, val]) => (
-          <div key={key} className="bg-[#0f172a] border border-[#1e2d4a] rounded-xl p-3">
-            <p className="text-[#475569] text-[9px] uppercase tracking-wider">{key}</p>
-            <p className="text-white text-xs font-semibold mt-0.5 leading-snug">{val}</p>
+      {/* Service stats */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 8, marginBottom: 20 }}>
+        {SERVICE_STATS[tab].map(([k, v]) => (
+          <div key={k} style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 9, padding: '10px 12px' }}>
+            <div style={{ fontSize: 9.5, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>{k}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#f1f5f9' }}>{v}</div>
           </div>
         ))}
       </div>
 
-      {/* Filter bar */}
-      <div className="flex flex-col md:flex-row gap-3 mb-6">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#475569]" />
+      {/* Filters */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 14 }}>
+        {/* Search */}
+        <div style={{ position: 'relative', flex: '1 1 220px', minWidth: 180 }}>
+          <Search size={14} color="#475569" style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder={`Search ${current.label} equipment...`}
-            className="w-full bg-[#0f172a] border border-[#1e2d4a] rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-[#475569] outline-none focus:border-[#FF6B00]/60"
+            placeholder={`Search ${current.label} equipment…`}
+            style={{
+              width: '100%', background: '#0f1b2e', border: '1px solid #1a2d4a',
+              borderRadius: 9, padding: '9px 12px 9px 30px',
+              color: '#f1f5f9', fontSize: 13, outline: 'none',
+              boxSizing: 'border-box',
+            }}
           />
         </div>
-        <div className="flex gap-2">
+        {/* Origin filter */}
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
           {ORIGIN_FILTERS.map(f => (
             <button
               key={f}
-              onClick={() => setOriginFilter(f)}
-              className={`px-3 py-2 rounded-xl text-xs font-medium transition-all border ${
-                originFilter === f
-                  ? 'bg-[#FF6B00] text-white border-[#FF6B00]'
-                  : 'bg-[#0f172a] text-[#64748b] border-[#1e2d4a] hover:text-white'
-              }`}
+              onClick={() => setOrigin(f)}
+              style={{
+                padding: '8px 13px', borderRadius: 8, border: '1px solid',
+                fontSize: 12, fontWeight: 500, cursor: 'pointer',
+                background: origin === f ? '#FF6B00' : '#0f1b2e',
+                color: origin === f ? '#fff' : '#64748b',
+                borderColor: origin === f ? '#FF6B00' : '#1a2d4a',
+              }}
             >
               {f}
             </button>
@@ -139,53 +125,43 @@ export default function Weapons() {
       </div>
 
       {/* Type pills */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        <button
-          onClick={() => setTypeFilter('All')}
-          className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${
-            typeFilter === 'All'
-              ? 'border-[#FF6B00]/60 text-[#FF6B00] bg-[#FF6B00]/10'
-              : 'border-[#1e2d4a] text-[#475569] bg-[#0f172a] hover:text-white'
-          }`}
-        >
-          All Types ({current.data.length})
-        </button>
-        {ALL_TYPES[activeTab].map(type => (
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 18 }}>
+        {types.map(t => (
           <button
-            key={type}
-            onClick={() => setTypeFilter(type)}
-            className={`px-3 py-1 rounded-full text-xs font-medium transition-all border ${
-              typeFilter === type
-                ? 'border-[#FF6B00]/60 text-[#FF6B00] bg-[#FF6B00]/10'
-                : 'border-[#1e2d4a] text-[#475569] bg-[#0f172a] hover:text-white'
-            }`}
+            key={t}
+            onClick={() => setType(t)}
+            style={{
+              padding: '5px 11px', borderRadius: 99, fontSize: 11.5, fontWeight: 500,
+              cursor: 'pointer', border: '1px solid',
+              background: typeFilter === t ? 'rgba(249,115,22,0.12)' : 'transparent',
+              color: typeFilter === t ? '#fb923c' : '#475569',
+              borderColor: typeFilter === t ? 'rgba(249,115,22,0.4)' : '#1a2d4a',
+            }}
           >
-            {type.replace(' (Indigenous)', '').replace(' (Enhanced)', '')}
+            {t === 'All' ? `All (${current.data.length})` : t}
           </button>
         ))}
       </div>
 
       {/* Results count */}
-      <p className="text-[#475569] text-xs mb-4">
+      <p style={{ fontSize: 12, color: '#475569', marginBottom: 16 }}>
         Showing {filtered.length} of {current.data.length} platforms
-        {search && ` for "${search}"`}
+        {search && ` · matching "${search}"`}
       </p>
 
-      {/* Grid */}
+      {/* Cards grid */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map(item => (
-            <WeaponCard key={item.id} weapon={item} />
-          ))}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 14 }}>
+          {filtered.map(item => <WeaponCard key={item.id} weapon={item} />)}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center py-20">
-          <p className="text-[#475569] text-lg">No equipment matches your filters</p>
+        <div style={{ textAlign: 'center', padding: '48px 16px' }}>
+          <p style={{ color: '#475569', fontSize: 15 }}>No equipment matches your filters</p>
           <button
-            onClick={() => { setSearch(''); setOriginFilter('All'); setTypeFilter('All') }}
-            className="mt-3 text-[#FF6B00] text-sm hover:underline"
+            onClick={() => { setSearch(''); setOrigin('All'); setType('All') }}
+            style={{ marginTop: 10, color: '#FF6B00', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, textDecoration: 'underline' }}
           >
-            Clear filters
+            Clear all filters
           </button>
         </div>
       )}

@@ -1,106 +1,186 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Shield, Search, Bell } from 'lucide-react'
+import { Menu, X, Shield, Search } from 'lucide-react'
 
 const navLinks = [
-  { label: 'Home', path: '/' },
-  { label: 'National', path: '/national' },
-  { label: 'International', path: '/international' },
-  { label: 'Defence', path: '/defence' },
-  { label: 'Procurement', path: '/procurement' },
-  { label: 'Indigenization', path: '/indigenization' },
-  { label: 'Geopolitics', path: '/geopolitics' },
-  { label: 'Sci & Tech', path: '/science-tech' },
-  { label: 'Schemes', path: '/schemes' },
-  { label: 'Weapons & Equipment', path: '/weapons' },
+  { label: 'Home',            path: '/' },
+  { label: 'National',        path: '/national' },
+  { label: 'International',   path: '/international' },
+  { label: 'Defence',         path: '/defence' },
+  { label: 'Procurement',     path: '/procurement' },
+  { label: 'Indigenization',  path: '/indigenization' },
+  { label: 'Geopolitics',     path: '/geopolitics' },
+  { label: 'Sci & Tech',      path: '/science-tech' },
+  { label: 'Schemes',         path: '/schemes' },
+  { label: 'Weapons & Equip', path: '/weapons' },
 ]
 
 export default function Header({ onSearchOpen }) {
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const location = useLocation()
 
   return (
-    <header className="sticky top-0 z-50 bg-[#070c1a] border-b border-[#1e2d4a] shadow-lg">
-      {/* Top bar - tricolor strip */}
-      <div className="h-1 w-full flex">
-        <div className="flex-1 bg-[#FF6B00]" />
-        <div className="flex-1 bg-white opacity-80" />
-        <div className="flex-1 bg-[#138808]" />
+    <header
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        backgroundColor: '#070c1a',
+        borderBottom: '1px solid #1a2d4a',
+        boxShadow: '0 4px 24px 0 rgba(0,0,0,0.5)',
+      }}
+    >
+      {/* Indian tricolor top stripe */}
+      <div style={{ display: 'flex', height: 3 }}>
+        <div style={{ flex: 1, background: '#FF6B00' }} />
+        <div style={{ flex: 1, background: '#ffffff', opacity: 0.7 }} />
+        <div style={{ flex: 1, background: '#138808' }} />
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-4">
-        {/* Logo row */}
-        <div className="flex items-center justify-between py-3">
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-[#FF6B00] rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-              <Shield className="w-5 h-5 text-white" />
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 16px' }}>
+        {/* Logo + actions row */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0' }}>
+          {/* Logo */}
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+            <div style={{
+              width: 38, height: 38,
+              background: 'linear-gradient(135deg, #FF6B00, #e55f00)',
+              borderRadius: 10,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              flexShrink: 0,
+            }}>
+              <Shield size={18} color="#fff" />
             </div>
             <div>
-              <span className="text-white font-bold text-xl tracking-tight">SSB</span>
-              <span className="text-[#FF6B00] font-bold text-xl tracking-tight">Pulse</span>
-              <p className="text-[#64748b] text-[10px] tracking-widest uppercase">Defence Intelligence Hub</p>
+              <div style={{ fontSize: 18, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.5px' }}>
+                <span style={{ color: '#fff' }}>BABA </span>
+                <span style={{ color: '#FF6B00' }}>YAGA</span>
+              </div>
+              <div style={{ fontSize: 9, color: '#475569', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1 }}>
+                Defence Intelligence Hub
+              </div>
             </div>
           </Link>
 
-          <div className="flex items-center gap-3">
+          {/* Right side */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {/* Live indicator */}
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 5,
+              background: '#0f1b2e', border: '1px solid #1a2d4a',
+              borderRadius: 999, padding: '4px 10px',
+            }}>
+              <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', animation: 'pulse 2s infinite' }} />
+              <span style={{ color: '#64748b', fontSize: 11 }}>LIVE</span>
+            </div>
+            {/* Search */}
             <button
               onClick={onSearchOpen}
-              className="p-2 text-[#94a3b8] hover:text-white hover:bg-[#1e2d4a] rounded-lg transition-colors"
+              style={{
+                background: 'none', border: '1px solid #1a2d4a',
+                borderRadius: 8, padding: '6px 8px', cursor: 'pointer',
+                color: '#64748b', display: 'flex', alignItems: 'center',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#253d60' }}
+              onMouseLeave={e => { e.currentTarget.style.color = '#64748b'; e.currentTarget.style.borderColor = '#1a2d4a' }}
             >
-              <Search className="w-5 h-5" />
+              <Search size={16} />
             </button>
-            <div className="hidden md:flex items-center gap-1 bg-[#0f1a2e] px-3 py-1.5 rounded-full border border-[#1e2d4a]">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-[#94a3b8] text-xs">Live</span>
-            </div>
+            {/* Mobile menu toggle */}
             <button
-              className="md:hidden p-2 text-[#94a3b8] hover:text-white rounded-lg"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() => setOpen(!open)}
+              style={{
+                background: 'none', border: '1px solid #1a2d4a',
+                borderRadius: 8, padding: '6px 8px', cursor: 'pointer',
+                color: '#64748b', display: 'none',
+              }}
+              className="mobile-menu-btn"
             >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {open ? <X size={16} /> : <Menu size={16} />}
             </button>
           </div>
         </div>
 
-        {/* Nav row - desktop */}
-        <nav className="hidden md:flex items-center gap-1 pb-2 overflow-x-auto">
-          {navLinks.map(link => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
-                location.pathname === link.path
-                  ? 'bg-[#FF6B00] text-white shadow-sm'
-                  : 'text-[#94a3b8] hover:text-white hover:bg-[#1e2d4a]'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        {/* Desktop nav */}
+        <nav
+          style={{
+            display: 'flex',
+            gap: 2,
+            paddingBottom: 8,
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+          className="desktop-nav"
+        >
+          {navLinks.map(link => {
+            const active = location.pathname === link.path
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                style={{
+                  padding: '5px 11px',
+                  borderRadius: 7,
+                  fontSize: 12.5,
+                  fontWeight: active ? 600 : 500,
+                  color: active ? '#fff' : '#94a3b8',
+                  background: active ? '#FF6B00' : 'transparent',
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.15s',
+                  flexShrink: 0,
+                }}
+                onMouseEnter={e => { if (!active) { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = '#1a2d4a' } }}
+                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.background = 'transparent' } }}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
       </div>
 
       {/* Mobile nav */}
-      {mobileOpen && (
-        <div className="md:hidden bg-[#070c1a] border-t border-[#1e2d4a] px-4 py-3">
-          <nav className="flex flex-col gap-1">
-            {navLinks.map(link => (
+      {open && (
+        <div style={{ borderTop: '1px solid #1a2d4a', padding: '8px 16px 12px' }} className="mobile-nav">
+          {navLinks.map(link => {
+            const active = location.pathname === link.path
+            return (
               <Link
                 key={link.path}
                 to={link.path}
-                onClick={() => setMobileOpen(false)}
-                className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                  location.pathname === link.path
-                    ? 'bg-[#FF6B00] text-white'
-                    : 'text-[#94a3b8] hover:text-white hover:bg-[#1e2d4a]'
-                }`}
+                onClick={() => setOpen(false)}
+                style={{
+                  display: 'block',
+                  padding: '9px 12px',
+                  borderRadius: 8,
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: active ? '#fff' : '#94a3b8',
+                  background: active ? '#FF6B00' : 'transparent',
+                  textDecoration: 'none',
+                  marginBottom: 2,
+                }}
               >
                 {link.label}
               </Link>
-            ))}
-          </nav>
+            )
+          })}
         </div>
       )}
+
+      {/* Responsive CSS via style tag workaround */}
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+      `}</style>
     </header>
   )
 }
