@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import SearchModal from './components/common/SearchModal'
+import SplashScreen from './components/common/SplashScreen'
+import ChatWidget from './components/common/ChatWidget'
 
 import Home from './pages/Home'
 import National from './pages/National'
@@ -27,10 +29,12 @@ const queryClient = new QueryClient({
 })
 
 export default function App() {
+  const [splashDone, setSplashDone] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
 
   return (
     <QueryClientProvider client={queryClient}>
+      {!splashDone && <SplashScreen onDone={() => setSplashDone(true)} />}
       <BrowserRouter>
         <div className="min-h-screen flex flex-col bg-[#0a0f1e]">
           <Header onSearchOpen={() => setSearchOpen(true)} />
@@ -51,6 +55,7 @@ export default function App() {
           </main>
           <Footer />
         </div>
+        <ChatWidget />
       </BrowserRouter>
     </QueryClientProvider>
   )
