@@ -44,15 +44,25 @@ export default function WeaponCard({ weapon }) {
 
   return (
     <div
+      className="animate-fade-up"
       style={{
         background: '#0f1b2e',
         border: '1px solid #1a2d4a',
         borderRadius: 14,
         overflow: 'hidden',
-        transition: 'border-color 0.2s',
+        transition: 'border-color 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), transform 0.25s cubic-bezier(0.4,0,0.2,1)',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
       }}
-      onMouseEnter={e => e.currentTarget.style.borderColor = '#253d60'}
-      onMouseLeave={e => e.currentTarget.style.borderColor = '#1a2d4a'}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = '#2d4a72'
+        e.currentTarget.style.boxShadow = '0 8px 28px rgba(0,0,0,0.45), 0 0 0 1px #2d4a7244'
+        e.currentTarget.style.transform = 'translateY(-3px)'
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = '#1a2d4a'
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)'
+        e.currentTarget.style.transform = 'translateY(0)'
+      }}
     >
       {/* Card header */}
       <div style={{ padding: '16px 16px 0' }}>
@@ -112,7 +122,10 @@ export default function WeaponCard({ weapon }) {
             display: 'flex', alignItems: 'center', gap: 5,
             background: 'none', border: 'none', cursor: 'pointer',
             color: '#FF6B00', fontSize: 12, fontWeight: 600, padding: '0 0 12px',
+            transition: 'opacity 0.15s ease, letter-spacing 0.15s ease',
           }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = '0.75'; e.currentTarget.style.letterSpacing = '0.3px' }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.letterSpacing = '0' }}
         >
           {expanded ? <><ChevronUp size={14} />Hide specs</> : <><ChevronDown size={14} />Full specs & SSB significance</>}
         </button>

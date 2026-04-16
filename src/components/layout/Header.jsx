@@ -119,6 +119,7 @@ export default function Header({ onSearchOpen }) {
               <Link
                 key={link.path}
                 to={link.path}
+                className={active ? '' : 'nav-link-animate'}
                 style={{
                   padding: '5px 11px',
                   borderRadius: 7,
@@ -128,11 +129,11 @@ export default function Header({ onSearchOpen }) {
                   background: active ? '#FF6B00' : 'transparent',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
-                  transition: 'all 0.15s',
+                  transition: 'color 0.2s cubic-bezier(0.4,0,0.2,1), background 0.2s cubic-bezier(0.4,0,0.2,1), transform 0.2s cubic-bezier(0.4,0,0.2,1)',
                   flexShrink: 0,
                 }}
-                onMouseEnter={e => { if (!active) { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = '#1a2d4a' } }}
-                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.background = 'transparent' } }}
+                onMouseEnter={e => { if (!active) { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = '#1a2d4a'; e.currentTarget.style.transform = 'translateY(-1px)' } }}
+                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)' } }}
               >
                 {link.label}
               </Link>

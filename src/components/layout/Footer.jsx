@@ -1,4 +1,4 @@
-import { Shield, ExternalLink } from 'lucide-react'
+import { Shield, ExternalLink, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const sections = ['National', 'International', 'Defence', 'Procurement', 'Indigenization', 'Geopolitics']
@@ -50,6 +50,34 @@ export default function Footer() {
             ))}
           </div>
 
+          {/* Developer */}
+          <div>
+            <h4 style={{ color: '#94a3b8', fontSize: 11, fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 12 }}>
+              Developer
+            </h4>
+            <p style={{ color: '#cbd5e1', fontSize: 13, fontWeight: 600, marginBottom: 8 }}>Himanshu Sharma</p>
+            <a
+              href="https://www.linkedin.com/in/himanshu-sharma-78a388201"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#475569', fontSize: 12.5, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#0a66c2'}
+              onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              www.linkedin.com/in/himanshu-sharma-78a388201
+            </a>
+            <a
+              href="mailto:himansh24dev@gmail.com"
+              style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#475569', fontSize: 12.5, textDecoration: 'none', transition: 'color 0.15s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#FF6B00'}
+              onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+            >
+              <Mail size={13} />
+              himansh24dev@gmail.com
+            </a>
+          </div>
+
           {/* Official sources */}
           <div>
             <h4 style={{ color: '#94a3b8', fontSize: 11, fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 12 }}>
@@ -75,7 +103,7 @@ export default function Footer() {
         {/* Bottom row */}
         <div style={{ borderTop: '1px solid #1a2d4a', paddingTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center' }}>
           <p style={{ color: '#334155', fontSize: 11 }}>
-            &copy; {new Date().getFullYear()} BABA YAGA. For SSB preparation use only.
+            &copy; {new Date().getFullYear()} BABA YAGA. Made with love , by Himanshu .
           </p>
           <p style={{ color: '#334155', fontSize: 11 }}>
             News: NewsData.io · GNews · PIB · MoD

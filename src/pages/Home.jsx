@@ -77,42 +77,52 @@ export default function Home() {
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
 
       {/* ── Hero ── */}
-      <div style={{
+      <div className="animate-fade-up" style={{
         position: 'relative', borderRadius: 16, overflow: 'hidden',
-        background: 'linear-gradient(135deg, #0f1b2e 0%, #172640 50%, #0a0f1e 100%)',
-        border: '1px solid #1a2d4a', padding: '40px 36px', marginBottom: 28,
+        background: 'linear-gradient(135deg, #0d1929 0%, #0f1f38 40%, #0a0f1e 100%)',
+        border: '1px solid #1a2d4a', padding: '44px 36px', marginBottom: 28,
+        boxShadow: '0 8px 40px rgba(0,0,0,0.4)',
       }}>
+        {/* Ambient glow orbs */}
+        <div className="hero-orb" style={{ width: 300, height: 300, background: 'rgba(255,107,0,0.07)', top: -80, right: -60, animationDelay: '0s' }} />
+        <div className="hero-orb" style={{ width: 200, height: 200, background: 'rgba(59,130,246,0.06)', bottom: -60, left: 80, animationDelay: '3s' }} />
+        <div className="hero-orb" style={{ width: 150, height: 150, background: 'rgba(19,136,8,0.05)', top: 20, left: '40%', animationDelay: '1.5s' }} />
+
         {/* grid overlay */}
         <div style={{
-          position: 'absolute', inset: 0, opacity: 0.04, pointerEvents: 'none',
+          position: 'absolute', inset: 0, opacity: 0.03, pointerEvents: 'none',
           backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 30px,#fff 30px,#fff 31px),repeating-linear-gradient(90deg,transparent,transparent 30px,#fff 30px,#fff 31px)',
         }} />
         {/* tricolor accent */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg,#FF6B00 33.3%,#fff 33.3%,#fff 66.6%,#138808 66.6%)' }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg,#FF6B00 33.3%,#fff 33.3%,#fff 66.6%,#138808 66.6%)', opacity: 0.9 }} />
 
         <div style={{ position: 'relative' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', display: 'inline-block', animation: 'pulse 2s infinite' }} />
-            <span style={{ color: '#22c55e', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px' }}>Live Intelligence Feed</span>
+          <div className="animate-fade-in" style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14, animationDelay: '0.1s' }}>
+            <span className="live-ping" style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+            <span style={{ color: '#22c55e', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2.5px' }}>Live Intelligence Feed</span>
           </div>
 
-          <h1 style={{ color: '#f1f5f9', fontSize: 'clamp(26px, 5vw, 48px)', fontWeight: 900, lineHeight: 1.15, margin: '0 0 10px', letterSpacing: '-0.5px' }}>
+          <h1 className="animate-fade-up" style={{ color: '#f1f5f9', fontSize: 'clamp(26px, 5vw, 50px)', fontWeight: 900, lineHeight: 1.12, margin: '0 0 12px', letterSpacing: '-0.5px', animationDelay: '0.15s' }}>
             Your Complete<br />
-            <span style={{ color: '#FF6B00' }}>SSB Preparation</span> Hub
+            <span style={{ color: '#FF6B00', textShadow: '0 0 40px rgba(255,107,0,0.4)' }}>SSB Preparation</span> Hub
           </h1>
-          <p style={{ color: '#64748b', fontSize: 14, maxWidth: 640, margin: '0 0 24px', lineHeight: 1.7 }}>
-            Real-time national &amp; international current affairs, defence updates, weapons inventory, government schemes, and geopolitics — everything for SSB GTO, Interview, and GD rounds.
+          <p className="animate-fade-up" style={{ color: '#64748b', fontSize: 14, maxWidth: 600, margin: '0 0 28px', lineHeight: 1.75, animationDelay: '0.22s' }}>
+            Real-time national &amp; international current affairs, defence updates, weapons inventory, government schemes, and geopolitics — everything for SSB GTO, Interview &amp; GD rounds.
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+          <div className="animate-fade-up" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, animationDelay: '0.3s' }}>
             <Link
               to="/defence"
-              style={{ padding: '10px 22px', background: '#FF6B00', color: '#fff', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 20px rgba(255,107,0,0.35)' }}
+              style={{ padding: '11px 24px', background: '#FF6B00', color: '#fff', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 24px rgba(255,107,0,0.4)', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(255,107,0,0.55)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(255,107,0,0.4)' }}
             >
               Defence News →
             </Link>
             <Link
               to="/weapons"
-              style={{ padding: '10px 22px', background: '#1a2d4a', color: '#f1f5f9', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', border: '1px solid #253d60' }}
+              style={{ padding: '11px 24px', background: 'rgba(26,45,74,0.8)', color: '#f1f5f9', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', border: '1px solid #253d60', transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4)'; e.currentTarget.style.borderColor = '#3a5a8a' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#253d60' }}
             >
               Weapons DB →
             </Link>
@@ -121,9 +131,9 @@ export default function Home() {
       </div>
 
       {/* ── Quick facts ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 10, marginBottom: 28 }}>
+      <div className="stagger-children" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 10, marginBottom: 28 }}>
         {quickFacts.map(f => (
-          <div key={f.label} style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 12, padding: '12px 14px' }}>
+          <div key={f.label} className="animate-fade-up" style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 12, padding: '12px 14px' }}>
             <p style={{ color: '#475569', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.8px', margin: '0 0 4px', lineHeight: 1.4 }}>{f.label}</p>
             <p style={{ color: '#f1f5f9', fontWeight: 800, fontSize: 15, margin: '0 0 2px' }}>{f.value}</p>
             <p style={{ color: '#475569', fontSize: 9, margin: 0 }}>{f.sub}</p>
@@ -134,16 +144,17 @@ export default function Home() {
       {/* ── Section nav ── */}
       <div style={{ marginBottom: 36 }}>
         <p style={{ color: '#475569', fontSize: 10, textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: 12 }}>Browse by Section</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(165px, 1fr))', gap: 10 }}>
+        <div className="stagger-children" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(165px, 1fr))', gap: 10 }}>
           {sections.map(s => {
             const Icon = s.icon
             return (
               <Link
                 key={s.path}
                 to={s.path}
-                style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 12, padding: '14px 14px', textDecoration: 'none', display: 'block', transition: 'border-color 0.15s' }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = '#253d60'}
-                onMouseLeave={e => e.currentTarget.style.borderColor = '#1a2d4a'}
+                className="animate-fade-up"
+                style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 12, padding: '14px 14px', textDecoration: 'none', display: 'block', transition: 'border-color 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), transform 0.25s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 2px 6px rgba(0,0,0,0.2)' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = `${s.color}66`; e.currentTarget.style.boxShadow = `0 8px 24px rgba(0,0,0,0.35), 0 0 0 1px ${s.color}33`; e.currentTarget.style.transform = 'translateY(-3px)' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#1a2d4a'; e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)'; e.currentTarget.style.transform = 'translateY(0)' }}
               >
                 <div style={{ width: 36, height: 36, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${s.color}1a`, marginBottom: 10 }}>
                   <Icon size={18} style={{ color: s.color }} />

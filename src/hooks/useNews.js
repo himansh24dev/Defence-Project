@@ -51,8 +51,8 @@ export function useNews(category, query = '') {
   return useQuery({
     queryKey: ['news', category, query],
     queryFn: () => fetchNews(category, query),
-    staleTime: 10 * 60 * 1000, // 10 minutes
-    refetchInterval: 15 * 60 * 1000, // refetch every 15 minutes
+    staleTime: 3 * 60 * 60 * 1000, // 3 hours
+    refetchInterval: 3 * 60 * 60 * 1000, // refetch every 3 hours
     retry: 2,
   })
 }
