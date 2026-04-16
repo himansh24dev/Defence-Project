@@ -55,9 +55,7 @@ function HomeNewsSection({ title, icon: Icon, color, path, category, query }) {
       ) : isError ? (
         <div style={{ padding: '20px 16px', borderRadius: 10, border: '1px dashed #1a2d4a', textAlign: 'center' }}>
           <p style={{ color: '#475569', fontSize: 11, margin: 0 }}>
-            Add API keys &amp; run{' '}
-            <code style={{ color: '#FF6B00', background: 'rgba(255,107,0,0.12)', padding: '2px 6px', borderRadius: 4 }}>vercel dev</code>
-            {' '}to see live news
+            News feed unavailable — API limit reached or keys not configured
           </p>
         </div>
       ) : (

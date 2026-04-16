@@ -9,7 +9,7 @@ export default function NewsGrid({ articles, isLoading, isError, refetch }) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '64px 16px', gap: 14 }}>
         <AlertCircle size={36} color="#ef4444" />
-        <p style={{ color: '#94a3b8', fontSize: 14 }}>Could not fetch news — check your API keys in .env.local</p>
+        <p style={{ color: '#94a3b8', fontSize: 14 }}>Could not fetch news — API unavailable or rate limit reached</p>
         <button
           onClick={refetch}
           style={{
