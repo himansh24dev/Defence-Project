@@ -18,14 +18,33 @@ function scoreImportance(title = '', description = '') {
 
 async function fetchNews(category, query = '') {
   const params = new URLSearchParams({ category, query })
-  const { data } = await axios.get(`/api/news?${params}`)
-  const articles = (data.results || data.articles || []).map(a => ({
-    ...a,
-    importance: scoreImportance(a.title, a.description),
-  }))
-  // Sort by importance then by date
-  const order = { critical: 0, high: 1, medium: 2, low: 3 }
-  return articles.sort((a, b) => order[a.importance] - order[b.importance])
+  const url = `/api/news?${params}`
+
+  console.log(`[useNews] Fetching → ${url}`)
+
+  try {
+    const { data } = await axios.get(url)
+
+    if (data.warnings?.length) {
+      console.warn('[useNews] API warnings:', data.warnings)
+    }
+
+    const articles = (data.results || data.articles || []).map(a => ({
+      ...a,
+      importance: scoreImportance(a.title, a.description),
+    }))
+
+    const order = { critical: 0, high: 1, medium: 2, low: 3 }
+    const sorted = articles.sort((a, b) => order[a.importance] - order[b.importance])
+
+    console.log(`[useNews] ✓ ${sorted.length} articles for "${category}" (query: "${query}")`)
+    return sorted
+  } catch (err) {
+    const status = err.response?.status
+    const msg    = err.response?.data?.error || err.message
+    console.error(`[useNews] ✗ Failed to fetch "${category}" — ${status ?? 'network error'}: ${msg}`)
+    throw err
+  }
 }
 
 export function useNews(category, query = '') {

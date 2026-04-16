@@ -1,30 +1,41 @@
 // Vercel Serverless Function — /api/news
-// Fetches from NewsData.io and GNews.io, merges results, returns JSON
 
 const CATEGORY_MAP = {
-  national:       { newsdata: 'politics',  gnews: 'nation',  query: 'india' },
-  world:          { newsdata: 'world',     gnews: 'world',   query: '' },
-  defence:        { newsdata: 'politics',  gnews: 'nation',  query: 'india defence military army navy' },
-  science:        { newsdata: 'science',   gnews: 'technology', query: 'india' },
-  politics:       { newsdata: 'politics',  gnews: 'world',   query: '' },
+  national:  { newsdata: 'politics',  gnews: 'nation',     query: 'india' },
+  world:     { newsdata: 'world',     gnews: 'world',      query: '' },
+  defence:   { newsdata: 'politics',  gnews: 'nation',     query: 'india defence military' },
+  science:   { newsdata: 'science',   gnews: 'technology', query: 'india' },
+  politics:  { newsdata: 'politics',  gnews: 'world',      query: '' },
 }
+
+const GLOBAL_CATEGORIES = new Set(['world', 'politics'])
 
 async function fetchNewsData(category, query, apiKey) {
   const mapped = CATEGORY_MAP[category] || CATEGORY_MAP.national
   const params = new URLSearchParams({
     apikey:   apiKey,
     language: 'en',
-    country:  category === 'world' || category === 'politics' ? '' : 'in',
     category: mapped.newsdata,
   })
-  if (query || mapped.query) params.set('q', query || mapped.query)
+  if (!GLOBAL_CATEGORIES.has(category)) params.set('country', 'in')
+  const q = query || mapped.query
+  if (q) params.set('q', q)
 
   const url = `https://newsdata.io/api/1/news?${params}`
+  console.log('[NewsData] Fetching:', url.replace(apiKey, 'KEY_HIDDEN'))
+
   const res = await fetch(url)
-  if (!res.ok) throw new Error(`NewsData error: ${res.status}`)
   const data = await res.json()
 
-  return (data.results || []).map(a => ({
+  if (!res.ok) {
+    console.error('[NewsData] Error:', res.status, data)
+    throw new Error(`NewsData ${res.status}: ${JSON.stringify(data)}`)
+  }
+
+  const articles = data.results || []
+  console.log(`[NewsData] Got ${articles.length} articles`)
+
+  return articles.map(a => ({
     title:       a.title,
     description: a.description,
     link:        a.link,
@@ -39,20 +50,29 @@ async function fetchNewsData(category, query, apiKey) {
 async function fetchGNews(category, query, apiKey) {
   const mapped = CATEGORY_MAP[category] || CATEGORY_MAP.national
   const params = new URLSearchParams({
-    token:    apiKey,
-    lang:     'en',
-    country:  category === 'world' || category === 'politics' ? '' : 'in',
-    topic:    mapped.gnews,
-    max:      '10',
+    token: apiKey,
+    lang:  'en',
+    topic: mapped.gnews,
+    max:   '10',
   })
+  if (!GLOBAL_CATEGORIES.has(category)) params.set('country', 'in')
   if (query) params.set('q', query)
 
   const url = `https://gnews.io/api/v4/top-headlines?${params}`
+  console.log('[GNews] Fetching:', url.replace(apiKey, 'KEY_HIDDEN'))
+
   const res = await fetch(url)
-  if (!res.ok) throw new Error(`GNews error: ${res.status}`)
   const data = await res.json()
 
-  return (data.articles || []).map(a => ({
+  if (!res.ok) {
+    console.error('[GNews] Error:', res.status, data)
+    throw new Error(`GNews ${res.status}: ${JSON.stringify(data)}`)
+  }
+
+  const articles = data.articles || []
+  console.log(`[GNews] Got ${articles.length} articles`)
+
+  return articles.map(a => ({
     title:       a.title,
     description: a.description,
     link:        a.url,
@@ -68,7 +88,7 @@ function deduplicateByTitle(articles) {
   const seen = new Set()
   return articles.filter(a => {
     const key = a.title?.slice(0, 60).toLowerCase()
-    if (seen.has(key)) return false
+    if (!key || seen.has(key)) return false
     seen.add(key)
     return true
   })
@@ -76,28 +96,49 @@ function deduplicateByTitle(articles) {
 
 export default async function handler(req, res) {
   const { category = 'national', query = '' } = req.query
+  console.log(`\n[/api/news] category=${category} query="${query}"`)
 
   const NEWSDATA_KEY = process.env.NEWSDATA_API_KEY
   const GNEWS_KEY    = process.env.GNEWS_API_KEY
 
+  console.log('[/api/news] Keys present:', {
+    newsdata: !!NEWSDATA_KEY,
+    gnews:    !!GNEWS_KEY,
+  })
+
   if (!NEWSDATA_KEY && !GNEWS_KEY) {
+    console.error('[/api/news] No API keys found in environment!')
     return res.status(500).json({
-      error: 'No API keys configured. Set NEWSDATA_API_KEY and GNEWS_API_KEY in .env',
+      error: 'No API keys configured on server.',
       results: [],
     })
   }
 
+  const errors = []
   const fetches = []
-  if (NEWSDATA_KEY) fetches.push(fetchNewsData(category, query, NEWSDATA_KEY).catch(() => []))
-  if (GNEWS_KEY)    fetches.push(fetchGNews(category, query, GNEWS_KEY).catch(() => []))
 
-  try {
-    const results = await Promise.all(fetches)
-    const merged  = deduplicateByTitle(results.flat())
-
-    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=300')
-    return res.status(200).json({ results: merged, total: merged.length })
-  } catch (err) {
-    return res.status(500).json({ error: err.message, results: [] })
+  if (NEWSDATA_KEY) {
+    fetches.push(
+      fetchNewsData(category, query, NEWSDATA_KEY)
+        .catch(e => { console.error('[NewsData] Failed:', e.message); errors.push(`newsdata: ${e.message}`); return [] })
+    )
   }
+  if (GNEWS_KEY) {
+    fetches.push(
+      fetchGNews(category, query, GNEWS_KEY)
+        .catch(e => { console.error('[GNews] Failed:', e.message); errors.push(`gnews: ${e.message}`); return [] })
+    )
+  }
+
+  const results  = await Promise.all(fetches)
+  const merged   = deduplicateByTitle(results.flat())
+
+  console.log(`[/api/news] Returning ${merged.length} articles (errors: ${errors.length})`)
+
+  res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=300')
+  return res.status(200).json({
+    results: merged,
+    total:   merged.length,
+    ...(errors.length ? { warnings: errors } : {}),
+  })
 }
