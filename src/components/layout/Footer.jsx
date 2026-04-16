@@ -103,7 +103,7 @@ export default function Footer() {
         {/* Bottom row */}
         <div style={{ borderTop: '1px solid #1a2d4a', paddingTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center' }}>
           <p style={{ color: '#334155', fontSize: 11 }}>
-            &copy; {new Date().getFullYear()} BABA YAGA. Made with love , by Himanshu .
+            &copy; {new Date().getFullYear()} Hoga Hoga Sabka Hoga
           </p>
           <p style={{ color: '#334155', fontSize: 11 }}>
             News: NewsData.io · GNews · PIB · MoD
