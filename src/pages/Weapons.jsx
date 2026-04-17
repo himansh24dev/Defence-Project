@@ -81,7 +81,7 @@ export default function Weapons() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 8, marginBottom: 20 }}>
         {SERVICE_STATS[tab].map(([k, v]) => (
           <div key={k} style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 9, padding: '10px 12px' }}>
-            <div style={{ fontSize: 9.5, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>{k}</div>
+            <div style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>{k}</div>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#f1f5f9' }}>{v}</div>
           </div>
         ))}
@@ -91,7 +91,7 @@ export default function Weapons() {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 14 }}>
         {/* Search */}
         <div style={{ position: 'relative', flex: '1 1 220px', minWidth: 180 }}>
-          <Search size={14} color="#475569" style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+          <Search size={14} color="#94a3b8" style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -114,7 +114,7 @@ export default function Weapons() {
                 padding: '8px 13px', borderRadius: 8, border: '1px solid',
                 fontSize: 12, fontWeight: 500, cursor: 'pointer',
                 background: origin === f ? '#FF6B00' : '#0f1b2e',
-                color: origin === f ? '#fff' : '#64748b',
+                color: origin === f ? '#fff' : '#94a3b8',
                 borderColor: origin === f ? '#FF6B00' : '#1a2d4a',
               }}
             >
@@ -134,7 +134,7 @@ export default function Weapons() {
               padding: '5px 11px', borderRadius: 99, fontSize: 11.5, fontWeight: 500,
               cursor: 'pointer', border: '1px solid',
               background: typeFilter === t ? 'rgba(249,115,22,0.12)' : 'transparent',
-              color: typeFilter === t ? '#fb923c' : '#475569',
+              color: typeFilter === t ? '#fb923c' : '#94a3b8',
               borderColor: typeFilter === t ? 'rgba(249,115,22,0.4)' : '#1a2d4a',
             }}
           >
@@ -144,7 +144,7 @@ export default function Weapons() {
       </div>
 
       {/* Results count */}
-      <p style={{ fontSize: 12, color: '#475569', marginBottom: 16 }}>
+      <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>
         Showing {filtered.length} of {current.data.length} platforms
         {search && ` · matching "${search}"`}
       </p>
@@ -156,7 +156,7 @@ export default function Weapons() {
         </div>
       ) : (
         <div style={{ textAlign: 'center', padding: '48px 16px' }}>
-          <p style={{ color: '#475569', fontSize: 15 }}>No equipment matches your filters</p>
+          <p style={{ color: '#94a3b8', fontSize: 15 }}>No equipment matches your filters</p>
           <button
             onClick={() => { setSearch(''); setOrigin('All'); setType('All') }}
             style={{ marginTop: 10, color: '#FF6B00', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, textDecoration: 'underline' }}

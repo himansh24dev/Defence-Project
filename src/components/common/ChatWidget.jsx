@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Send, Shield } from 'lucide-react'
 import axios from 'axios'
-import { useQueryClient } from '@tanstack/react-query'
-import { findRelevantArticles, buildContextBlock } from '../../utils/searchArticles'
 
 const WELCOME = {
   role: 'assistant',
@@ -58,20 +56,6 @@ function Message({ msg }) {
   )
 }
 
-function getAllCachedArticles(queryClient) {
-  const entries = queryClient.getQueriesData({ queryKey: ['news'] })
-  const seen = new Set()
-  const articles = []
-  for (const [, data] of entries) {
-    if (!Array.isArray(data)) continue
-    for (const a of data) {
-      const key = a.title?.slice(0, 60)
-      if (key && !seen.has(key)) { seen.add(key); articles.push(a) }
-    }
-  }
-  return articles
-}
-
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([WELCOME])
@@ -80,7 +64,6 @@ export default function ChatWidget() {
   const [hasUnread, setHasUnread] = useState(false)
   const bottomRef = useRef(null)
   const inputRef = useRef(null)
-  const queryClient = useQueryClient()
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -104,13 +87,7 @@ export default function ChatWidget() {
 
     try {
       const history = [...messages, userMsg].filter(m => m.role !== 'system')
-
-      // RAG: find relevant cached articles and attach as context
-      const cachedArticles = getAllCachedArticles(queryClient)
-      const relevant = findRelevantArticles(trimmed, cachedArticles)
-      const context = buildContextBlock(relevant)
-
-      const { data } = await axios.post('/api/chat', { messages: history, context })
+      const { data } = await axios.post('/api/chat', { messages: history })
       setMessages(prev => [...prev, { role: 'assistant', content: data.message }])
       if (!open) setHasUnread(true)
     } catch (err) {
@@ -162,16 +139,16 @@ export default function ChatWidget() {
               <div style={{ fontSize: 13, fontWeight: 800, color: '#f1f5f9', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
                 BABA YAGA <span style={{ color: '#FF6B00' }}>AI</span>
               </div>
-              <div style={{ fontSize: 10, color: '#334155', letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: 5 }}>
+              <div style={{ fontSize: 11.5, color: '#94a3b8', letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: 5 }}>
                 <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
                 Defence &amp; SSB Assistant
               </div>
             </div>
             <button
               onClick={() => setOpen(false)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#475569', padding: 4, display: 'flex', borderRadius: 6, transition: 'color 0.15s' }}
-              onMouseEnter={e => e.currentTarget.style.color = '#94a3b8'}
-              onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8', padding: 4, display: 'flex', borderRadius: 6, transition: 'color 0.15s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#f1f5f9'}
+              onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
             >
               <X size={16} />
             </button>
@@ -194,12 +171,12 @@ export default function ChatWidget() {
                     onClick={() => send(s)}
                     style={{
                       background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 9,
-                      padding: '8px 10px', fontSize: 11, color: '#64748b',
+                      padding: '8px 10px', fontSize: 12, color: '#94a3b8',
                       cursor: 'pointer', textAlign: 'left', lineHeight: 1.4,
                       transition: 'border-color 0.2s, color 0.2s, background 0.2s',
                     }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = '#FF6B0055'; e.currentTarget.style.color = '#FF6B00'; e.currentTarget.style.background = 'rgba(255,107,0,0.05)' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = '#1a2d4a'; e.currentTarget.style.color = '#64748b'; e.currentTarget.style.background = '#0f1b2e' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = '#1a2d4a'; e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.background = '#0f1b2e' }}
                   >
                     {s}
                   </button>
@@ -248,7 +225,7 @@ export default function ChatWidget() {
               onMouseEnter={e => { if (input.trim() && !loading) { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.background = '#e55f00' } }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = input.trim() && !loading ? '#FF6B00' : '#1a2d4a' }}
             >
-              <Send size={15} color={input.trim() && !loading ? '#fff' : '#334155'} />
+              <Send size={15} color={input.trim() && !loading ? '#fff' : '#475569'} />
             </button>
           </div>
         </div>

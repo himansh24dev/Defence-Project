@@ -12,7 +12,7 @@ export default function SectionHeader({ title, subtitle, icon: Icon, accent = '#
       )}
       <div>
         <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', margin: 0, letterSpacing: '-0.5px' }}>{title}</h1>
-        {subtitle && <p style={{ color: '#64748b', fontSize: 13, marginTop: 4 }}>{subtitle}</p>}
+        {subtitle && <p style={{ color: '#94a3b8', fontSize: 13, marginTop: 4 }}>{subtitle}</p>}
       </div>
     </div>
   )

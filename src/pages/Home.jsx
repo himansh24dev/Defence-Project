@@ -1,77 +1,59 @@
 import { Link } from 'react-router-dom'
-import { Flag, Globe, Shield, ShoppingBag, Cpu, Map, Rocket, BookOpen, Crosshair, TrendingUp, Clock } from 'lucide-react'
-import { useNews } from '../hooks/useNews'
-import NewsCard from '../components/news/NewsCard'
+import { Shield, Crosshair, Cpu, Map, Rocket, BookOpen, Award } from 'lucide-react'
 import GenieIntro from '../components/common/GenieIntro'
 
-const sections = [
-  { title: 'National',         path: '/national',       icon: Flag,        color: '#FF6B00', desc: 'India\'s domestic affairs, governance & economy' },
-  { title: 'International',    path: '/international',   icon: Globe,       color: '#3b82f6', desc: 'Global diplomacy, conflicts & bilateral ties' },
-  { title: 'Defence',          path: '/defence',         icon: Shield,      color: '#ef4444', desc: 'Armed forces operations, exercises & strategy' },
-  { title: 'Procurement',      path: '/procurement',     icon: ShoppingBag, color: '#8b5cf6', desc: 'Arms deals, MoD contracts & acquisitions' },
-  { title: 'Indigenization',   path: '/indigenization',  icon: Cpu,         color: '#10b981', desc: 'Make in India — DRDO, HAL, Atmanirbhar Bharat' },
-  { title: 'Geopolitics',      path: '/geopolitics',     icon: Map,         color: '#f59e0b', desc: 'Strategic competition, alliances & flashpoints' },
-  { title: 'Sci & Tech',       path: '/science-tech',    icon: Rocket,      color: '#06b6d4', desc: 'DRDO, ISRO, space, AI & nuclear programs' },
-  { title: 'Schemes',          path: '/schemes',          icon: BookOpen,    color: '#a855f7', desc: 'Key government policies & programmes' },
-  { title: 'Weapons & Equip.', path: '/weapons',          icon: Crosshair,   color: '#FF6B00', desc: 'Complete military inventory — Army, Navy, IAF' },
+
+const categories = [
+  {
+    icon: Crosshair, color: '#FF6B00', path: '/weapons',
+    title: 'Weapons & Equipment',
+    stat: '115+', statLabel: 'Platforms',
+    desc: 'Complete Army, Navy & IAF inventory with full specs, indigenization status, and SSB significance.',
+    span: 2,
+  },
+  {
+    icon: Shield, color: '#f97316', path: '/regiments',
+    title: 'Regiments & Battles',
+    stat: '16+', statLabel: 'Regiments',
+    desc: 'Battle honours, famous actions — Saragarhi, Rezang La, Kargil, Surgical Strikes.',
+    span: 1,
+  },
+  {
+    icon: Map, color: '#22d3ee', path: '/geopolitics',
+    title: 'Geopolitics',
+    stat: '12+', statLabel: 'Flashpoints',
+    desc: 'LAC, LoC, Quad, SCO, BRICS — India\'s full strategic landscape explained.',
+    span: 1,
+  },
+  {
+    icon: BookOpen, color: '#4ade80', path: '/schemes',
+    title: 'Government Schemes',
+    stat: '10+', statLabel: 'Schemes',
+    desc: 'Agnipath, Atmanirbhar, iDEX, DRDO projects — complete policy and programme hub.',
+    span: 1,
+  },
+  {
+    icon: Cpu, color: '#a78bfa', path: '/orgs',
+    title: 'Defence Organisations',
+    stat: '14+', statLabel: 'Organisations',
+    desc: 'DRDO, ISRO, HAL, BEL, MDL — who builds and commands India\'s defence.',
+    span: 1,
+  },
+  {
+    icon: Rocket, color: '#ef4444', path: '/operations',
+    title: 'Operations & Exercises',
+    stat: '18+', statLabel: 'Operations',
+    desc: '1947 to Galwan 2020 — every war, operation & bilateral exercise with key battles.',
+    span: 2,
+  },
+  {
+    icon: Award, color: '#f59e0b', path: '/ranks',
+    title: 'Ranks & Medals',
+    stat: '60+', statLabel: 'Ranks',
+    desc: 'Complete rank structures of Army, Navy & IAF with insignia, pay bands, and gallantry awards.',
+    span: 1,
+  },
 ]
-
-const quickFacts = [
-  { label: 'Active Military Personnel', value: '~1.45 million', sub: '4th largest active force' },
-  { label: 'Defence Budget 2025–26',    value: '₹6.81 lakh crore', sub: '2.08% of GDP' },
-  { label: 'Nuclear Warheads (est.)',   value: '~175', sub: 'SIPRI 2025 estimate' },
-  { label: 'Aircraft Carriers',         value: '2', sub: 'INS Vikrant + INS Vikramaditya' },
-  { label: 'ICBM (Agni-V MIRV)',        value: '8,000 km', sub: 'Mission Divyastra — MIRV tested' },
-  { label: 'Indigenization Target',     value: '75%', sub: 'Domestic procurement by 2047' },
-]
-
-function HomeNewsSection({ title, icon: Icon, color, path, category, query }) {
-  const { data, isLoading, isError } = useNews(category, query)
-
-  return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: `${color}22` }}>
-            <Icon size={16} style={{ color }} />
-          </div>
-          <span style={{ color: '#f1f5f9', fontWeight: 600, fontSize: 14 }}>{title}</span>
-        </div>
-        <Link
-          to={path}
-          style={{ fontSize: 11, color: '#FF6B00', fontWeight: 600, textDecoration: 'none' }}
-          onMouseEnter={e => e.target.style.color = '#ff8c33'}
-          onMouseLeave={e => e.target.style.color = '#FF6B00'}
-        >
-          See all →
-        </Link>
-      </div>
-
-      {isLoading ? (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {[0, 1, 2].map(i => (
-            <div key={i} style={{ height: 72, borderRadius: 10, background: '#0f1b2e', animation: 'pulse 1.5s infinite' }} />
-          ))}
-        </div>
-      ) : isError ? (
-        <div style={{ padding: '20px 16px', borderRadius: 10, border: '1px dashed #1a2d4a', textAlign: 'center' }}>
-          <p style={{ color: '#475569', fontSize: 11, margin: 0 }}>
-            News feed unavailable — API limit reached or keys not configured
-          </p>
-        </div>
-      ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {(data || []).slice(0, 3).map((article, i) => (
-            <NewsCard key={article.link || i} article={article} />
-          ))}
-          {(!data || data.length === 0) && (
-            <p style={{ textAlign: 'center', padding: '28px 0', color: '#475569', fontSize: 13 }}>No articles found</p>
-          )}
-        </div>
-      )}
-    </div>
-  )
-}
 
 export default function Home() {
   return (
@@ -85,114 +67,181 @@ export default function Home() {
         border: '1px solid #1a2d4a', padding: '44px 36px', marginBottom: 28,
         boxShadow: '0 8px 40px rgba(0,0,0,0.4)',
       }}>
-        {/* Ambient glow orbs */}
         <div className="hero-orb" style={{ width: 300, height: 300, background: 'rgba(255,107,0,0.07)', top: -80, right: -60, animationDelay: '0s' }} />
         <div className="hero-orb" style={{ width: 200, height: 200, background: 'rgba(59,130,246,0.06)', bottom: -60, left: 80, animationDelay: '3s' }} />
         <div className="hero-orb" style={{ width: 150, height: 150, background: 'rgba(19,136,8,0.05)', top: 20, left: '40%', animationDelay: '1.5s' }} />
-
-        {/* grid overlay */}
         <div style={{
           position: 'absolute', inset: 0, opacity: 0.03, pointerEvents: 'none',
           backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 30px,#fff 30px,#fff 31px),repeating-linear-gradient(90deg,transparent,transparent 30px,#fff 30px,#fff 31px)',
         }} />
-        {/* tricolor accent */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg,#FF6B00 33.3%,#fff 33.3%,#fff 66.6%,#138808 66.6%)', opacity: 0.9 }} />
 
-        <div style={{ position: 'relative' }}>
-          <div className="animate-fade-in" style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14, animationDelay: '0.1s' }}>
-            <span className="live-ping" style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
-            <span style={{ color: '#22c55e', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2.5px' }}>Live Intelligence Feed</span>
-          </div>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 40 }} className="hero-inner">
+          {/* Left: headline + CTAs */}
+          <div style={{ flex: '1 1 0', minWidth: 0 }}>
+            <div className="animate-fade-in" style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14, animationDelay: '0.1s' }}>
+              <span className="live-ping" style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+              <span style={{ color: '#22c55e', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2.5px' }}>Defence Intelligence Hub</span>
+            </div>
 
-          <h1 className="animate-fade-up" style={{ color: '#f1f5f9', fontSize: 'clamp(26px, 5vw, 50px)', fontWeight: 900, lineHeight: 1.12, margin: '0 0 12px', letterSpacing: '-0.5px', animationDelay: '0.15s' }}>
-            Your Complete<br />
-            <span style={{ color: '#FF6B00', textShadow: '0 0 40px rgba(255,107,0,0.4)' }}>SSB Preparation</span> Hub
-          </h1>
-          <p className="animate-fade-up" style={{ color: '#64748b', fontSize: 14, maxWidth: 600, margin: '0 0 28px', lineHeight: 1.75, animationDelay: '0.22s' }}>
-            Real-time national &amp; international current affairs, defence updates, weapons inventory, government schemes, and geopolitics — everything for SSB GTO, Interview &amp; GD rounds.
-          </p>
-          <div className="animate-fade-up" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, animationDelay: '0.3s' }}>
-            <Link
-              to="/defence"
-              style={{ padding: '11px 24px', background: '#FF6B00', color: '#fff', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 24px rgba(255,107,0,0.4)', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(255,107,0,0.55)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(255,107,0,0.4)' }}
-            >
-              Defence News →
-            </Link>
-            <Link
-              to="/weapons"
-              style={{ padding: '11px 24px', background: 'rgba(26,45,74,0.8)', color: '#f1f5f9', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', border: '1px solid #253d60', transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4)'; e.currentTarget.style.borderColor = '#3a5a8a' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#253d60' }}
-            >
-              Weapons DB →
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Quick facts ── */}
-      <div className="stagger-children" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 10, marginBottom: 28 }}>
-        {quickFacts.map(f => (
-          <div key={f.label} className="animate-fade-up" style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 12, padding: '12px 14px' }}>
-            <p style={{ color: '#475569', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.8px', margin: '0 0 4px', lineHeight: 1.4 }}>{f.label}</p>
-            <p style={{ color: '#f1f5f9', fontWeight: 800, fontSize: 15, margin: '0 0 2px' }}>{f.value}</p>
-            <p style={{ color: '#475569', fontSize: 9, margin: 0 }}>{f.sub}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Section nav ── */}
-      <div style={{ marginBottom: 36 }}>
-        <p style={{ color: '#475569', fontSize: 10, textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: 12 }}>Browse by Section</p>
-        <div className="stagger-children" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(165px, 1fr))', gap: 10 }}>
-          {sections.map(s => {
-            const Icon = s.icon
-            return (
+            <h1 className="animate-fade-up" style={{ color: '#f1f5f9', fontSize: 'clamp(26px, 4vw, 52px)', fontWeight: 900, lineHeight: 1.1, margin: '0 0 16px', letterSpacing: '-0.5px', animationDelay: '0.15s' }}>
+              Your Complete<br />
+              <span style={{ color: '#FF6B00', textShadow: '0 0 40px rgba(255,107,0,0.4)' }}>SSB Preparation</span><br />Hub
+            </h1>
+            <p className="animate-fade-up" style={{ color: '#cbd5e1', fontSize: 15, maxWidth: 440, margin: '0 0 28px', lineHeight: 1.8, animationDelay: '0.22s' }}>
+              Complete Indian defence equipment database, weapons inventory, geopolitics, government schemes — and an AI assistant for all your SSB prep needs.
+            </p>
+            <div className="animate-fade-up" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, animationDelay: '0.3s' }}>
               <Link
-                key={s.path}
-                to={s.path}
-                className="animate-fade-up"
-                style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 12, padding: '14px 14px', textDecoration: 'none', display: 'block', transition: 'border-color 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), transform 0.25s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 2px 6px rgba(0,0,0,0.2)' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = `${s.color}66`; e.currentTarget.style.boxShadow = `0 8px 24px rgba(0,0,0,0.35), 0 0 0 1px ${s.color}33`; e.currentTarget.style.transform = 'translateY(-3px)' }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = '#1a2d4a'; e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)'; e.currentTarget.style.transform = 'translateY(0)' }}
+                to="/weapons"
+                style={{ padding: '11px 24px', background: '#FF6B00', color: '#fff', borderRadius: 10, fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 24px rgba(255,107,0,0.4)', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(255,107,0,0.55)' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(255,107,0,0.4)' }}
               >
-                <div style={{ width: 36, height: 36, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${s.color}1a`, marginBottom: 10 }}>
-                  <Icon size={18} style={{ color: s.color }} />
-                </div>
-                <p style={{ color: '#f1f5f9', fontWeight: 700, fontSize: 13, margin: '0 0 4px' }}>{s.title}</p>
-                <p style={{ color: '#475569', fontSize: 10, margin: 0, lineHeight: 1.5 }}>{s.desc}</p>
+                Weapons Database →
               </Link>
-            )
-          })}
+              <button
+                onClick={() => document.querySelector('.chat-fab-pulse, [title="Ask BABA YAGA AI"]')?.click()}
+                style={{ padding: '11px 24px', background: 'rgba(26,45,74,0.8)', color: '#f1f5f9', borderRadius: 10, fontWeight: 700, fontSize: 13, border: '1px solid #253d60', transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease', cursor: 'pointer' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4)'; e.currentTarget.style.borderColor = '#3a5a8a' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#253d60' }}
+              >
+                Ask AI Assistant →
+              </button>
+            </div>
+          </div>
+
+          {/* Right: stats dashboard */}
+          <div className="hero-stats-panel animate-fade-in" style={{ flex: '1 1 0', minWidth: 0, animationDelay: '0.35s' }}>
+            {/* Top status bar */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14, padding: '9px 14px', background: 'rgba(255,107,0,0.06)', border: '1px solid rgba(255,107,0,0.15)', borderRadius: 10 }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#FF6B00', textTransform: 'uppercase', letterSpacing: '1.5px' }}>Force Status</span>
+              <div style={{ display: 'flex', gap: 14 }}>
+                {['Army', 'Navy', 'IAF'].map(s => (
+                  <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                    <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 6px #22c55e' }} />
+                    <span style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>{s}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 2×2 stat grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 10 }}>
+              {[
+                { label: 'Active Personnel', value: '1.45M', sub: '4th largest', color: '#FF6B00' },
+                { label: 'Defence Budget', value: '₹6.81L Cr', sub: 'FY 2025–26', color: '#22d3ee' },
+                { label: 'Nuclear Warheads', value: '~175', sub: 'SIPRI estimate', color: '#a78bfa' },
+                { label: 'Agni-V Range', value: '8,000km', sub: 'MIRV capable', color: '#4ade80' },
+              ].map(s => (
+                <div key={s.label} style={{ background: 'rgba(15,27,46,0.9)', border: `1px solid ${s.color}30`, borderRadius: 12, padding: '14px 16px', position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${s.color}, transparent)` }} />
+                  <div style={{ fontSize: 11, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 6, fontWeight: 600 }}>{s.label}</div>
+                  <div style={{ fontSize: 22, fontWeight: 900, color: s.color, lineHeight: 1, letterSpacing: '-0.5px', textShadow: `0 0 20px ${s.color}55` }}>{s.value}</div>
+                  <div style={{ fontSize: 11, color: '#64748b', marginTop: 5, fontWeight: 500 }}>{s.sub}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom wide stat */}
+            <div style={{ background: 'rgba(15,27,46,0.9)', border: '1px solid #1e3352', borderRadius: 12, padding: '13px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ fontSize: 11, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 5, fontWeight: 600 }}>Indigenization Target</div>
+                <div style={{ fontSize: 13.5, fontWeight: 700, color: '#e2e8f0' }}>75% domestic procurement by 2047</div>
+              </div>
+              <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: 16 }}>
+                <div style={{ fontSize: 28, fontWeight: 900, color: '#f59e0b', lineHeight: 1, textShadow: '0 0 20px rgba(245,158,11,0.4)' }}>75%</div>
+                <div style={{ fontSize: 11, color: '#64748b', marginTop: 3, fontWeight: 500 }}>Atmanirbhar</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* ── Today's brief header ── */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
-        <TrendingUp size={20} style={{ color: '#FF6B00' }} />
-        <span style={{ color: '#f1f5f9', fontWeight: 700, fontSize: 18 }}>Today's Intelligence Brief</span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginLeft: 'auto', color: '#475569' }}>
-          <Clock size={12} />
-          <span style={{ fontSize: 11 }}>Auto-refreshes every 15 min</span>
-        </div>
+      {/* ── Explore section header ── */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+        <div style={{ height: 1, flex: 1, background: 'linear-gradient(90deg, #1a2d4a, transparent)' }} />
+        <span style={{ color: '#94a3b8', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', whiteSpace: 'nowrap' }}>Explore the Hub</span>
+        <div style={{ height: 1, flex: 1, background: 'linear-gradient(90deg, transparent, #1a2d4a)' }} />
       </div>
 
-      {/* ── News grid ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: 28 }}>
-        <HomeNewsSection title="National"        icon={Flag}    color="#FF6B00" path="/national"      category="national" query="india government" />
-        <HomeNewsSection title="Defence"         icon={Shield}  color="#ef4444" path="/defence"       category="defence"  query="india military army defence" />
-        <HomeNewsSection title="International"   icon={Globe}   color="#3b82f6" path="/international" category="world"    query="global geopolitics" />
-        <HomeNewsSection title="Indigenization"  icon={Cpu}     color="#10b981" path="/indigenization" category="science" query="india DRDO HAL BEL make in india defence" />
-        <HomeNewsSection title="Geopolitics"     icon={Map}     color="#f59e0b" path="/geopolitics"   category="politics" query="india china pakistan border security strategic" />
-        <HomeNewsSection title="Science & Tech"  icon={Rocket}  color="#06b6d4" path="/science-tech"  category="science"  query="India ISRO technology space innovation" />
+      {/* ── Bento category grid ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridAutoRows: '190px', gap: 12, marginBottom: 12 }}>
+        {categories.map(cat => {
+          const Icon = cat.icon
+          return (
+            <Link
+              key={cat.path}
+              to={cat.path}
+              className="cat-card"
+              style={{
+                gridColumn: `span ${cat.span}`,
+                position: 'relative', overflow: 'hidden',
+                borderRadius: 16, textDecoration: 'none',
+                background: `linear-gradient(135deg, ${cat.color}55 0%, #0f1e35 45%, #0c1625 100%)`,
+                border: `2px solid ${cat.color}88`,
+                padding: '22px 24px',
+                display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+                transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s, border-color 0.25s',
+                boxShadow: `0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 ${cat.color}40`,
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-4px)'
+                e.currentTarget.style.boxShadow = `0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px ${cat.color}cc`
+                e.currentTarget.style.borderColor = `${cat.color}cc`
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = `0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 ${cat.color}40`
+                e.currentTarget.style.borderColor = `${cat.color}88`
+              }}
+            >
+              {/* Background glow orb */}
+              <div style={{
+                position: 'absolute', borderRadius: '50%', pointerEvents: 'none',
+                width: 200, height: 200, right: -50, bottom: -60,
+                background: `radial-gradient(circle, ${cat.color}55 0%, transparent 70%)`,
+              }} />
+
+              {/* Top row: icon + stat */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', position: 'relative' }}>
+                <div style={{
+                  width: 46, height: 46, borderRadius: 12,
+                  background: `${cat.color}20`, border: `1px solid ${cat.color}40`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                }}>
+                  <Icon size={22} style={{ color: cat.color }} />
+                </div>
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ fontSize: 28, fontWeight: 900, color: cat.color, lineHeight: 1, letterSpacing: '-1px' }}>{cat.stat}</div>
+                  <div style={{ fontSize: 11, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: 3, fontWeight: 600 }}>{cat.statLabel}</div>
+                </div>
+              </div>
+
+              {/* Bottom: title + desc + arrow */}
+              <div style={{ position: 'relative' }}>
+                <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9', marginBottom: 6, letterSpacing: '-0.2px' }}>{cat.title}</div>
+                <div style={{ fontSize: 12.5, color: '#94a3b8', lineHeight: 1.55, marginBottom: 10 }}>{cat.desc}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: cat.color }}>
+                  Explore <span style={{ fontSize: 14 }}>→</span>
+                </div>
+              </div>
+            </Link>
+          )
+        })}
       </div>
 
       <style>{`
         @keyframes pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.4; }
+        }
+        @media (max-width: 900px) {
+          .hero-inner { flex-direction: column !important; }
+          .hero-stats-panel { display: none !important; }
+        }
+        @media (max-width: 768px) {
+          .cat-card { grid-column: span 1 !important; }
         }
       `}</style>
     </div>

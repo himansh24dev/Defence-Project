@@ -70,7 +70,7 @@ export default function WeaponCard({ weapon }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
           <div style={{ flex: 1 }}>
             <h3 style={{ fontSize: 14.5, fontWeight: 700, color: '#f1f5f9', margin: 0, lineHeight: 1.3 }}>{weapon.name}</h3>
-            <p style={{ fontSize: 11.5, color: '#64748b', margin: '3px 0 0' }}>{weapon.type}</p>
+            <p style={{ fontSize: 13, color: '#94a3b8', margin: '3px 0 0' }}>{weapon.type}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}>
             <div style={{ width: 7, height: 7, borderRadius: '50%', background: statusColor, flexShrink: 0 }} />
@@ -104,14 +104,14 @@ export default function WeaponCard({ weapon }) {
             ...(weapon.quantity ? [['Quantity', weapon.quantity]] : []),
           ].map(([k, v]) => (
             <div key={k} style={{ background: '#0a0f1e', borderRadius: 7, padding: '6px 10px', gridColumn: k === 'Quantity' ? '1 / -1' : undefined }}>
-              <div style={{ fontSize: 9.5, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 2 }}>{k}</div>
+              <div style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 2 }}>{k}</div>
               <div style={{ fontSize: 11.5, color: '#94a3b8', lineHeight: 1.35 }}>{v}</div>
             </div>
           ))}
         </div>
 
         {/* Description */}
-        <p className="line-clamp-2" style={{ fontSize: 12.5, color: '#64748b', lineHeight: 1.55, margin: '0 0 12px' }}>
+        <p className="line-clamp-2" style={{ fontSize: 12.5, color: '#94a3b8', lineHeight: 1.55, margin: '0 0 12px' }}>
           {weapon.description}
         </p>
 
@@ -137,7 +137,7 @@ export default function WeaponCard({ weapon }) {
           {/* Specs table */}
           {weapon.specs && (
             <div style={{ marginBottom: 14 }}>
-              <div style={{ fontSize: 10, color: '#475569', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, marginBottom: 8 }}>
+              <div style={{ fontSize: 11.5, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, marginBottom: 8 }}>
                 Technical Specifications
               </div>
               <div style={{ borderRadius: 8, overflow: 'hidden', border: '1px solid #1a2d4a' }}>
@@ -147,7 +147,7 @@ export default function WeaponCard({ weapon }) {
                     background: i % 2 === 0 ? '#0a0f1e' : '#0d1525',
                     fontSize: 12,
                   }}>
-                    <span style={{ color: '#475569', width: 130, flexShrink: 0 }}>{key}</span>
+                    <span style={{ color: '#94a3b8', width: 130, flexShrink: 0 }}>{key}</span>
                     <span style={{ color: '#cbd5e1', flex: 1 }}>{val}</span>
                   </div>
                 ))}
@@ -157,7 +157,7 @@ export default function WeaponCard({ weapon }) {
 
           {/* Full description */}
           <div style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: 10, color: '#475569', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, marginBottom: 6 }}>Details</div>
+            <div style={{ fontSize: 11.5, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, marginBottom: 6 }}>Details</div>
             <p style={{ fontSize: 12.5, color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>{weapon.description}</p>
           </div>
 

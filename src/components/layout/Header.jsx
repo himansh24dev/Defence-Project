@@ -4,15 +4,13 @@ import { Menu, X, Shield, Search } from 'lucide-react'
 
 const navLinks = [
   { label: 'Home',            path: '/' },
-  { label: 'National',        path: '/national' },
-  { label: 'International',   path: '/international' },
-  { label: 'Defence',         path: '/defence' },
-  { label: 'Procurement',     path: '/procurement' },
-  { label: 'Indigenization',  path: '/indigenization' },
-  { label: 'Geopolitics',     path: '/geopolitics' },
-  { label: 'Sci & Tech',      path: '/science-tech' },
-  { label: 'Schemes',         path: '/schemes' },
   { label: 'Weapons & Equip', path: '/weapons' },
+  { label: 'Regiments',       path: '/regiments' },
+  { label: 'Geopolitics',     path: '/geopolitics' },
+  { label: 'Gov Schemes',     path: '/schemes' },
+  { label: 'Defence Orgs',    path: '/orgs' },
+  { label: 'Operations',      path: '/operations' },
+  { label: 'Ranks & Medals',  path: '/ranks' },
 ]
 
 export default function Header({ onSearchOpen }) {
@@ -56,7 +54,7 @@ export default function Header({ onSearchOpen }) {
                 <span style={{ color: '#fff' }}>BABA </span>
                 <span style={{ color: '#FF6B00' }}>YAGA</span>
               </div>
-              <div style={{ fontSize: 9, color: '#475569', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1 }}>
+              <div style={{ fontSize: 9, color: '#64748b', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1 }}>
                 Defence Intelligence Hub
               </div>
             </div>
@@ -71,7 +69,7 @@ export default function Header({ onSearchOpen }) {
               borderRadius: 999, padding: '4px 10px',
             }}>
               <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', animation: 'pulse 2s infinite' }} />
-              <span style={{ color: '#64748b', fontSize: 11 }}>LIVE</span>
+              <span style={{ color: '#94a3b8', fontSize: 11 }}>LIVE</span>
             </div>
             {/* Search */}
             <button
@@ -79,10 +77,10 @@ export default function Header({ onSearchOpen }) {
               style={{
                 background: 'none', border: '1px solid #1a2d4a',
                 borderRadius: 8, padding: '6px 8px', cursor: 'pointer',
-                color: '#64748b', display: 'flex', alignItems: 'center',
+                color: '#94a3b8', display: 'flex', alignItems: 'center',
               }}
               onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#253d60' }}
-              onMouseLeave={e => { e.currentTarget.style.color = '#64748b'; e.currentTarget.style.borderColor = '#1a2d4a' }}
+              onMouseLeave={e => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.borderColor = '#1a2d4a' }}
             >
               <Search size={16} />
             </button>
@@ -92,7 +90,7 @@ export default function Header({ onSearchOpen }) {
               style={{
                 background: 'none', border: '1px solid #1a2d4a',
                 borderRadius: 8, padding: '6px 8px', cursor: 'pointer',
-                color: '#64748b', display: 'none',
+                color: '#94a3b8', display: 'none',
               }}
               className="mobile-menu-btn"
             >

@@ -27,7 +27,7 @@ export default function Footer() {
                 BABA <span style={{ color: '#FF6B00' }}>YAGA</span>
               </span>
             </div>
-            <p style={{ color: '#475569', fontSize: 12.5, lineHeight: 1.6, maxWidth: 280 }}>
+            <p style={{ color: '#94a3b8', fontSize: 12.5, lineHeight: 1.6, maxWidth: 280 }}>
               Comprehensive intelligence hub for SSB aspirants. All news sourced from verified, credible outlets. Updated daily.
             </p>
           </div>
@@ -41,9 +41,9 @@ export default function Footer() {
               <Link
                 key={s}
                 to={`/${s.toLowerCase()}`}
-                style={{ display: 'block', color: '#475569', fontSize: 13, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
+                style={{ display: 'block', color: '#94a3b8', fontSize: 13, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#FF6B00'}
-                onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+                onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
               >
                 {s}
               </Link>
@@ -60,18 +60,18 @@ export default function Footer() {
               href="https://www.linkedin.com/in/himanshu-sharma-78a388201"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#475569', fontSize: 12.5, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
+              style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 12.5, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
               onMouseEnter={e => e.currentTarget.style.color = '#0a66c2'}
-              onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+              onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               www.linkedin.com/in/himanshu-sharma-78a388201
             </a>
             <a
               href="mailto:himansh24dev@gmail.com"
-              style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#475569', fontSize: 12.5, textDecoration: 'none', transition: 'color 0.15s' }}
+              style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 12.5, textDecoration: 'none', transition: 'color 0.15s' }}
               onMouseEnter={e => e.currentTarget.style.color = '#FF6B00'}
-              onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+              onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
             >
               <Mail size={13} />
               himansh24dev@gmail.com
@@ -89,9 +89,9 @@ export default function Footer() {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#475569', fontSize: 13, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
+                style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#94a3b8', fontSize: 13, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#FF6B00'}
-                onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+                onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
               >
                 {item.name}
                 <ExternalLink size={10} />
@@ -102,10 +102,10 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div style={{ borderTop: '1px solid #1a2d4a', paddingTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center' }}>
-          <p style={{ color: '#334155', fontSize: 11 }}>
+          <p style={{ color: '#64748b', fontSize: 11.5 }}>
             &copy; {new Date().getFullYear()} Hoga Hoga Sabka Hoga
           </p>
-          <p style={{ color: '#334155', fontSize: 11 }}>
+          <p style={{ color: '#64748b', fontSize: 11.5 }}>
             News: NewsData.io · GNews · PIB · MoD
           </p>
         </div>

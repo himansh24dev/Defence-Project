@@ -6,11 +6,11 @@ const quickLinks = [
   { label: 'Rafale Fighter Jet',   path: '/weapons' },
   { label: 'INS Vikrant Carrier',  path: '/weapons' },
   { label: 'Tejas Mk1A',           path: '/weapons' },
-  { label: 'Agni-V ICBM',          path: '/weapons' },
-  { label: 'LAC Border — Ladakh',  path: '/geopolitics' },
-  { label: 'Defence Budget 2025',  path: '/procurement' },
-  { label: 'DRDO Achievements',    path: '/indigenization' },
-  { label: 'Agnipath Scheme',      path: '/schemes' },
+  { label: 'Agni-V ICBM',         path: '/weapons' },
+  { label: 'BrahMos Missile',      path: '/weapons' },
+  { label: 'Arjun MBT',            path: '/weapons' },
+  { label: 'S-400 Triumf',         path: '/weapons' },
+  { label: 'AMCA Fighter',         path: '/weapons' },
 ]
 
 export default function SearchModal({ open, onClose }) {
@@ -59,22 +59,22 @@ export default function SearchModal({ open, onClose }) {
       >
         {/* Search input */}
         <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', borderBottom: '1px solid #1a2d4a' }}>
-          <Search size={17} color="#475569" style={{ flexShrink: 0 }} />
+          <Search size={17} color="#94a3b8" style={{ flexShrink: 0 }} />
           <input
             ref={inputRef}
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Search news, equipment, schemes…"
+            placeholder="Search weapons, equipment, platforms…"
             style={{ flex: 1, background: 'none', border: 'none', outline: 'none', color: '#f1f5f9', fontSize: 15 }}
           />
-          <button type="button" onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#475569', padding: 2, display: 'flex' }}>
+          <button type="button" onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8', padding: 2, display: 'flex' }}>
             <X size={16} />
           </button>
         </form>
 
         {/* Quick links */}
         <div style={{ padding: 16 }}>
-          <p style={{ color: '#475569', fontSize: 10.5, fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 10 }}>
+          <p style={{ color: '#94a3b8', fontSize: 11.5, fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 10 }}>
             Quick Access
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
