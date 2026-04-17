@@ -30,7 +30,6 @@ function readBody(req) {
 
 // ── Inline rate limiter (mirrors api/_rateLimit.js for local dev) ──
 const _rateLimitStore = new Map()
-setInterval(() => { const now = Date.now(); for (const [k, v] of _rateLimitStore) if (now > v.resetAt) _rateLimitStore.delete(k) }, 5 * 60 * 1000)
 function devRateLimit(ip, max = 20, windowMs = 30 * 60 * 1000) {
   const now = Date.now()
   let e = _rateLimitStore.get(ip)
@@ -57,6 +56,7 @@ function chatApiPlugin(env) {
   return {
     name: 'chat-api',
     configureServer(server) {
+      setInterval(() => { const now = Date.now(); for (const [k, v] of _rateLimitStore) if (now > v.resetAt) _rateLimitStore.delete(k) }, 5 * 60 * 1000)
       server.middlewares.use('/api/chat', async (req, res) => {
         if (req.method !== 'POST') {
           res.writeHead(405, { 'Content-Type': 'application/json' })
