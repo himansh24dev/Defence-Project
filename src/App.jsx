@@ -15,6 +15,7 @@ import GovSchemes from './pages/GovSchemes'
 import DefenceOrgs from './pages/DefenceOrgs'
 import Operations from './pages/Operations'
 import Ranks from './pages/Ranks'
+import Practice from './pages/Practice'
 
 export default function App() {
   const [splashDone, setSplashDone] = useState(false)
@@ -37,6 +38,7 @@ export default function App() {
               <Route path="/orgs"        element={<DefenceOrgs />} />
               <Route path="/operations"  element={<Operations />} />
               <Route path="/ranks"       element={<Ranks />} />
+              <Route path="/practice"   element={<Practice />} />
               <Route path="*"            element={<Home />} />
             </Routes>
           </main>

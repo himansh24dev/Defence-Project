@@ -76,7 +76,7 @@ function RankSection({ title, ranks, color }) {
   )
 }
 
-function MedalCard({ medal, level, color }) {
+function MedalCard({ medal, _level, color }) {
   const [open, setOpen] = useState(false)
   return (
     <div

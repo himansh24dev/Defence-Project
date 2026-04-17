@@ -196,7 +196,7 @@ export const govSchemes = [
     ],
     keySSBStages: [
       { stage: 'Day 1 — Screening', detail: 'OIR test (verbal + non-verbal intelligence) + PPDT (Picture Perception Description Test) — Group discussion on story created from hazy picture. 50–60% eliminated.' },
-      { stage: 'Day 2 — Psychology', detail: 'TAT (Thematic Apperception Test) — story writing on 12 pictures. WAT (Word Association Test) — 60 words, 3 sec each. SRT (Situation Reaction Test) — 60 situations, 30 min. SDT (Self Description Test) — describe yourself as parents/friends/teachers/you see yourself.' },
+      { stage: 'Day 2 — Psychology', detail: 'TAT (Thematic Apperception Test) — story writing on 12 pictures. WAT (Word Association Test) — 60 words, 15 sec each. SRT (Situation Reaction Test) — 60 situations, 30 min. SDT (Self Description Test) — describe yourself as parents/friends/teachers/you see yourself.' },
       { stage: 'Day 3-4 — GTO', detail: 'Group Obstacle Race, PGT (Progressive Group Task), HGT (Half Group Task), Snake Race, Individual Obstacles (10 obstacles), Lecturette, Command Task, Final Group Task.' },
       { stage: 'Day 4 — Personal Interview', detail: '45-60 minutes with IO (Interviewing Officer). Tests personality, general awareness, life experiences, motivation for defence.' },
       { stage: 'Day 5 — Conference', detail: 'All assessors decide together. Candidate appears before full board (2 minutes). Recommended/Not recommended.' },

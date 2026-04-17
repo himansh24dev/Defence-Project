@@ -131,7 +131,7 @@ function RegimentCard({ reg }) {
 export default function Regiments() {
   const [search, setSearch]   = useState('')
   const [cat, setCat]         = useState('All')
-  const [svc, setSvc]         = useState('All')
+  const [svc]                 = useState('All')
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()

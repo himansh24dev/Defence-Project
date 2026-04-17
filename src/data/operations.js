@@ -9,7 +9,7 @@ export const operations = [
     outcome: 'India secured two-thirds of J&K. Ceasefire on 1 January 1949 (UN mediated). Pakistan retained Mirpur, Muzaffarabad.',
     keyBattles: [
       { battle: 'Battle of Srinagar (Oct 1947)', detail: '1 Sikh were airlifted to Srinagar — India\'s first use of air transport in war. Saved Srinagar from falling. Brigadier L P Sen secured the airport.' },
-      { battle: 'Battle of Naushera (Feb 1948)', detail: 'Brigadier Mohammed Usman ("Tiger of Naushera") held Naushera town against massive Pakistani tribal assault. KIA at Jhangar — awarded MVC posthumously (equivalent of PVC).' },
+      { battle: 'Battle of Naushera (Feb 1948)', detail: 'Brigadier Mohammed Usman ("Tiger of Naushera") held Naushera town against massive Pakistani tribal assault. KIA at Jhangar — awarded MVC posthumously (India\'s second highest wartime gallantry award).' },
     ],
     significance: 'Foundation of the Kashmir dispute. India\'s first war — won but politically incomplete. UN ceasefire left PoK in Pakistan\'s hands. Lesson: Wars decided by politicians, won by soldiers. Mohammed Usman = India\'s most celebrated Muslim officer.',
   },
@@ -31,7 +31,7 @@ export const operations = [
     objective: 'India defended; China attacked to establish LAC dominance',
     outcome: 'India lost — China occupied Aksai Chin and advanced to Tawang. China unilaterally ceased fire (Nov 1962) after reaching goals. India humiliated.',
     keyBattles: [
-      { battle: 'Rezang La (18 Nov 1962)', detail: '13 Kumaon\'s Company under Major Shaitan Singh — 114 soldiers vs Chinese division. All 114 died fighting in -20°C. Last man standing used own rifle as club. All awarded posthumous gallantry medals. Shaitan Singh → PVC.' },
+      { battle: 'Rezang La (18 Nov 1962)', detail: '13 Kumaon\'s Charlie Company under Major Shaitan Singh — 120 soldiers vs Chinese division. 114 of 120 died fighting in -20°C; 6 survived as POW. Last defenders used rifles as clubs. Shaitan Singh → PVC (posthumous).' },
       { battle: 'Tawang fall', detail: 'China swept through NEFA; Tawang evacuated without fight. Exposed India\'s lack of border infrastructure.' },
     ],
     lessons: [
@@ -102,9 +102,9 @@ export const operations = [
     objective: 'Restore President Maumoon Abdul Gayoom after mercenary coup (Sri Lankan Tamil group)',
     outcome: 'President restored in 12 hours. Mercenaries fled by boat; intercepted by INS Tabar in Indian Ocean.',
     keyBattles: [
-      { battle: 'Para SF landing (3 Nov 1988)', detail: 'Para SF flew 2,000 km from Agra to Male in IL-76 — arrived before mercenaries knew India had sent forces. Landed at Male airport at night, rapid advance to Presidential Palace, secured Gayoom within hours.' },
+      { battle: 'Para SF landing (3 Nov 1988)', detail: 'Para SF flew ~3,700 km from Agra to Male in IL-76 — arrived before mercenaries knew India had sent forces. Landed at Male airport at night, rapid advance to Presidential Palace, secured Gayoom within hours.' },
     ],
-    significance: 'Fastest power projection operation in Indian military history. 2,000 km in one night. India demonstrated it could deploy special forces anywhere in Indian Ocean Region within hours. IOR = India\'s sphere of influence. Maldives gratitude lasted decades (until 2018 political shifts). Template for future Indian IOR interventions.',
+    significance: 'Fastest power projection operation in Indian military history. ~3,700 km in one night. India demonstrated it could deploy special forces anywhere in Indian Ocean Region within hours. IOR = India\'s sphere of influence. Maldives gratitude lasted decades (until 2018 political shifts). Template for future Indian IOR interventions.',
   },
 
   // ── MODERN OPERATIONS ────────────────────────────────────────────────────
@@ -156,9 +156,9 @@ export const operations = [
     objective: 'India: maintain patrolling rights at LAC. China: push India back from forward positions.',
     outcome: 'June 15 2020: Hand-to-hand combat at Galwan — 20 Indian soldiers (Col Santosh Babu + 19 others) killed; China admits 4 killed (Western estimates: 35–40). India deployed massive reinforcements. Partial disengagement at PP-14, PP-15, PP-17A, Gogra, Hot Springs by 2024.',
     keyBattles: [
-      { battle: 'Galwan Night Battle (15 June 2020)', detail: 'Colonel Santosh Babu led patrol to verify Chinese pullback per agreement. Ambushed by 300+ PLA soldiers with nails-studded clubs and rods. Hand-to-hand combat for 6 hours in -15°C beside Galwan River. 20 Indians killed — Col Santosh Babu awarded PVC posthumously.' },
+      { battle: 'Galwan Night Battle (15 June 2020)', detail: 'Colonel Santosh Babu led patrol to verify Chinese pullback per agreement. Ambushed by 300+ PLA soldiers with nails-studded clubs and rods. Hand-to-hand combat for 6 hours in -15°C beside Galwan River. 20 Indians killed — Col Santosh Babu awarded Mahavir Chakra (MVC) posthumously.' },
     ],
-    significance: '20 Indian soldiers killed = worst India-China clash since 1967. Changed India-China relations fundamentally — "business as usual" ended. India banned 200+ Chinese apps, boycotted Chinese investment in key sectors. China\'s CPEC vulnerability: India highlighted PoK corridor. India placed 50,000 additional troops in Ladakh. Col Santosh Babu PVC = leadership under ambush.',
+    significance: '20 Indian soldiers killed = worst India-China clash since 1967. Changed India-China relations fundamentally — "business as usual" ended. India banned 200+ Chinese apps, boycotted Chinese investment in key sectors. China\'s CPEC vulnerability: India highlighted PoK corridor. India placed 50,000 additional troops in Ladakh. Col Santosh Babu MVC = leadership under ambush.',
   },
 
   // ── HUMANITARIAN OPERATIONS ──────────────────────────────────────────────
@@ -167,8 +167,8 @@ export const operations = [
     year: '2015 (March–April)', theatre: 'Aden and Sanaa, Yemen',
     forces: 'IAF C-17/C-130J + Indian Navy ships',
     objective: 'Evacuate Indian nationals and foreign nationals from war-torn Yemen',
-    outcome: '5,600 Indians + 1,947 foreign nationals (from 41 countries) evacuated. Navy INS Sumitra and INS Mumbai used. C-130J landed at Sanaa while under artillery fire.',
-    significance: 'Operation Rahat = India\'s largest-ever peacetime evacuation. C-130J landing under artillery fire = IAF demonstrated war-zone operations. India evacuated nationals from 41 countries — projecting India as regional power capable of international rescue. Garud commandos secured the aircraft at Sanaa airfield.',
+    outcome: '4,640 Indians + 960 foreign nationals (from 41 countries) evacuated — 5,600 total. Navy deployed INS Sumitra, INS Mumbai, and INS Tarkash. IAF C-17 operated via Djibouti; C-130J landed at Sanaa while under artillery fire.',
+    significance: 'Operation Rahat = India\'s largest-ever peacetime evacuation (5,600 total). C-130J landing under artillery fire = IAF demonstrated war-zone operations. India evacuated nationals from 41 countries — projecting India as regional power capable of international rescue. Garud commandos secured the aircraft at Sanaa airfield.',
   },
   {
     id: 'op-devashakti-2021', name: 'Operation Devashakti (Afghanistan 2021)', type: 'Humanitarian Evacuation',

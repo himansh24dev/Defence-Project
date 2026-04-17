@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Shield, Crosshair, Cpu, Map, Rocket, BookOpen, Award } from 'lucide-react'
+import { Shield, Crosshair, Cpu, Map, Rocket, BookOpen, Award, Brain } from 'lucide-react'
 import GenieIntro from '../components/common/GenieIntro'
 
 
@@ -108,6 +108,14 @@ export default function Home() {
               >
                 Ask AI Assistant →
               </button>
+              <Link
+                to="/practice"
+                style={{ padding: '11px 24px', background: 'rgba(26,45,74,0.8)', color: '#f1f5f9', borderRadius: 10, fontWeight: 700, fontSize: 13, border: '1px solid #253d60', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 7, transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4)'; e.currentTarget.style.borderColor = '#3a5a8a' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#253d60' }}
+              >
+                <Brain size={14} /> Practice WAT →
+              </Link>
             </div>
           </div>
 
@@ -129,10 +137,10 @@ export default function Home() {
             {/* 2×2 stat grid */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 10 }}>
               {[
-                { label: 'Active Personnel', value: '1.45M', sub: '4th largest', color: '#FF6B00' },
+                { label: 'Active Personnel', value: '1.45M', sub: '2nd largest', color: '#FF6B00' },
                 { label: 'Defence Budget', value: '₹6.81L Cr', sub: 'FY 2025–26', color: '#22d3ee' },
-                { label: 'Nuclear Warheads', value: '~175', sub: 'SIPRI estimate', color: '#a78bfa' },
-                { label: 'Agni-V Range', value: '8,000km', sub: 'MIRV capable', color: '#4ade80' },
+                { label: 'Nuclear Warheads', value: '~180', sub: 'SIPRI 2025', color: '#a78bfa' },
+                { label: 'Agni-V Range', value: '7,000km+', sub: 'MIRV capable', color: '#4ade80' },
               ].map(s => (
                 <div key={s.label} style={{ background: 'rgba(15,27,46,0.9)', border: `1px solid ${s.color}30`, borderRadius: 12, padding: '14px 16px', position: 'relative', overflow: 'hidden' }}>
                   <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${s.color}, transparent)` }} />

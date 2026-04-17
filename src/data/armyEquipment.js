@@ -250,15 +250,15 @@ export const armyEquipment = [
     quantity: 'Classified (Strategic Forces Command)',
     tags: ['strategic', 'nuclear-capable'],
     specs: {
-      'Range': '5,000–8,000 km',
-      'MIRV': 'Mission Divyastra — 3–6 MIRVs tested March 2024',
+      'Range': '5,000–7,000 km',
+      'MIRV': 'Mission Divyastra — multiple MIRVs tested 11 March 2024',
       'Guidance': 'Ring Laser Gyroscope INS + GPS (CEP <10 m)',
       'Propulsion': '3-stage solid fuel',
       'Launch': 'Road-mobile canisterised (rapid deployment from any road)',
       'Re-entry': 'Manoeuvring RV to defeat missile defences',
     },
     description: 'Mission Divyastra — India tested MIRV capability on Agni-V in March 2024, making India the 7th nation with MIRVed ICBMs. Canister launch allows deployment from any road nationwide. Full SFC induction complete by 2023.',
-    significance: 'March 2024 MIRV test = India 7th MIRV nation after US, Russia, China, UK, France, Pakistan. MIRV defeats any current missile shield. Covers all of China (8,000 km includes Beijing). Huge SSB current affairs topic.',
+    significance: 'March 2024 MIRV test = India 7th MIRV nation after US, Russia, China, UK, France, Pakistan. MIRV defeats any current missile shield. Range of 7,000 km covers all of China including Beijing. Huge SSB current affairs topic.',
   },
   // ── HELICOPTERS ────────────────────────────────────────────────────────────
   {
@@ -709,7 +709,7 @@ export const armyEquipment = [
       'All variants': '3-stage solid fuel, CEP < 10 m (Agni-IV)',
       'Agni-P (Prime)': '1,000–2,000 km, MIRV-capable miniature — tested 2021',
     },
-    description: 'India\'s complete family of nuclear-capable ballistic missiles — Agni-I covers Pakistan, Agni-II reaches deep into China, Agni-III covers all of China including Beijing, Agni-IV provides road-mobile survivable deterrent. Agni-P (Prime) is a new miniaturized MIRV-capable MRBM tested 2021. Combined with Agni-V MIRV (under Army/SFC), India has a complete nuclear ladder from 700 km to 8,000 km.',
+    description: 'India\'s complete family of nuclear-capable ballistic missiles — Agni-I covers Pakistan, Agni-II reaches deep into China, Agni-III covers all of China including Beijing, Agni-IV provides road-mobile survivable deterrent. Agni-P (Prime) is a new miniaturized MIRV-capable MRBM tested 2021. Combined with Agni-V MIRV (under Army/SFC), India has a complete nuclear ladder from 700 km to 7,000+ km.',
     significance: 'Nuclear ladder: Agni-I (Pakistan tactical), Agni-II/III (China strategic), Agni-IV (survivable road), Agni-V (MIRV ICBM). India is only country with complete range of delivery vehicles. Canisterised = 24/7 rapid launch. Agni-P MIRV = next generation.',
   },
   {

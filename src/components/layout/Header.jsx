@@ -11,6 +11,7 @@ const navLinks = [
   { label: 'Defence Orgs',    path: '/orgs' },
   { label: 'Operations',      path: '/operations' },
   { label: 'Ranks & Medals',  path: '/ranks' },
+  { label: 'Practice',        path: '/practice' },
 ]
 
 export default function Header({ onSearchOpen }) {

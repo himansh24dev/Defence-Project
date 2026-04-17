@@ -83,7 +83,7 @@ export const defenceOrgs = [
       'ALH Mk III 156-unit order', 'HTT-40 trainer 70 units', 'AMCA (lead manufacturer)',
       'IMRH (Indian Multi-Role Helicopter)', 'Hawk 132 (license production ongoing)',
     ],
-    significance: 'HAL delivers India\'s largest aerospace programs. Tejas Mk1A first delivery Feb 2025 = 40 years from concept to delivery. HAL manufacturing = India owns its combat aircraft supply chain. HAL\'s quality concerns drove India to Rafale (imported) — HAL\'s survival depends on successfully ramping Tejas production.',
+    significance: 'HAL delivers India\'s largest aerospace programs. Tejas Mk1A first deliveries 2025–26 (delayed by GE F404 engine supply constraints) = 40 years from concept to delivery. HAL manufacturing = India owns its combat aircraft supply chain. HAL\'s quality concerns drove India to Rafale (imported) — HAL\'s survival depends on successfully ramping Tejas production.',
   },
   {
     id: 'bel', name: 'Bharat Electronics Limited', abbreviation: 'BEL',

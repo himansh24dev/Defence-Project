@@ -20,7 +20,7 @@ export const airforceEquipment = [
       'India-Specific': 'Cold-weather packs (Ladakh ops), Israeli HMDS, Israeli RWR, low-altitude flying profile',
       'Squadrons': 'No. 17 Sq "Golden Arrows" (Ambala) + No. 101 Sq "Falcons of Chamb" (Hasimara)',
     },
-    description: 'France\'s premier omnirole fighter — first non-European export. All 36 aircraft delivered by Dec 2022 across two squadrons. India-specific enhancements include cold-start capability for Ladakh, Israeli helmet-mounted displays, and HAMMER stand-off precision munitions. Carries Meteor BVR missile (no-escape zone >100 km) — unmatched in the subcontinent. Simultaneously, 26 Rafale Marine jets ordered for the Navy in February 2026 (separate deal ~€7 billion) for INS Vikrant carrier ops.',
+    description: 'France\'s premier omnirole fighter — first non-European export. All 36 aircraft delivered by Dec 2022 across two squadrons. India-specific enhancements include cold-start capability for Ladakh, Israeli helmet-mounted displays, and HAMMER stand-off precision munitions. Carries Meteor BVR missile (no-escape zone >100 km) — unmatched in the subcontinent. Simultaneously, 26 Rafale Marine jets ordered for the Navy in February 2026 (separate deal ~$7.4 billion USD) for INS Vikrant carrier ops.',
     significance: 'Most advanced fighter in IAF inventory. Meteor + SPECTRA combination gives decisive BVR and EW edge. SCALP enables deep strikes into adversary territory without entering contested airspace. Transformed IAF\'s qualitative edge over both neighbours overnight.',
   },
   {
@@ -51,9 +51,9 @@ export const airforceEquipment = [
     name: 'Tejas Mk1A',
     type: 'Light Combat Aircraft',
     origin: 'India (HAL / ADA)',
-    status: 'In Service — production ongoing (first delivery Feb 2025)',
-    inducted: '2016 (Mk1), Feb 2025 (Mk1A first delivery)',
-    quantity: '83 Mk1A ordered (₹48,000 crore deal) | First delivered to 18 Sq "Flying Bullets" (Sulur) Feb 2025',
+    status: 'In Service — production ongoing (first Mk1A deliveries 2025–26)',
+    inducted: '2016 (Mk1), 2025–26 (Mk1A first deliveries)',
+    quantity: '83 Mk1A ordered (₹48,000 crore deal) | First Mk1A squadron forming at Sulur (deliveries delayed by GE F404 engine supply constraints)',
     tags: ['indigenous', 'flagship'],
     specs: {
       'Max Speed': 'Mach 1.6',
@@ -67,7 +67,7 @@ export const airforceEquipment = [
       'Key upgrade over Mk1': 'AESA radar, in-flight refuelling, advanced EW, close-coupled canards',
       'Tejas Mk2': 'Heavier variant (GE F414 engine, 98 kN) — first flight ~2027',
     },
-    description: 'India\'s indigenous Light Combat Aircraft after 30+ years of development. First Mk1A delivered to No. 18 Squadron "Flying Bullets" at Sulur Air Force Station in February 2025 — a landmark in Indian aviation. HAL is ramping production to 16 aircraft/year. The 83-aircraft order (signed 2021) will replace MiG-21 Bisons fully by 2028. AESA radar, new EW suite, and air-to-air refuelling capability are the three critical additions over Mk1. Tejas Mk2 (heavier, more capable) first flight expected 2027.',
+    description: 'India\'s indigenous Light Combat Aircraft after 30+ years of development. HAL is ramping production to 16 aircraft/year with deliveries beginning 2025–26 (delayed by GE F404 engine supply from the US). The 83-aircraft order (signed 2021) will replace MiG-21 Bisons fully by 2028–30. AESA radar, new EW suite, and in-flight refuelling capability are the three critical additions over Mk1. Tejas Mk2 (heavier, GE F414 engine) first flight expected 2027.',
     significance: 'Symbol of Atmanirbhar Bharat in aviation. Largest indigenous fighter program. Replacing MiG-21 — a fleet that IAF operated since 1963. Mk1A AESA radar gives BVR capability. 83 jets + future Mk2 order will form the numerical bulk of IAF by 2030s.',
   },
   {
