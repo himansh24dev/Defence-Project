@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Shield, Search } from 'lucide-react'
-import UserMenu from '../common/UserMenu'
 
 const navLinks = [
   { label: 'Home',            path: '/' },
@@ -75,8 +74,6 @@ export default function Header({ onSearchOpen }) {
               <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', animation: 'pulse 2s infinite' }} />
               <span style={{ color: '#94a3b8', fontSize: 11 }}>LIVE</span>
             </div>
-            {/* User */}
-            <UserMenu />
             {/* Search */}
             <button
               onClick={onSearchOpen}
