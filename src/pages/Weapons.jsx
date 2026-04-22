@@ -46,13 +46,14 @@ export default function Weapons() {
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
       <SectionHeader
         title="Weapons & Equipment"
-        subtitle="Complete inventory of Indian Armed Forces — Army, Navy & Air Force | Updated April 2026"
+        subtitle="Complete inventory of Indian Armed Forces — Army, Navy & Air Force"
         icon={Crosshair}
         accent="#f97316"
+        lastUpdated="April 2026"
       />
 
       {/* Service tabs */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 20 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
         {TABS.map(t => {
           const Icon = t.icon
           const active = tab === t.id
@@ -61,16 +62,33 @@ export default function Weapons() {
               key={t.id}
               onClick={() => { setTab(t.id); setType('All'); setSearch('') }}
               style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-                padding: '10px 18px', borderRadius: 10, border: '1px solid',
-                fontWeight: 600, fontSize: 13, cursor: 'pointer',
-                background: active ? t.color : '#0f1b2e',
-                color: active ? '#fff' : '#94a3b8',
-                borderColor: active ? t.color : '#1a2d4a',
-                transition: 'all 0.15s',
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '14px 26px', borderRadius: 13,
+                border: `2px solid ${active ? t.color : '#1a2d4a'}`,
+                fontWeight: 700, fontSize: 15, cursor: 'pointer',
+                background: active
+                  ? `linear-gradient(135deg, ${t.color}cc, ${t.color}88)`
+                  : 'linear-gradient(135deg, #0f1b2e, #0d1526)',
+                color: active ? '#fff' : '#64748b',
+                boxShadow: active
+                  ? `0 4px 24px ${t.color}55, 0 0 0 1px ${t.color}44`
+                  : '0 2px 8px rgba(0,0,0,0.3)',
+                transform: active ? 'translateY(-2px)' : 'translateY(0)',
+                transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
+                letterSpacing: '0.2px',
+                position: 'relative', overflow: 'hidden',
               }}
+              onMouseEnter={e => { if (!active) { e.currentTarget.style.borderColor = t.color + '66'; e.currentTarget.style.color = '#f1f5f9'; e.currentTarget.style.transform = 'translateY(-1px)' } }}
+              onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = '#1a2d4a'; e.currentTarget.style.color = '#64748b'; e.currentTarget.style.transform = 'translateY(0)' } }}
             >
-              <Icon size={15} />
+              {/* Glow streak for active */}
+              {active && (
+                <div style={{
+                  position: 'absolute', inset: 0, pointerEvents: 'none',
+                  background: `linear-gradient(105deg, ${t.color}33 0%, transparent 60%)`,
+                }} />
+              )}
+              <Icon size={18} style={{ flexShrink: 0 }} />
               {t.label}
             </button>
           )

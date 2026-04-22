@@ -51,6 +51,18 @@ html, body {
 ::-webkit-scrollbar-thumb { background: #253d60; border-radius: 3px; transition: background 0.2s; }
 ::-webkit-scrollbar-thumb:hover { background: #FF6B00; }
 
+/* ── Light mode (invert + hue-rotate keeps orange accent intact) ─────── */
+html.light-mode {
+  filter: invert(1) hue-rotate(180deg);
+}
+html.light-mode img,
+html.light-mode video,
+html.light-mode iframe,
+html.light-mode .leaflet-container,
+html.light-mode .leaflet-tile {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* ── Utility ─────────────────────────────────────────────────────────── */
 .line-clamp-2 {
   display: -webkit-box;
@@ -616,6 +628,80 @@ html, body {
   filter: blur(80px);
   pointer-events: none;
   animation: heroGlow 6s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — GLOBAL
+══════════════════════════════════════════════════════ */
+
+/* Page wrapper used across all pages */
+.page-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 16px 48px;
+}
+@media (max-width: 768px) {
+  .page-wrap { padding: 16px 12px 32px; }
+}
+
+/* ── Home: category bento grid ── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 190px;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+@media (max-width: 900px) {
+  .cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+  }
+  .cat-card { grid-column: span 1 !important; min-height: 160px; }
+}
+@media (max-width: 540px) {
+  .cat-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Home: hero box ── */
+.hero-box { padding: 44px 36px; }
+@media (max-width: 900px) {
+  .hero-box { padding: 28px 20px; }
+  .hero-inner { flex-direction: column !important; gap: 24px !important; }
+  .hero-stats-panel { display: none !important; }
+}
+@media (max-width: 540px) {
+  .hero-box { padding: 20px 14px; }
+}
+
+/* ── Header brand font ── */
+.header-brand-text { font-size: 26px; }
+@media (max-width: 480px) {
+  .header-brand-text { font-size: 18px !important; letter-spacing: -0.5px !important; }
+  .header-brand-icon { width: 34px !important; height: 34px !important; border-radius: 9px !important; }
+}
+
+/* ── India Map: sidebar stacks on mobile ── */
+.map-layout { display: flex; gap: 12px; align-items: flex-start; }
+@media (max-width: 768px) {
+  .map-layout { flex-direction: column; }
+  .map-sidebar { width: 100% !important; min-height: auto !important; }
+  .map-sidebar-inner { max-height: 220px !important; }
+}
+
+/* ── Footer bottom row on small screens ── */
+@media (max-width: 540px) {
+  .footer-bottom { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
+}
+
+/* ── Chat widget on very small screens ── */
+@media (max-width: 480px) {
+  .chat-window {
+    bottom: 80px !important;
+    right: 8px !important;
+    left: 8px !important;
+    width: auto !important;
+  }
 }
 
 /* ══════════════════════════════════════════════════════

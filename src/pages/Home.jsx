@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Shield, Crosshair, Cpu, Map, Rocket, BookOpen, Award, Brain } from 'lucide-react'
+import { Shield, Crosshair, Cpu, Map, MapPin, Rocket, Award, Brain, Users } from 'lucide-react'
 import GenieIntro from '../components/common/GenieIntro'
 
 
@@ -13,9 +13,9 @@ const categories = [
   },
   {
     icon: Shield, color: '#f97316', path: '/regiments',
-    title: 'Regiments & Battles',
-    stat: '16+', statLabel: 'Regiments',
-    desc: 'Battle honours, famous actions — Saragarhi, Rezang La, Kargil, Surgical Strikes.',
+    title: 'Units & Battle Honours',
+    stat: '35+', statLabel: 'Units',
+    desc: 'Army Regiments, Navy Commands, IAF Squadrons — famous battles, gallantry awards, SSB significance.',
     span: 1,
   },
   {
@@ -23,13 +23,6 @@ const categories = [
     title: 'Geopolitics',
     stat: '12+', statLabel: 'Flashpoints',
     desc: 'LAC, LoC, Quad, SCO, BRICS — India\'s full strategic landscape explained.',
-    span: 1,
-  },
-  {
-    icon: BookOpen, color: '#4ade80', path: '/schemes',
-    title: 'Government Schemes',
-    stat: '10+', statLabel: 'Schemes',
-    desc: 'Agnipath, Atmanirbhar, iDEX, DRDO projects — complete policy and programme hub.',
     span: 1,
   },
   {
@@ -53,18 +46,55 @@ const categories = [
     desc: 'Complete rank structures of Army, Navy & IAF with insignia, pay bands, and gallantry awards.',
     span: 1,
   },
+  {
+    icon: Brain, color: '#06b6d4', path: '/practice',
+    title: 'Practice (WAT / PPDT)',
+    stat: '200+', statLabel: 'Words',
+    desc: 'Sharpen your WAT with curated word lists and timed practice sets for SSB prep.',
+    span: 1,
+  },
+  {
+    icon: Users, color: '#84cc16', path: '/forces',
+    title: 'Know Your Forces',
+    stat: '3', statLabel: 'Services',
+    desc: 'Full org-chart hierarchy of Army, Navy & IAF — commands, corps, fleets, and squadrons.',
+    span: 1,
+  },
+  {
+    icon: MapPin, color: '#f43f5e', path: '/map',
+    title: 'India Interactive Map',
+    stat: '200+', statLabel: 'Locations',
+    desc: 'Rivers, mountain passes, defence bases, nuclear plants, battlefields — toggle any layer.',
+    span: 1,
+  },
 ]
 
 export default function Home() {
   return (
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
+
+      {/* Disclaimer notice */}
+      <div style={{
+        marginBottom: 20, padding: '10px 16px',
+        background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.25)',
+        borderRadius: 10, display: 'flex', alignItems: 'flex-start', gap: 10,
+      }}>
+        <span style={{ fontSize: 15, flexShrink: 0, marginTop: 1 }}>⚠️</span>
+        <p style={{ margin: 0, fontSize: 12.5, color: '#94a3b8', lineHeight: 1.6 }}>
+          <span style={{ color: '#f59e0b', fontWeight: 600 }}>Accuracy Notice: </span>
+          The developer has made every effort to provide authentic and up-to-date information. However, if you spot any incorrect facts, outdated data, or missing details, please use the{' '}
+          <span style={{ color: '#a78bfa', fontWeight: 600 }}>Feedback / Suggestion form</span> given below — your input directly helps us improve.
+          {' '}<span style={{ color: '#64748b' }}>This website is in its initial phases and new information is being added regularly — stay tuned for updates.</span>
+        </p>
+      </div>
+
       <GenieIntro />
 
       {/* ── Hero ── */}
-      <div className="animate-fade-up" style={{
+      <div className="animate-fade-up hero-box" style={{
         position: 'relative', borderRadius: 16, overflow: 'hidden',
         background: 'linear-gradient(135deg, #0d1929 0%, #0f1f38 40%, #0a0f1e 100%)',
-        border: '1px solid #1a2d4a', padding: '44px 36px', marginBottom: 28,
+        border: '1px solid #1a2d4a', marginBottom: 28,
         boxShadow: '0 8px 40px rgba(0,0,0,0.4)',
       }}>
         <div className="hero-orb" style={{ width: 300, height: 300, background: 'rgba(255,107,0,0.07)', top: -80, right: -60, animationDelay: '0s' }} />
@@ -89,7 +119,7 @@ export default function Home() {
               <span style={{ color: '#FF6B00', textShadow: '0 0 40px rgba(255,107,0,0.4)' }}>SSB Preparation</span><br />Hub
             </h1>
             <p className="animate-fade-up" style={{ color: '#cbd5e1', fontSize: 15, maxWidth: 440, margin: '0 0 28px', lineHeight: 1.8, animationDelay: '0.22s' }}>
-              Complete Indian defence equipment database, weapons inventory, geopolitics, government schemes — and an AI assistant for all your SSB prep needs.
+              Complete Indian defence equipment database, weapons inventory, geopolitics, operations — and an AI assistant for all your SSB prep needs.
             </p>
             <div className="animate-fade-up" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, animationDelay: '0.3s' }}>
               <Link
@@ -138,7 +168,7 @@ export default function Home() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 10 }}>
               {[
                 { label: 'Active Personnel', value: '1.45M', sub: '2nd largest', color: '#FF6B00' },
-                { label: 'Defence Budget', value: '₹6.81L Cr', sub: 'FY 2025–26', color: '#22d3ee' },
+                { label: 'Defence Budget', value: '₹7.52L Cr', sub: 'FY 2026–27', color: '#22d3ee' },
                 { label: 'Nuclear Warheads', value: '~180', sub: 'SIPRI 2025', color: '#a78bfa' },
                 { label: 'Agni-V Range', value: '7,000km+', sub: 'MIRV capable', color: '#4ade80' },
               ].map(s => (
@@ -174,7 +204,7 @@ export default function Home() {
       </div>
 
       {/* ── Bento category grid ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridAutoRows: '190px', gap: 12, marginBottom: 12 }}>
+      <div className="cat-grid">
         {categories.map(cat => {
           const Icon = cat.icon
           return (
@@ -240,17 +270,7 @@ export default function Home() {
       </div>
 
       <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-        @media (max-width: 900px) {
-          .hero-inner { flex-direction: column !important; }
-          .hero-stats-panel { display: none !important; }
-        }
-        @media (max-width: 768px) {
-          .cat-card { grid-column: span 1 !important; }
-        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
       `}</style>
     </div>
   )

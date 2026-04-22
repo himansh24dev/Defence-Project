@@ -217,4 +217,48 @@ export const operations = [
     focus: 'Counter-terrorism, mountain warfare, CBRN decontamination',
     significance: 'India-France military relationship is India\'s deepest defence partnership outside India-Israel. France = Rafale seller, Scorpene submarine builder, Rafale Marine buyer for IN. Ex Shakti = deepens French Army familiarity. France strongly supports India in UNSC on Kashmir (abstains vs censure).',
   },
+
+  // ── RECENT OPERATIONS ────────────────────────────────────────────────────
+  {
+    id: 'op-blue-star', name: 'Operation Blue Star (1984)', type: 'Internal Security Operation',
+    year: '1984 (June 1–10)', theatre: 'Golden Temple Complex, Amritsar, Punjab',
+    forces: 'Indian Army (9 Infantry Division) + CRPF vs Khalistan militants (Jarnail Singh Bhindranwale)',
+    objective: 'Flush out Sikh militants led by Bhindranwale who had fortified the Golden Temple complex with weapons.',
+    outcome: 'Bhindranwale and ~500 militants killed. Indian Army suffered ~90 killed + 287 wounded. Akal Takht damaged. Operation succeeded militarily but created political backlash.',
+    keyBattles: [
+      { battle: 'Assault on Akal Takht (5–6 Jun 1984)', detail: 'Army used tanks (Vijayanta) and artillery inside Golden Temple complex — first time in Indian military history. Bhindranwale killed in basement of Akal Takht. Heavily fortified building required armour due to militants\' rocket launchers and MMGs.' },
+      { battle: 'Battle for Langar Hall', detail: 'Militants had converted kitchen/langar area into firing positions. Para Commandos led close-quarter clearing operations. Lt Col Israr Khan KIA leading assault.' },
+    ],
+    lessons: ['Urban assault in religious complex — extreme political sensitivity', 'Armour essential even in CQB when enemy has RPGs', 'Internal security = political consequences outlast military success'],
+    significance: 'Blue Star led directly to PM Indira Gandhi\'s assassination (31 Oct 1984) by her Sikh bodyguards. Army went in against its own principles of respecting religious sites — but mission was accomplished. Gen A.S. Vaidya (COAS who ordered Blue Star) was later assassinated. Blue Star = most controversial Indian Army operation. SSB: Understanding civil-military relations in internal security.',
+  },
+  {
+    id: 'op-brasstacks', name: 'Operation Brasstacks (1986–87)', type: 'Military Mobilization / Near-War',
+    year: '1986–1987', theatre: 'Rajasthan-Punjab border (India-Pakistan)',
+    forces: 'Indian Army (largest peacetime exercise ever) vs Pakistan Army counter-mobilisation',
+    objective: 'India\'s largest peacetime military exercise — "test" of integrated battle groups. Pakistan interpreted as preparation for war and counter-mobilised.',
+    outcome: 'No war — diplomatic intervention. Both sides stood down after back-channel negotiations. India-Pakistan came closest to war since 1971.',
+    keyBattles: [],
+    lessons: ['Military exercises with real troops can trigger escalation spirals', 'Signalling and communications critical to prevent miscalculation', 'Nuclear dimension — both sides had nuclear capability by 1987'],
+    significance: 'Brasstacks was planned by Gen K. Sundarji (COAS) — India\'s most aggressive military doctrine exercise. Pakistan mobilised 6 divisions in counter-response. Rajiv Gandhi-Benazir Bhutto back-channel call defused crisis. First time both nuclear-armed India and Pakistan faced each other with mobilised armies. Template for all future crisis management between two nuclear powers.',
+  },
+  {
+    id: 'op-sindoor', name: 'Operation Sindoor (May 2026)', type: 'Air + Missile Strike',
+    year: 'May 2026', theatre: 'Pakistan and Pakistan-Occupied Kashmir (PoK)',
+    forces: 'Indian Air Force (Rafale jets) + Indian Army (BrahMos batteries) + Indian Navy (standby)',
+    objective: 'Destroy terrorist infrastructure of Jaish-e-Mohammed (JeM) and Lashkar-e-Taiba (LeT) in Pakistan and PoK following the Pahalgam terror attack (22 April 2025) in which 26 tourists were killed.',
+    outcome: 'India struck 9 terrorist targets — 4 in Pakistan (Bahawalpur, Muridke near Lahore) and 5 in PoK (Muzaffarabad, Kotli, Bhimber). India claimed 100+ terrorists eliminated. Pakistan denied significant damage. Ceasefire agreed within days after international mediation.',
+    keyBattles: [
+      { battle: 'Strike on JeM HQ, Bahawalpur (7 May 2026)', detail: 'SCALP/ECA cruise missiles fired from Rafale jets (WAC, Gwalior) hit Jaish-e-Mohammed\'s training complex at Bahawalpur — Pakistan\'s Punjab province, 100+ km inside Pakistan. First Indian strike deep inside Pakistani Punjab since 1971. JeM Masood Azhar\'s family compound reportedly targeted.' },
+      { battle: 'Strike on LeT complex, Muridke (7 May 2026)', detail: 'BrahMos supersonic cruise missiles fired from mobile launchers hit Lashkar-e-Taiba\'s Markaz Taiba headquarters near Muridke (25 km from Lahore). Complex destroyed. LeT used Muridke for 26/11 Mumbai attackers\' training.' },
+      { battle: 'PoK strikes — Muzaffarabad, Kotli, Bhimber', detail: 'IAF Rafales and army BrahMos batteries targeted 5 LaunchPad camps in PoK from where fidayeen attacks were planned. Muzaffarabad camp (Hizbul Mujahideen) and Kotli camp (JeM training) destroyed.' },
+    ],
+    lessons: [
+      'Precision standoff strike capability gives India non-contact warfare option',
+      'BrahMos + SCALP = ability to hit targets 300–500 km deep inside Pakistan from Indian airspace',
+      'Nuclear escalation management — India struck terrorist (non-state) infrastructure, not Pakistani military assets',
+      'India calibrated response to avoid full-scale war while punishing Pakistan',
+    ],
+    significance: 'Op Sindoor = India\'s most significant military action inside Pakistan since 1971. Crossed the Rubicon: India struck deep inside Pakistani Punjab (not just PoK). Established new deterrence threshold — terror attack on Indian soil = precision strikes inside Pakistan. Named "Sindoor" (vermilion — symbol of married Hindu women) after many victims\' wives lost husbands at Pahalgam. Rafale + BrahMos = the combination that made this possible. SSB CRITICAL: Know Pahalgam attack, Op Sindoor targets, weapons used, and India\'s strategic messaging.',
+  },
 ]

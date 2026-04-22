@@ -118,10 +118,10 @@ export default function IndiaMap() {
         <span style={{ color: '#94a3b8' }}>Click any marker/line for details</span>
       </div>
 
-      <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+      <div className="map-layout">
 
         {/* ── Sidebar ── */}
-        <div style={{
+        <div className="map-sidebar" style={{
           width: sidebarOpen ? 220 : 36,
           flexShrink: 0,
           background: '#070c1a',
@@ -148,7 +148,7 @@ export default function IndiaMap() {
           </button>
 
           {sidebarOpen && (
-            <div style={{ padding: '10px 8px 16px', overflowY: 'auto', maxHeight: 'calc(100vh - 260px)' }}>
+            <div className="map-sidebar-inner" style={{ padding: '10px 8px 16px', overflowY: 'auto', maxHeight: 'calc(100vh - 260px)' }}>
               {/* Header */}
               <div style={{ fontSize: 10, fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 8 }}>
                 Map Layers
@@ -221,7 +221,7 @@ export default function IndiaMap() {
             zoomSnap={0.25}
             zoomDelta={0.5}
             wheelPxPerZoomLevel={80}
-            style={{ height: 'calc(100vh - 230px)', minHeight: 560, width: '100%' }}
+            style={{ height: 'clamp(400px, calc(100vh - 230px), 700px)', width: '100%' }}
             scrollWheelZoom
             zoomControl
           >

@@ -1,5 +1,53 @@
 import { useState } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp, Bookmark, Share2 } from 'lucide-react'
+
+const BM_KEY = 'babayaga_bookmarks'
+
+function isSaved(id) {
+  try { return (JSON.parse(localStorage.getItem(BM_KEY)) || []).some(b => b.id === id) } catch { return false }
+}
+function toggleBM(item) {
+  try {
+    const list = JSON.parse(localStorage.getItem(BM_KEY)) || []
+    const next = list.some(b => b.id === item.id) ? list.filter(b => b.id !== item.id) : [...list, item]
+    localStorage.setItem(BM_KEY, JSON.stringify(next))
+    return !list.some(b => b.id === item.id)
+  } catch { return false }
+}
+
+function ActionButtons({ weapon }) {
+  const [bookmarked, setBookmarked] = useState(() => isSaved(weapon.id))
+  const [copied, setCopied] = useState(false)
+
+  const handleBookmark = (e) => {
+    e.stopPropagation()
+    const next = toggleBM({ id: weapon.id, name: weapon.name, category: weapon.type, type: 'weapon' })
+    setBookmarked(next)
+  }
+
+  const handleShare = async (e) => {
+    e.stopPropagation()
+    const text = `${weapon.name} — ${weapon.type} | BABA YAGA Defence Hub`
+    if (navigator.share) {
+      try { await navigator.share({ title: weapon.name, text, url: window.location.href }) } catch {}
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  return (
+    <div style={{ display: 'flex', gap: 5 }}>
+      <button onClick={handleShare} title={copied ? 'Link copied!' : 'Share'} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, borderRadius: 6, display: 'flex', alignItems: 'center' }}>
+        <Share2 size={14} color={copied ? '#4ade80' : '#475569'} />
+      </button>
+      <button onClick={handleBookmark} title={bookmarked ? 'Remove bookmark' : 'Bookmark'} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, borderRadius: 6, display: 'flex', alignItems: 'center' }}>
+        <Bookmark size={14} fill={bookmarked ? '#f59e0b' : 'none'} color={bookmarked ? '#f59e0b' : '#475569'} />
+      </button>
+    </div>
+  )
+}
 
 const TAG_STYLE = {
   indigenous:      { background: '#052e16', color: '#4ade80', border: '#166534' },
@@ -72,11 +120,14 @@ export default function WeaponCard({ weapon }) {
             <h3 style={{ fontSize: 14.5, fontWeight: 700, color: '#f1f5f9', margin: 0, lineHeight: 1.3 }}>{weapon.name}</h3>
             <p style={{ fontSize: 13, color: '#94a3b8', margin: '3px 0 0' }}>{weapon.type}</p>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}>
-            <div style={{ width: 7, height: 7, borderRadius: '50%', background: statusColor, flexShrink: 0 }} />
-            <span style={{ fontSize: 10.5, color: statusColor, fontWeight: 600, whiteSpace: 'nowrap' }}>
-              {weapon.status?.split('(')[0].trim()}
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+              <div style={{ width: 7, height: 7, borderRadius: '50%', background: statusColor, flexShrink: 0 }} />
+              <span style={{ fontSize: 10.5, color: statusColor, fontWeight: 600, whiteSpace: 'nowrap' }}>
+                {weapon.status?.split('(')[0].trim()}
+              </span>
+            </div>
+            <ActionButtons weapon={weapon} />
           </div>
         </div>
 

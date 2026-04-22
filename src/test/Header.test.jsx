@@ -14,15 +14,14 @@ function renderHeader(path = '/', onSearchOpen = vi.fn()) {
 describe('Header navigation', () => {
   it('renders the BABA YAGA brand', () => {
     renderHeader()
-    expect(screen.getByText('BABA')).toBeInTheDocument()
-    expect(screen.getByText('YAGA')).toBeInTheDocument()
+    expect(screen.getByText('BABA YAGA')).toBeInTheDocument()
   })
 
   it('renders all 9 nav links', () => {
     renderHeader()
     const links = [
       'Home', 'Weapons & Equip', 'Regiments', 'Geopolitics',
-      'Gov Schemes', 'Defence Orgs', 'Operations', 'Ranks & Medals', 'Practice',
+      'Defence Orgs', 'Operations', 'Ranks & Medals', 'Practice',
     ]
     links.forEach(label => {
       expect(screen.getAllByText(label).length).toBeGreaterThan(0)
@@ -46,11 +45,6 @@ describe('Header navigation', () => {
     expect(onSearchOpen).toHaveBeenCalled()
   })
 
-  it('shows LIVE indicator', () => {
-    renderHeader()
-    expect(screen.getByText('LIVE')).toBeInTheDocument()
-  })
-
   it('active route gets highlighted styling', () => {
     renderHeader('/practice')
     const practiceLinks = screen.getAllByRole('link', { name: /Practice/i })
@@ -70,8 +64,4 @@ describe('Header navigation', () => {
     expect(tricolor).toBeDefined()
   })
 
-  it('Defence Intelligence Hub tagline is present', () => {
-    renderHeader()
-    expect(screen.getByText('Defence Intelligence Hub')).toBeInTheDocument()
-  })
 })

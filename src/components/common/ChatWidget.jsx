@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const WELCOME = {
   role: 'assistant',
-  content: 'Jai Hind! I\'m BABA YAGA AI — your dedicated defence & SSB prep assistant.\n\nAsk me anything about Indian armed forces, SSB interview process, weapons & platforms, geopolitics, or defence current affairs.',
+  content: 'Jai Hind! I\'m BABA YAGA AI — your dedicated defence & SSB prep assistant.\n\nAsk me anything about Indian armed forces, SSB interview process, weapons & platforms, geopolitics, or defence current affairs.\n\n⚠️ Note: My knowledge is based on training data up to early 2024, so I may not be aware of the very latest news or recent developments.',
 }
 
 const SUGGESTIONS = [

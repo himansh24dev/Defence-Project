@@ -1,23 +1,25 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Shield, Search } from 'lucide-react'
+import { Menu, X, Shield, Search, Sun, Moon } from 'lucide-react'
+import { useTheme } from '../../hooks/useTheme'
 
 const navLinks = [
   { label: 'Home',            path: '/' },
   { label: 'Weapons & Equip', path: '/weapons' },
-  { label: 'Regiments',       path: '/regiments' },
+  { label: 'Units & Honours',  path: '/regiments' },
   { label: 'Geopolitics',     path: '/geopolitics' },
-  { label: 'Gov Schemes',     path: '/schemes' },
   { label: 'Defence Orgs',    path: '/orgs' },
   { label: 'Operations',      path: '/operations' },
   { label: 'Ranks & Medals',  path: '/ranks' },
   { label: 'Practice',        path: '/practice' },
   { label: 'Know Your Forces', path: '/forces' },
   { label: 'India Map',        path: '/map' },
+  { label: '🔖 Bookmarks',    path: '/bookmarks' },
 ]
 
 export default function Header({ onSearchOpen }) {
   const [open, setOpen] = useState(false)
+  const { light, toggle: toggleTheme } = useTheme()
   const location = useLocation()
 
   return (
@@ -40,40 +42,50 @@ export default function Header({ onSearchOpen }) {
 
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 16px' }}>
         {/* Logo + actions row */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0' }}>
-          {/* Logo */}
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <div style={{
-              width: 38, height: 38,
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', position: 'relative' }}>
+          {/* Logo — centred absolutely so nav buttons don't shift it */}
+          <Link to="/" style={{
+            position: 'absolute', left: '50%', transform: 'translateX(-50%)',
+            display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none',
+          }}>
+            <div className="header-brand-icon" style={{
+              width: 44, height: 44,
               background: 'linear-gradient(135deg, #FF6B00, #e55f00)',
-              borderRadius: 10,
+              borderRadius: 12,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               flexShrink: 0,
             }}>
-              <Shield size={18} color="#fff" />
+              <Shield size={22} color="#fff" />
             </div>
             <div>
-              <div style={{ fontSize: 18, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.5px' }}>
-                <span style={{ color: '#fff' }}>BABA </span>
-                <span style={{ color: '#FF6B00' }}>YAGA</span>
-              </div>
-              <div style={{ fontSize: 9, color: '#64748b', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1 }}>
-                Defence Intelligence Hub
+              <div className="header-brand-text" style={{ fontWeight: 900, lineHeight: 1.1, letterSpacing: '-1px' }}>
+                <span style={{ color: '#FF6B00' }}>BABA YAGA</span>
               </div>
             </div>
           </Link>
 
+          {/* Invisible spacer so flex layout still pushes right side to the end */}
+          <div style={{ visibility: 'hidden', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ width: 44, height: 44 }} />
+            <div style={{ width: 140 }} />
+          </div>
+
           {/* Right side */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            {/* Live indicator */}
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 5,
-              background: '#0f1b2e', border: '1px solid #1a2d4a',
-              borderRadius: 999, padding: '4px 10px',
-            }}>
-              <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', animation: 'pulse 2s infinite' }} />
-              <span style={{ color: '#94a3b8', fontSize: 11 }}>LIVE</span>
-            </div>
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              title={light ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+              style={{
+                background: 'none', border: '1px solid #1a2d4a',
+                borderRadius: 8, padding: '6px 8px', cursor: 'pointer',
+                color: '#94a3b8', display: 'flex', alignItems: 'center',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#253d60' }}
+              onMouseLeave={e => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.borderColor = '#1a2d4a' }}
+            >
+              {light ? <Moon size={16} /> : <Sun size={16} />}
+            </button>
             {/* Search */}
             <button
               onClick={onSearchOpen}
@@ -122,19 +134,20 @@ export default function Header({ onSearchOpen }) {
                 to={link.path}
                 className={active ? '' : 'nav-link-animate'}
                 style={{
-                  padding: '5px 11px',
+                  padding: '6px 13px',
                   borderRadius: 7,
-                  fontSize: 12.5,
-                  fontWeight: active ? 600 : 500,
-                  color: active ? '#fff' : '#94a3b8',
+                  fontSize: 14,
+                  fontWeight: active ? 700 : 500,
+                  color: active ? '#fff' : '#cbd5e1',
                   background: active ? '#FF6B00' : 'transparent',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
                   transition: 'color 0.2s cubic-bezier(0.4,0,0.2,1), background 0.2s cubic-bezier(0.4,0,0.2,1), transform 0.2s cubic-bezier(0.4,0,0.2,1)',
                   flexShrink: 0,
+                  letterSpacing: '0.1px',
                 }}
                 onMouseEnter={e => { if (!active) { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = '#1a2d4a'; e.currentTarget.style.transform = 'translateY(-1px)' } }}
-                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)' } }}
+                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = '#cbd5e1'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)' } }}
               >
                 {link.label}
               </Link>

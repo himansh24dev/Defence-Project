@@ -1,7 +1,6 @@
-import { Shield, ExternalLink, Mail } from 'lucide-react'
-import { Link } from 'react-router-dom'
-
-const sections = ['National', 'International', 'Defence', 'Procurement', 'Indigenization', 'Geopolitics']
+import { useState } from 'react'
+import { Shield, ExternalLink, Mail, MessageSquare } from 'lucide-react'
+import FeedbackWidget from '../common/FeedbackWidget'
 
 const sources = [
   { name: 'Ministry of Defence', url: 'https://mod.gov.in' },
@@ -13,6 +12,8 @@ const sources = [
 ]
 
 export default function Footer() {
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
+
   return (
     <footer style={{ background: '#070c1a', borderTop: '1px solid #1a2d4a', marginTop: 'auto' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: '40px 16px 24px' }}>
@@ -24,30 +25,12 @@ export default function Footer() {
                 <Shield size={16} color="#fff" />
               </div>
               <span style={{ fontSize: 16, fontWeight: 800, color: '#fff' }}>
-                BABA <span style={{ color: '#FF6B00' }}>YAGA</span>
+                <span style={{ color: '#FF6B00' }}>BABA YAGA</span>
               </span>
             </div>
             <p style={{ color: '#94a3b8', fontSize: 12.5, lineHeight: 1.6, maxWidth: 280 }}>
               Comprehensive intelligence hub for SSB aspirants. All news sourced from verified, credible outlets. Updated daily.
             </p>
-          </div>
-
-          {/* Sections */}
-          <div>
-            <h4 style={{ color: '#94a3b8', fontSize: 11, fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 12 }}>
-              Sections
-            </h4>
-            {sections.map(s => (
-              <Link
-                key={s}
-                to={`/${s.toLowerCase()}`}
-                style={{ display: 'block', color: '#94a3b8', fontSize: 13, textDecoration: 'none', marginBottom: 6, transition: 'color 0.15s' }}
-                onMouseEnter={e => e.currentTarget.style.color = '#FF6B00'}
-                onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
-              >
-                {s}
-              </Link>
-            ))}
           </div>
 
           {/* Developer */}
@@ -101,15 +84,31 @@ export default function Footer() {
         </div>
 
         {/* Bottom row */}
-        <div style={{ borderTop: '1px solid #1a2d4a', paddingTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="footer-bottom" style={{ borderTop: '1px solid #1a2d4a', paddingTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center' }}>
           <p style={{ color: '#64748b', fontSize: 11.5 }}>
             &copy; {new Date().getFullYear()} Hoga Hoga Sabka Hoga
           </p>
+          <button
+            onClick={() => setFeedbackOpen(true)}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 6,
+              padding: '6px 14px', borderRadius: 7,
+              background: 'transparent', border: '1px solid #1a2d4a',
+              color: '#64748b', fontSize: 12, cursor: 'pointer',
+              transition: 'all 0.15s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = '#7c3aed'; e.currentTarget.style.color = '#a78bfa' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = '#1a2d4a'; e.currentTarget.style.color = '#64748b' }}
+          >
+            <MessageSquare size={13} />
+            Give Feedback
+          </button>
           <p style={{ color: '#64748b', fontSize: 11.5 }}>
             News: NewsData.io · GNews · PIB · MoD
           </p>
         </div>
       </div>
+      <FeedbackWidget open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
     </footer>
   )
 }

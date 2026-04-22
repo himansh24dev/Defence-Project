@@ -1,0 +1,157 @@
+// Indian Navy — Commands, Fleets, Special Forces, Naval Aviation, Submarines
+export const navyUnits = [
+  // ── COMMANDS ──────────────────────────────────────────────────────────────
+  {
+    id: 'wnc', name: 'Western Naval Command', service: 'Navy', category: 'Command',
+    motto: 'Sinhase Saha (With the courage of a lion)',
+    raised: '1942 (re-designated post-Independence)',
+    headquarters: 'INS Shikra, Mumbai, Maharashtra',
+    composition: 'Western Fleet + INS Vikramaditya + submarines + Mumbai, Goa, Karwar bases',
+    areaOfOperations: 'Arabian Sea, Persian Gulf, Gulf of Oman, Red Sea, Gulf of Aden',
+    battleHonours: ['Op Trident (1971) — first naval missile strike','Op Python (1971) — Karachi second strike','Gulf of Aden Anti-Piracy (2008–present)','Op Sankalp (2019) — Gulf escort'],
+    famousActions: [
+      { battle: 'Op Trident (4–5 Dec 1971)', detail: 'Western Fleet launched India\'s first naval missile attack: INS Nipat, Nirghat, Veer fired Styx anti-ship missiles at Karachi harbour. PNS Khaibar (destroyer) sunk, MV Venus Challenger destroyed; Keamari oil tanks set ablaze — Karachi was on fire for a week.' },
+      { battle: 'Op Python (8–9 Dec 1971)', detail: 'Second missile strike on Karachi — INS Vinash fired 4 Styx missiles, hitting PNS Dacca and tanker Harmattan. Largest Pakistani fuel storage destroyed. Pakistan Navy effectively neutralized in 5 days; Indian Navy ruled the Arabian Sea for the rest of the war.' },
+      { battle: 'Anti-Piracy Gulf of Aden (2008–present)', detail: 'WNC ships deployed continuously in Gulf of Aden. India has protected 3,500+ merchant ships. In Jan 2024, INS Chennai and INS Mormugao responded to Houthi drone/missile attacks on Indian-linked merchant vessels in the Red Sea.' },
+    ],
+    famousSoldiers: ['Cdr Mulla (INS Khukri — refused to abandon ship 1971, went down with vessel, posthumous MVC)', 'Vice Adm S.N. Kohli (WNC Commander, 1971)'],
+    currentDeployment: 'Arabian Sea, Gulf of Aden escort, Lakshadweep surveillance',
+    significance: '1971: India used anti-ship missiles in combat for the first time — Karachi attack (Op Trident + Python) is celebrated as Navy Day (4 December). WNC controls India\'s oil supply routes from Persian Gulf. Karwar base (INS Kadamba) — India\'s largest naval base — is under WNC. SSB: Karachi attack = India\'s most decisive naval offensive action.',
+  },
+  {
+    id: 'enc', name: 'Eastern Naval Command', service: 'Navy', category: 'Command',
+    motto: 'Paritranaya Sadhunam (For the protection of the virtuous)',
+    raised: '1942',
+    headquarters: 'INS Circars, Visakhapatnam, Andhra Pradesh',
+    composition: 'Eastern Fleet + INS Vikrant (R11) + Submarine base + Andaman & Nicobar detachment (INS Baaz)',
+    areaOfOperations: 'Bay of Bengal, Strait of Malacca, Andaman Sea, Eastern IOR',
+    battleHonours: ['1971 — Bay of Bengal blockade of East Pakistan','Tsunami HADR (2004)','QUAD naval exercises (2021–present)'],
+    famousActions: [
+      { battle: '1971 — Bay of Bengal Blockade', detail: 'INS Vikrant (first carrier) and Eastern Fleet blockaded East Pakistan completely. No ship could enter Chittagong or Cox\'s Bazar. Pakistani naval reinforcements could not reach East Pakistan. Complete sea control enabled India\'s rapid land victory — Bangladesh liberated in 13 days.' },
+      { battle: 'INS Baaz — Andaman Strategic Base', detail: 'ENC controls INS Baaz (Campbell Bay, Andaman & Nicobar) — India\'s southernmost base, 150 km from Malacca Strait. Monitors 50,000+ ships per year transiting Malacca. China\'s Malacca Dilemma: 80% of China\'s oil transits through waters ENC surveils. India can effectively hold China\'s energy supply at risk.' },
+    ],
+    famousSoldiers: ['Adm Arun Prakash (former CNS, commanded INS Viraat from ENC)', 'Vice Adm R. Hari Kumar (CNS 2021–24, former ENC chief)'],
+    currentDeployment: 'Bay of Bengal, QUAD exercises, Malacca surveillance, INS Vikrant operations',
+    significance: 'INS Vikrant (commissioned Sep 2022) — India\'s first indigenous carrier — is ENC\'s flagship. INS Baaz gives India\'s eyes over Malacca Strait: China\'s biggest strategic vulnerability. QUAD Naval exercises (India, USA, Japan, Australia) anchored around ENC projection capability. SSB: ENC + Bay of Bengal = India\'s leverage over China.',
+  },
+  {
+    id: 'snc', name: 'Southern Naval Command', service: 'Navy', category: 'Command',
+    motto: 'Sham No Varunah (May Varuna be auspicious)',
+    raised: '1946 (Southern Naval Area, re-designated 1976)',
+    headquarters: 'INS Venduruthy, Kochi, Kerala',
+    composition: 'Training Command + INS Garuda (naval air base, Kochi) + Indian Naval Academy (Ezhimala)',
+    areaOfOperations: 'Laccadive Sea, Southern tip of India; primary training command',
+    battleHonours: ['No combat role — training and EEZ patrol command'],
+    famousActions: [
+      { battle: 'Indian Naval Academy, Ezhimala', detail: 'SNC oversees INS Ezhimala, Kerala — Asia\'s largest naval academy (650 acres on a promontory). Trains all naval officers including Executive, Engineering, Education and Electrical branches; also trains officers from Sri Lanka, Maldives, Mauritius, Seychelles.' },
+      { battle: 'Indian Naval Diving School (INDS)', detail: 'INS Venduruthy hosts the INDS — trains combat divers, underwater demolition specialists, mine clearance divers. Provides the specialist pool from which MARCOS selects candidates.' },
+    ],
+    famousSoldiers: ['Multiple CNS trained at INS Ezhimala'],
+    currentDeployment: 'Training, Laccadive Sea patrol, EEZ surveillance',
+    significance: 'SNC = India\'s naval training backbone. INS Ezhimala produces all naval officers. SSB: Naval candidates go through SSB at Coimbatore (Navy SSB Board); then Ezhimala. Fleet Review from INS Venduruthy — President of India reviews fleet from here.',
+  },
+
+  // ── FLEETS ────────────────────────────────────────────────────────────────
+  {
+    id: 'western-fleet', name: 'Western Fleet (Swarn Jayanti Fleet)', service: 'Navy', category: 'Fleet',
+    motto: 'Jalesu Bharat Rakshak (Protector of India in the seas)',
+    raised: '1958',
+    headquarters: 'INS Shikra, Mumbai / INS Kadamba, Karwar (carrier base)',
+    composition: 'INS Vikramaditya (R33) + 2 Kolkata-class destroyers + 3 Shivalik-class frigates + 1 Talwar-class frigate + submarines + corvettes',
+    areaOfOperations: 'Arabian Sea, Gulf of Aden, Western Indian Ocean, Red Sea',
+    battleHonours: ['Op Trident 1971', 'Op Python 1971', 'Gulf of Aden anti-piracy 2008–present'],
+    famousActions: [
+      { battle: 'INS Vikramaditya (R33)', detail: 'Modified Kiev-class carrier (44,570 tonnes), commissioned 16 Nov 2013 after refit at Sevmash, Russia. Operates 26 MiG-29K + 6 Ka-31 AEW + Ka-28 ASW helicopters. Flight deck angled 14.3° with ski-jump. Based at INS Kadamba (Karwar). To receive 26 Rafale Marine (ordered Feb 2026) by ~2028–30.' },
+      { battle: 'INS Kolkata (D63)', detail: 'Lead ship of Project 15A Kolkata class destroyer (7,500 tonnes). Equipped with 16 BrahMos anti-ship/land-attack missiles, Barak-8 SAMs, torpedo tubes. Stealth hull. Built by Mazagon Dock Shipbuilders. Three ships: Kolkata, Kochi, Chennai.' },
+    ],
+    famousSoldiers: ['Vice Adm Ravneet Singh (FLAG, WNC 2022–24)'],
+    currentDeployment: 'Arabian Sea, Gulf of Aden, Red Sea escort missions',
+    significance: 'Western Fleet = India\'s primary strike force in Arabian Sea. INS Vikramaditya enables power projection across Western IOR. Rafale Marine (26 jets, Feb 2026 order for ~$7.4 bn) = next-gen carrier fighter. SSB: Carrier battle group = IAF + Navy coordination at sea; one of the most complex joint operations.',
+  },
+  {
+    id: 'eastern-fleet', name: 'Eastern Fleet (Varuna Fleet)', service: 'Navy', category: 'Fleet',
+    motto: 'Jai Bharati (Hail India)',
+    raised: '1942 (present configuration post-1971)',
+    headquarters: 'INS Virbahu, Visakhapatnam',
+    composition: 'INS Vikrant (R11) + INS Visakhapatnam (D66) + INS Mormugao (D67) + frigates + submarines',
+    areaOfOperations: 'Bay of Bengal, Andaman Sea, ASEAN waters, QUAD exercise area',
+    battleHonours: ['1971 Bay of Bengal blockade', 'Tsunami relief 2004', 'QUAD Malabar exercise series'],
+    famousActions: [
+      { battle: 'INS Vikrant (R11) — First Indigenous Carrier', detail: 'India\'s first indigenously built aircraft carrier (45,000 tonnes), commissioned 2 September 2022 at Kochi. Built at Cochin Shipyard with 76% indigenous content. Currently operates MiG-29K (interim); Tejas Mk1N (naval) under carrier compatibility trials. 26 Rafale Marine ordered Feb 2026 as permanent air wing.' },
+      { battle: 'INS Visakhapatnam (D66)', detail: 'Lead ship of Project 15B stealth destroyer (7,400 tonnes), inducted Dec 2021. Armed with BrahMos, Barak-8 SAM, MF-STAR AESA radar, torpedo tubes. Four ships ordered: Visakhapatnam, Mormugao, Imphal, Surat — all built indigenously at Mazagon Dock.' },
+    ],
+    famousSoldiers: ['Adm R. Hari Kumar (CNS 2021–24, oversaw INS Vikrant commissioning)'],
+    currentDeployment: 'Bay of Bengal, QUAD/Malabar exercises, Andaman patrol',
+    significance: 'INS Vikrant = India\'s strategic game-changer in Indo-Pacific. First indigenous carrier = Make in India in defence. QUAD exercises (India-USA-Japan-Australia) centered on Eastern Fleet. Bay of Bengal blockade 1971 showed that sea control = faster land victory. SSB: Two carrier navy = India\'s long-term goal; both Vikrant and Vikramaditya operational together = global blue-water navy status.',
+  },
+
+  // ── SPECIAL FORCES ────────────────────────────────────────────────────────
+  {
+    id: 'marcos', name: 'MARCOS — Marine Commandos', service: 'Navy', category: 'Special Forces',
+    motto: 'The Few, The Fearless',
+    raised: '1987 (Marine Commando Force, INS Abhimanyu Mumbai)',
+    headquarters: 'INS Abhimanyu, Mumbai (training HQ)',
+    composition: '~2,000 personnel; combat swimmers, VBSS teams, direct action specialists',
+    recruits_from: 'Indian Navy volunteers — officers and sailors; 18-month selection + training',
+    battleHonours: ['Op Pawan (Sri Lanka 1987–90)', 'Mumbai 26/11 (2008)', 'Gulf of Aden anti-piracy boarding ops', 'Counter-terrorism J&K rivers'],
+    famousActions: [
+      { battle: 'Mumbai 26/11 (2008)', detail: 'MARCOS were among the first responders to 26/11. Operated alongside NSG in Taj Hotel and Trident Hotel — MARCOS expertise in close-quarter combat and waterfront access was critical to securing the waterfront and preventing terrorist sea escape. Classified operations; identities protected.' },
+      { battle: 'Anti-Piracy Gulf of Aden — VBSS', detail: 'MARCOS teams embarked on warships in the Gulf of Aden as maritime assault teams. In 2024, MARCOS from INS Chennai rappelled onto hijacked MV Ruen in the Arabian Sea, neutralized 35 Somali pirates, rescued 17 crew — India\'s largest hostage rescue at sea. MV operation broadcast live on national TV.' },
+    ],
+    famousSoldiers: ['Multiple Shaurya Chakra / Kirti Chakra awardees (identities classified)'],
+    currentDeployment: 'Gulf of Aden, Malabar exercises, J&K river ops, counter-terrorism standby',
+    significance: 'MARCOS = India\'s maritime special forces equivalent to US Navy SEALs / British SBS. Complete amphibious capability: submarine lock-out, helicopter insertion, combat diving, VBSS. MV Ruen operation (2024) = India\'s most spectacular maritime hostage rescue. SSB: MARCOS selection = harder physical standards than Army Para SF in underwater phase; mental toughness emphasis.',
+  },
+
+  // ── NAVAL AVIATION ─────────────────────────────────────────────────────────
+  {
+    id: 'inas-300-303', name: 'INAS 300 "White Tigers" & INAS 303 "Sea Eagles"', service: 'Navy', category: 'Naval Aviation',
+    motto: 'Strike from the Sea',
+    raised: 'INAS 300: 1961 (reformed 2009 for MiG-29K) | INAS 303: 2012',
+    headquarters: 'INS Hansa (Naval Air Station), Dabolim, Goa',
+    composition: '~45 MiG-29K/KUB total; INAS 300 + INAS 303 share the fleet',
+    areaOfOperations: 'Carrier-borne fighter ops from INS Vikramaditya and INS Vikrant',
+    battleHonours: ['First carrier-borne supersonic fighter fleet in Indian Navy', 'INS Vikramaditya operational air wing since 2014'],
+    famousActions: [
+      { battle: 'MiG-29K Induction (2009–2013)', detail: 'India ordered 45 MiG-29K/KUB from Russia for carrier operations. INAS 300 "White Tigers" was first to receive them; INAS 303 "Sea Eagles" raised in 2012. MiG-29K replaced Sea Harrier (retired 2016). Radar-equipped, BVR-capable, 4th-gen carrier fighter.' },
+      { battle: 'Rafale Marine — Future Air Wing', detail: '26 Rafale Marine fighters ordered from France in February 2026 (~$7.4 billion) for INS Vikrant\'s permanent air wing. Rafale Marine is 4.5-gen with SCALP, METEOR, MICA weapons. Deliveries expected ~2028–2030. INAS 300/303 will transition to Rafale Marine.' },
+    ],
+    famousSoldiers: ['Cdr Shiva Chauhan (first woman to operate in carrier-based ops context, INAS)'],
+    currentDeployment: 'INS Vikramaditya (primary), INS Vikrant (trials), INS Hansa training',
+    significance: 'India is one of only 5 countries with carrier-borne fixed-wing combat aircraft (USA, UK, France, China, India). INAS = Indian Naval Air Squadron (not IAF — completely separate chain). Rafale Marine order = India\'s carriers will have cutting-edge air wings. SSB: Carrier aviation is highest-difficulty, highest-prestige aviation. Fleet Air Arm Officer = separate from IAF pilot.',
+  },
+  {
+    id: 'inas-315', name: 'INAS 315 "Kings" & INAS 316 "Condors"', service: 'Navy', category: 'Naval Aviation',
+    motto: 'Vigilance Beyond the Horizon',
+    raised: 'INAS 315: 2013 | INAS 316: 2015',
+    headquarters: 'INS Rajali, Arakkonam, Tamil Nadu',
+    composition: '12 Boeing P-8I Poseidon (India variant) | 6 more ordered 2020 | 15 MQ-9B SeaGuardian UAVs (ordered)',
+    areaOfOperations: 'Indian Ocean, Arabian Sea, Bay of Bengal — LRMR, ASW, ISR',
+    battleHonours: ['Galwan 2020 — ISR over LAC from maritime platform', 'Anti-submarine patrols IOR', 'Continuous monitoring Chinese submarine movements'],
+    famousActions: [
+      { battle: 'P-8I — Galwan ISR (2020)', detail: 'India\'s P-8I flew surveillance missions over LAC (Ladakh) during the 2020 Galwan standoff — multi-spectral sensors tracked PLA troop movements in real time. Gave India critical intelligence edge. US-India BECA (Basic Exchange and Cooperation Agreement) allows P-8I to use classified US geodetic/sensor data.' },
+      { battle: 'Anti-Submarine Warfare — IOR', detail: 'P-8I tracks Chinese PLA Navy submarines in the Indian Ocean. India is now a US Major Defence Partner — P-8I uses classified sonar databases. India detected and tracked Chinese submarine deployments through IOR chokepoints (Malacca, Hormuz, Lombok). 15 MQ-9B SeaGuardian armed UAVs ordered — add strike to maritime surveillance.' },
+    ],
+    famousSoldiers: ['Multiple P-8I Mission Commanders (identities not public)'],
+    currentDeployment: 'IOR maritime patrol, anti-submarine warfare, ISR, Malabar ASW exercises',
+    significance: 'P-8I = India\'s most important maritime surveillance aircraft. Tracks both submarines and surface ships simultaneously. Key: Indian P-8I has detected Chinese carrier group movements in IOR before China announced them. SSB: P-8I + MQ-9B = India\'s maritime domain awareness — knowing where every ship/sub in IOR is at all times.',
+  },
+
+  // ── SUBMARINE ARM ──────────────────────────────────────────────────────────
+  {
+    id: 'submarine-arm', name: 'Submarine Arm — Flag Officer Submarines (FOSM)', service: 'Navy', category: 'Submarine',
+    motto: 'Tamaso Ma Jyotirgamaya (From darkness, lead me to light)',
+    raised: '1967 (INS Kalvari I — India\'s first submarine)',
+    headquarters: 'INS Virbahu, Visakhapatnam',
+    composition: '~16 submarines: 6 Kalvari-class (P75 Scorpène-based) + 4 Sindhughosh (Kilo) + 4 Shishumar (Type-209) + INS Arihant + INS Arighat (SSBN) + former INS Chakra (SSN, returned to Russia 2022)',
+    areaOfOperations: 'Indian Ocean, Arabian Sea, Bay of Bengal — deterrence, ASW, intelligence gathering',
+    battleHonours: ['INS Arihant first deterrence patrol (2018) — Nuclear Triad completed','Kalvari-class IOR patrols 2017–present','1971: No Indian submarine lost despite Pakistani ops'],
+    famousActions: [
+      { battle: 'INS Arihant — Nuclear Triad Completed (Nov 2018)', detail: 'INS Arihant (S2, 6,000 tonnes, 83 m long) completed India\'s first deterrence patrol on 5 November 2018 — completing India\'s Nuclear Triad (land + air + sea). Armed with K-15 Sagarika SLBM (750 km range). INS Arighat (S3, commissioned Aug 2024) carries K-4 SLBM (3,500 km) — can hit major Chinese cities from Bay of Bengal.' },
+      { battle: 'Kalvari-class Programme (P75)', detail: '6 Project 75 Scorpène-based submarines built at Mazagon Dock, Mumbai (in collaboration with Naval Group, France): INS Kalvari (2017), Khanderi (2019), Karanj (2021), Vela (2021), Vagir (2023), Vagsheer (2024). Air-independent propulsion (AIP) to be retrofitted. P75I (6 more SSKs with AIP) — next programme underway.' },
+    ],
+    famousSoldiers: ['Rear Adm S.V. Bharat Kumar (FOSM, Arihant programme)', 'Adm Arun Prakash (nuclear submarine advocate)'],
+    currentDeployment: 'IOR deterrence patrols, ASW training, Malacca chokepoint monitoring',
+    significance: 'Nuclear Triad: INS Arihant SSBN = second-strike capability = nuclear deterrence fully established. Submarine = most survivable nuclear platform (enemy cannot find it). K-4 missile (3,500 km) from Bay of Bengal reaches Beijing. SSB: The Triad = Agni (land) + Rafale/Mirage (air) + Arihant (sea). India\'s triad completion = strategic shift in Asia.',
+  },
+]
