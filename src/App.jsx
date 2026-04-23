@@ -16,6 +16,7 @@ const Regiments    = lazy(() => import('./pages/Regiments'))
 const Geopolitics  = lazy(() => import('./pages/Geopolitics'))
 const DefenceOrgs  = lazy(() => import('./pages/DefenceOrgs'))
 const Operations   = lazy(() => import('./pages/Operations'))
+const MilitaryExercises = lazy(() => import('./pages/MilitaryExercises'))
 const Ranks        = lazy(() => import('./pages/Ranks'))
 const Practice     = lazy(() => import('./pages/Practice'))
 const KnowYourForces = lazy(() => import('./pages/KnowYourForces'))
@@ -57,6 +58,7 @@ export default function App() {
                 <Route path="/geopolitics" element={<Geopolitics />} />
                 <Route path="/orgs"        element={<DefenceOrgs />} />
                 <Route path="/operations"  element={<Operations />} />
+                <Route path="/exercises"   element={<MilitaryExercises />} />
                 <Route path="/ranks"       element={<Ranks />} />
                 <Route path="/practice"    element={<Practice />} />
                 <Route path="/forces"      element={<KnowYourForces />} />

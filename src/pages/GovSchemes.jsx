@@ -185,7 +185,7 @@ export default function GovSchemes() {
 
       <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>Showing {filtered.length} of {govSchemes.length} schemes</p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 14 }}>
+      <div className="content-grid">
         {filtered.map(s => <SchemeCard key={s.id} scheme={s} />)}
       </div>
     </div>

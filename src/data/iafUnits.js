@@ -103,14 +103,14 @@ export const iafUnits = [
   {
     id: 'no45-sqdn', name: 'No. 45 Squadron "Flying Daggers"', service: 'Air Force', category: 'Fighter Sqdn',
     motto: 'Swift and Sure',
-    raised: '1956 | Tejas Mk1A: 2025',
+    raised: '1959; first Tejas Mk1 LSP at Sulur in 2016 (first Tejas squadron); Mk1A conversion underway',
     headquarters: 'Air Force Station Sulur, Tamil Nadu',
-    composition: '16 HAL Tejas Mk1A | 83 Mk1A ordered total (₹48,000 crore, 2021 contract)',
+    composition: 'HAL Tejas Mk1/Mk1A | 83 Mk1A ordered 2021 (₹48,000 cr) + 97 more Mk1A ordered Sep 2025 (₹62,370 cr) = 180 Mk1A on order',
     areaOfOperations: 'Southern Air Command, southern peninsula air defence',
-    battleHonours: ['Last MiG-21 Bison sqdn (retired Sep 2025)', 'First Tejas Mk1A operational sqdn'],
+    battleHonours: ['First IAF Tejas squadron (commissioned 1 July 2016 at Sulur)'],
     famousActions: [
-      { battle: 'MiG-21 Retirement (Sep 2025)', detail: 'No. 45 "Flying Daggers" operated MiG-21 Bison until September 2025, when India retired the MiG-21 after 60+ years. No other fighter in history served as long. MiG-21 fought in 1965, 1971, Kargil (1999), and even downed a PAF F-16 in 2019 (Wg Cdr Abhinandan, 51 Sqdn). Retirement ends a legend.' },
-      { battle: 'Tejas Mk1A Conversion', detail: 'No. 45 Sqdn became the first IAF unit to operate Tejas Mk1A — upgraded with Israeli ELTA EL/M-2052 AESA radar, DRFM electronic jammer, inflight refuelling probe, 6 hardpoints for BVR missiles + pods. HAL producing at Bengaluru; full 83-aircraft delivery by ~2028. India\'s first high-rate indigenous fighter production.' },
+      { battle: 'Tejas Mk1A Conversion', detail: 'No. 45 Sqdn is converting to Tejas Mk1A — upgraded with Israeli ELTA EL/M-2052 AESA radar, DRFM EW suite, in-flight refuelling probe, and new weapons. HAL\'s Bengaluru and Nashik lines are producing Mk1A, but deliveries have slipped past the original March 2024 target due to severe GE F404-IN20 engine supply delays from the US.' },
+      { battle: 'MiG-21 Bison retirement context', detail: 'The MiG-21 Bison\'s long career (from 1963) is winding down progressively as Tejas Mk1A inducts. The last Bison squadrons have been No. 23 "Panthers" and others — No. 45 itself was the first IAF squadron re-equipped with indigenous Tejas. Wg Cdr Abhinandan Varthaman\'s famous MiG-21 vs F-16 dogfight (Feb 2019) was from No. 51 Sqdn "Sword Arms".' },
     ],
     famousSoldiers: ['Wg Cdr Abhinandan Varthaman (51 Sqdn, MiG-21 Bison; shot down PAF F-16 before being downed, VrC 2019)'],
     currentDeployment: 'Sulur, Tejas Mk1A southern peninsula defence',
@@ -143,7 +143,7 @@ export const iafUnits = [
     areaOfOperations: 'J&K, Punjab border (WAC) — close air support, anti-armour',
     battleHonours: ['First AH-64E sqdn outside USA armed forces (Sep 2019)', 'Galwan 2020 — rapid Ladakh forward deployment'],
     famousActions: [
-      { battle: 'AH-64E Induction (Sep 2019)', detail: 'India ordered 22 AH-64E Apache Guardian from Boeing under $1.4 billion deal. First 8 delivered September 2019 at Pathankot. Apache E carries Longbow MMW radar (tracks 128 targets simultaneously, engages 16), AGM-114 Hellfire anti-armour missiles, Stinger air-to-air missiles. India is 5th military to operate Apache (USA, Egypt, Israel, UAE, India).' },
+      { battle: 'AH-64E Induction (Sep 2019)', detail: 'India ordered 22 AH-64E Apache Guardian from Boeing under a ~$1.4 billion deal. The first Apaches were inducted into No. 125 Helicopter Squadron "Gladiators" at Air Force Station Pathankot on 3 September 2019. Apache E carries Longbow mm-wave radar, AGM-114 Hellfire anti-armour missiles, and Stinger air-to-air missiles. India became one of many international AH-64E operators (alongside the UK, Japan, Singapore, Netherlands, Saudi Arabia, UAE, South Korea, Israel, Egypt and others).' },
       { battle: 'Galwan 2020 — Ladakh Deployment', detail: 'Apaches from Pathankot redeployed to advanced helipads in Ladakh during Galwan standoff. Apache\'s Longbow radar + Hellfire = direct counter to PLA armoured vehicles at LAC. Nap-of-earth flight capability means Apache can fly below radar behind ridgelines. First IAF combat helicopter deployment at Siachen-level altitude operations.' },
     ],
     famousSoldiers: ['Wg Cdr Samir Joshi (first Apache operational commander, Pathankot)'],

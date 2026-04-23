@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { Crosshair, Anchor, Wind, Search } from 'lucide-react'
+import { Crosshair, Anchor, Wind, Search, SlidersHorizontal, X } from 'lucide-react'
 import { armyEquipment } from '../data/armyEquipment'
 import { navyEquipment } from '../data/navyEquipment'
 import { airforceEquipment } from '../data/airforceEquipment'
@@ -25,9 +25,12 @@ export default function Weapons() {
   const [search, setSearch]   = useState('')
   const [origin, setOrigin]   = useState('All')
   const [typeFilter, setType] = useState('All')
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
   const current = TABS.find(t => t.id === tab)
   const types   = useMemo(() => ['All', ...new Set(current.data.map(e => e.type.split('(')[0].split('—')[0].trim()))], [tab, current.data])
+
+  const activeFilterCount = (origin !== 'All' ? 1 : 0) + (typeFilter !== 'All' ? 1 : 0)
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
@@ -53,13 +56,14 @@ export default function Weapons() {
       />
 
       {/* Service tabs */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
+      <div className="service-tabs-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
         {TABS.map(t => {
           const Icon = t.icon
           const active = tab === t.id
           return (
             <button
               key={t.id}
+              className="service-tab-btn"
               onClick={() => { setTab(t.id); setType('All'); setSearch('') }}
               style={{
                 display: 'flex', alignItems: 'center', gap: 10,
@@ -96,17 +100,17 @@ export default function Weapons() {
       </div>
 
       {/* Service stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 8, marginBottom: 20 }}>
+      <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 8, marginBottom: 20 }}>
         {SERVICE_STATS[tab].map(([k, v]) => (
           <div key={k} style={{ background: '#0f1b2e', border: '1px solid #1a2d4a', borderRadius: 9, padding: '10px 12px' }}>
-            <div style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>{k}</div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#f1f5f9' }}>{v}</div>
+            <div className="stats-k" style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>{k}</div>
+            <div className="stats-v" style={{ fontSize: 13, fontWeight: 700, color: '#f1f5f9' }}>{v}</div>
           </div>
         ))}
       </div>
 
-      {/* Filters */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 14 }}>
+      {/* Search + Filters toggle row */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: filtersOpen ? 14 : 18 }}>
         {/* Search */}
         <div style={{ position: 'relative', flex: '1 1 220px', minWidth: 180 }}>
           <Search size={14} color="#94a3b8" style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
@@ -122,44 +126,105 @@ export default function Weapons() {
             }}
           />
         </div>
-        {/* Origin filter */}
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-          {ORIGIN_FILTERS.map(f => (
-            <button
-              key={f}
-              onClick={() => setOrigin(f)}
-              style={{
-                padding: '8px 13px', borderRadius: 8, border: '1px solid',
-                fontSize: 12, fontWeight: 500, cursor: 'pointer',
-                background: origin === f ? '#FF6B00' : '#0f1b2e',
-                color: origin === f ? '#fff' : '#94a3b8',
-                borderColor: origin === f ? '#FF6B00' : '#1a2d4a',
-              }}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
+
+        {/* Filters toggle button */}
+        <button
+          onClick={() => setFiltersOpen(o => !o)}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 7,
+            padding: '9px 14px', borderRadius: 9,
+            border: `1px solid ${filtersOpen || activeFilterCount ? '#FF6B00' : '#1a2d4a'}`,
+            background: filtersOpen || activeFilterCount ? 'rgba(255,107,0,0.12)' : '#0f1b2e',
+            color: filtersOpen || activeFilterCount ? '#fb923c' : '#cbd5e1',
+            fontSize: 13, fontWeight: 600, cursor: 'pointer',
+            transition: 'background 0.15s, border-color 0.15s, color 0.15s',
+          }}
+        >
+          <SlidersHorizontal size={14} />
+          Filters
+          {activeFilterCount > 0 && (
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              minWidth: 18, height: 18, padding: '0 5px',
+              borderRadius: 9, background: '#FF6B00', color: '#fff',
+              fontSize: 11, fontWeight: 700,
+            }}>
+              {activeFilterCount}
+            </span>
+          )}
+        </button>
+
+        {activeFilterCount > 0 && (
+          <button
+            onClick={() => { setOrigin('All'); setType('All') }}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 5,
+              padding: '9px 12px', borderRadius: 9,
+              border: '1px solid #1a2d4a', background: 'transparent',
+              color: '#94a3b8', fontSize: 12, fontWeight: 500, cursor: 'pointer',
+            }}
+            title="Clear filters"
+          >
+            <X size={13} /> Clear
+          </button>
+        )}
       </div>
 
-      {/* Type pills */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 18 }}>
-        {types.map(t => (
-          <button
-            key={t}
-            onClick={() => setType(t)}
-            style={{
-              padding: '5px 11px', borderRadius: 99, fontSize: 11.5, fontWeight: 500,
-              cursor: 'pointer', border: '1px solid',
-              background: typeFilter === t ? 'rgba(249,115,22,0.12)' : 'transparent',
-              color: typeFilter === t ? '#fb923c' : '#94a3b8',
-              borderColor: typeFilter === t ? 'rgba(249,115,22,0.4)' : '#1a2d4a',
-            }}
-          >
-            {t === 'All' ? `All (${current.data.length})` : t}
-          </button>
-        ))}
-      </div>
+      {/* Collapsible filter panel */}
+      {filtersOpen && (
+        <div style={{
+          background: '#0a0f1e', border: '1px solid #1a2d4a', borderRadius: 10,
+          padding: '14px 16px', marginBottom: 18,
+        }}>
+          {/* Origin filter */}
+          <div style={{ marginBottom: 12 }}>
+            <div style={{ fontSize: 10.5, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.6px', fontWeight: 600, marginBottom: 7 }}>
+              Origin
+            </div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {ORIGIN_FILTERS.map(f => (
+                <button
+                  key={f}
+                  onClick={() => setOrigin(f)}
+                  style={{
+                    padding: '7px 13px', borderRadius: 8, border: '1px solid',
+                    fontSize: 12, fontWeight: 500, cursor: 'pointer',
+                    background: origin === f ? '#FF6B00' : '#0f1b2e',
+                    color: origin === f ? '#fff' : '#94a3b8',
+                    borderColor: origin === f ? '#FF6B00' : '#1a2d4a',
+                  }}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Type pills */}
+          <div>
+            <div style={{ fontSize: 10.5, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.6px', fontWeight: 600, marginBottom: 7 }}>
+              Category
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {types.map(t => (
+                <button
+                  key={t}
+                  onClick={() => setType(t)}
+                  style={{
+                    padding: '5px 11px', borderRadius: 99, fontSize: 11.5, fontWeight: 500,
+                    cursor: 'pointer', border: '1px solid',
+                    background: typeFilter === t ? 'rgba(249,115,22,0.12)' : 'transparent',
+                    color: typeFilter === t ? '#fb923c' : '#94a3b8',
+                    borderColor: typeFilter === t ? 'rgba(249,115,22,0.4)' : '#1a2d4a',
+                  }}
+                >
+                  {t === 'All' ? `All (${current.data.length})` : t}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Results count */}
       <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>
@@ -169,7 +234,7 @@ export default function Weapons() {
 
       {/* Cards grid */}
       {filtered.length > 0 ? (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 14 }}>
+        <div className="content-grid">
           {filtered.map(item => <WeaponCard key={item.id} weapon={item} />)}
         </div>
       ) : (

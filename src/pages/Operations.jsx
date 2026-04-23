@@ -3,20 +3,18 @@ import { Rocket, ChevronDown, ChevronUp, Search, Calendar } from 'lucide-react'
 import { operations } from '../data/operations'
 import SectionHeader from '../components/common/SectionHeader'
 
-const TYPES = ['All', 'War', 'Limited War', 'Military Operation', 'Special Forces / Air Operation', 'Military Confrontation', 'Peace-Keeping Operation', 'Humanitarian Evacuation', 'Military Mobilization', 'Naval Exercise', 'Bilateral Army Exercise', 'Military Exercises']
-
 const TYPE_COLOR = {
   War: '#ef4444',
   'Limited War': '#f97316',
   'Military Operation': '#f59e0b',
+  'Air + Missile Strike': '#ef4444',
+  'Internal Security Operation': '#f59e0b',
+  'Military Mobilization / Near-War': '#60a5fa',
   'Special Forces / Air Operation': '#a855f7',
   'Military Confrontation': '#ef4444',
   'Peace-Keeping Operation': '#22d3ee',
   'Humanitarian Evacuation': '#4ade80',
   'Military Mobilization': '#60a5fa',
-  'Naval Exercise': '#3b82f6',
-  'Bilateral Army Exercise': '#fb923c',
-  'Military Exercises': '#22d3ee',
 }
 
 function OpCard({ op }) {
@@ -134,7 +132,7 @@ export default function Operations() {
   const [search, setSearch] = useState('')
   const [type, setType]     = useState('All')
 
-  const simpleTypes = ['All', 'War', 'Military Operation', 'Special Forces / Air Operation', 'Humanitarian Evacuation', 'Military Exercises']
+  const simpleTypes = ['All', 'War', 'Military Operation', 'Special Forces / Air Operation', 'Humanitarian Evacuation']
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
@@ -148,8 +146,8 @@ export default function Operations() {
   return (
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
       <SectionHeader
-        title="Operations & Exercises"
-        subtitle="From 1947 to Galwan 2020 — India's major military operations, wars, and bilateral exercises"
+        title="Operations & Wars"
+        subtitle="India's major military operations, wars and counter-terror actions from 1947 to Operation Sindoor (2025). Bilateral and multilateral exercises are now under the Exercises tab."
         icon={Rocket}
         accent="#ef4444"
       />
@@ -173,7 +171,7 @@ export default function Operations() {
 
       <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>Showing {filtered.length} of {operations.length} entries</p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 14 }}>
+      <div className="content-grid">
         {filtered.map(op => <OpCard key={op.id} op={op} />)}
       </div>
     </div>

@@ -54,6 +54,7 @@ export default function ProgressTracker() {
       <button
         onClick={() => setOpen(!open)}
         title="Study Progress"
+        className="progress-tracker-fab"
         style={{
           position: 'fixed', bottom: 24, left: 24, zIndex: 999,
           width: 52, height: 52, borderRadius: '50%',
@@ -80,9 +81,9 @@ export default function ProgressTracker() {
 
       {/* Panel */}
       {open && (
-        <div style={{
+        <div className="progress-tracker-panel" style={{
           position: 'fixed', bottom: 86, left: 24, zIndex: 998,
-          width: 300, maxHeight: '70vh',
+          width: 300, maxHeight: '70vh', maxWidth: 'calc(100vw - 32px)',
           background: '#070c1a', border: '1px solid #1a2d4a',
           borderRadius: 16, overflow: 'hidden',
           boxShadow: '0 16px 48px rgba(0,0,0,0.7)',

@@ -6,6 +6,7 @@ import { navyUnits } from './navyUnits'
 import { iafUnits } from './iafUnits'
 import { geopoliticsData } from './geopolitics'
 import { operations } from './operations'
+import { militaryExercises } from './militaryExercises'
 
 const CAT_COLOR = {
   'Army Equipment':    '#f97316',
@@ -16,6 +17,7 @@ const CAT_COLOR = {
   'IAF Unit':          '#22d3ee',
   'Geopolitics':       '#a78bfa',
   'Operation':         '#ef4444',
+  'Exercise':          '#10b981',
 }
 
 function mk(id, title, subtitle, category, path, keywords) {
@@ -47,4 +49,7 @@ export const searchIndex = [
   ...operations.map(o =>
     mk(o.id, o.name, `${o.type} · ${o.year}`, 'Operation', '/operations',
       `${o.name} ${o.type} ${o.year || ''} ${o.theatre || ''} ${o.significance || ''}`)),
+  ...militaryExercises.map(e =>
+    mk(e.id, e.name, `${e.service} · ${e.type}`, 'Exercise', '/exercises',
+      `${e.name} ${e.service} ${e.type} ${(e.partners || []).join(' ')} ${e.focus || ''} ${e.significance || ''}`)),
 ]

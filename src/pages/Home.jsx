@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Shield, Crosshair, Cpu, Map, MapPin, Rocket, Award, Brain, Users } from 'lucide-react'
+import { Shield, Crosshair, Cpu, Map, MapPin, Rocket, Award, Brain, Users, Swords } from 'lucide-react'
 import GenieIntro from '../components/common/GenieIntro'
 
 
@@ -21,8 +21,8 @@ const categories = [
   {
     icon: Map, color: '#22d3ee', path: '/geopolitics',
     title: 'Geopolitics',
-    stat: '12+', statLabel: 'Flashpoints',
-    desc: 'LAC, LoC, Quad, SCO, BRICS — India\'s full strategic landscape explained.',
+    stat: '18+', statLabel: 'Flashpoints',
+    desc: 'LAC, LoC, Quad, SCO, BRICS, Op Sindoor — India\'s full strategic landscape explained.',
     span: 1,
   },
   {
@@ -34,10 +34,17 @@ const categories = [
   },
   {
     icon: Rocket, color: '#ef4444', path: '/operations',
-    title: 'Operations & Exercises',
-    stat: '18+', statLabel: 'Operations',
-    desc: '1947 to Galwan 2020 — every war, operation & bilateral exercise with key battles.',
-    span: 2,
+    title: 'Operations & Wars',
+    stat: '20+', statLabel: 'Operations',
+    desc: '1947 to Operation Sindoor (2025) — every war, operation & key battle with significance.',
+    span: 1,
+  },
+  {
+    icon: Swords, color: '#10b981', path: '/exercises',
+    title: 'Military Exercises',
+    stat: '30+', statLabel: 'Exercises',
+    desc: 'Every bilateral & multilateral exercise — Malabar, Yudh Abhyas, Varuna, Tarang Shakti and more.',
+    span: 1,
   },
   {
     icon: Award, color: '#f59e0b', path: '/ranks',
@@ -74,7 +81,7 @@ export default function Home() {
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px' }}>
 
       {/* Disclaimer notice */}
-      <div style={{
+      <div className="home-disclaimer" style={{
         marginBottom: 20, padding: '10px 16px',
         background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.25)',
         borderRadius: 10, display: 'flex', alignItems: 'flex-start', gap: 10,

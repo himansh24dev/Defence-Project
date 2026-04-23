@@ -9,9 +9,9 @@ export const operations = [
     outcome: 'India secured two-thirds of J&K. Ceasefire on 1 January 1949 (UN mediated). Pakistan retained Mirpur, Muzaffarabad.',
     keyBattles: [
       { battle: 'Battle of Srinagar (Oct 1947)', detail: '1 Sikh were airlifted to Srinagar — India\'s first use of air transport in war. Saved Srinagar from falling. Brigadier L P Sen secured the airport.' },
-      { battle: 'Battle of Naushera (Feb 1948)', detail: 'Brigadier Mohammed Usman ("Tiger of Naushera") held Naushera town against massive Pakistani tribal assault. KIA at Jhangar — awarded MVC posthumously (India\'s second highest wartime gallantry award).' },
+      { battle: 'Defence of Naushera & Jhangar (Dec 1947–Jul 1948)', detail: 'Brigadier Mohammad Usman ("Naushera ka Sher" / Lion of Naushera) commanded 50 Para Brigade at Jhangar. Repulsed heavy Pakistani tribal/regular assaults on Nowshera (Feb 1948) and recaptured Jhangar. KIA at Jhangar on 3 July 1948 by a 25-pdr shell — highest-ranking Indian Army officer killed in action in 1947–48. Awarded Maha Vir Chakra posthumously.' },
     ],
-    significance: 'Foundation of the Kashmir dispute. India\'s first war — won but politically incomplete. UN ceasefire left PoK in Pakistan\'s hands. Lesson: Wars decided by politicians, won by soldiers. Mohammed Usman = India\'s most celebrated Muslim officer.',
+    significance: 'Foundation of the Kashmir dispute. India\'s first war — won but politically incomplete. UN ceasefire left PoK in Pakistan\'s hands. Lesson: Wars decided by politicians, won by soldiers. Brigadier Mohammad Usman = the highest-ranking Indian Army officer killed in the 1947–48 war; Prime Minister Nehru attended his funeral.',
   },
   {
     id: 'op-goa-liberation', name: 'Operation Vijay (Goa Liberation 1961)', type: 'Military Operation',
@@ -49,10 +49,10 @@ export const operations = [
     objective: 'Pakistan\'s Op Gibraltar (infiltrate Kashmir) and Op Grand Slam (capture Akhnur). India responded with full-scale counter-offensive.',
     outcome: 'Military stalemate; Tashkent Agreement (Jan 1966) restored pre-war positions.',
     keyBattles: [
-      { battle: 'Battle of Asal Uttar (8-10 Sep 1965)', detail: 'India\'s greatest tank victory — Pakistani Pattons ambushed at Asal Uttar by Indian Centurions. Pakistan lost 97 tanks. "The Graveyard of Patton Tanks." Havildar Abdul Hamid (RCL gunner) single-handedly destroyed 8 Pattons before being killed — PVC.' },
+      { battle: 'Battle of Asal Uttar (8-10 Sep 1965)', detail: 'India\'s greatest tank victory — Pakistani Pattons ambushed at Asal Uttar by Indian Centurions. ~90 Pakistani tanks destroyed/captured. "The Graveyard of Patton Tanks." CQMH Abdul Hamid (4 Grenadiers, Jeep-mounted RCL gunner) destroyed Patton tanks on 9–10 Sept before being killed — PVC (posthumous). Exact count disputed (PVC citation mentions fewer; popular figure 7–8).' },
       { battle: 'Battle of Phillora', detail: '17 Poona Horse + 2 Lancers vs Pakistani armoured division. India outmanoeuvred Pakistan, capturing Phillora and advancing beyond.' },
     ],
-    significance: 'Asal Uttar = India\'s greatest tank battle ever. Havildar Abdul Hamid\'s RCL gun vs 8 Patton tanks = courage over technology. Proved Indian infantry with RCL can stop armoured columns. Tashkent Agreement — India got military win, political draw (Lal Bahadur Shastri died in Tashkent after signing).',
+    significance: 'Asal Uttar = India\'s greatest tank battle ever. CQMH Abdul Hamid\'s RCL gun vs Patton tanks = courage over technology. Proved Indian infantry with RCL can stop armoured columns. Tashkent Agreement — India got military win, political draw (Lal Bahadur Shastri died in Tashkent after signing).',
   },
   {
     id: 'op-vijay-1971', name: '1971 Liberation War (Op Vijay)', type: 'War',
@@ -62,8 +62,8 @@ export const operations = [
     outcome: 'India\'s greatest military victory. 93,000 Pakistani soldiers surrendered — largest surrender since WWII. Bangladesh independent.',
     keyBattles: [
       { battle: 'Tangail Paradrop (11 Dec 1971)', detail: '750 paratroopers of 2 Para dropped behind Pakistani lines at Tangail — first mass combat airdrop in Asia since WWII. Cut Pakistani army\'s retreat to Dhaka.' },
-      { battle: 'INS Trident/Vinash attack on Karachi (4–8 Dec)', detail: 'Operation Trident and Python: Navy used Styx anti-ship missiles to attack Karachi harbour — destroyed PNS Khyber, PNS Muhammad Ali Jinnah, oil storage tanks. Pakistan\'s fuel supply burned for 7 days.' },
-      { battle: 'Battle of Hilli (23 Nov – 11 Dec)', detail: 'India\'s bloodiest battle — 8 Rajput held Hilli against 18 Pakistani regular army attacks. Took 18 days to capture. 87 Indian KIA vs 400+ Pakistani.' },
+      { battle: 'Operations Trident & Python on Karachi (4 & 8–9 Dec)', detail: 'Op Trident (4 Dec): Vidyut-class missile boats INS Nipat, INS Nirghat, INS Veer fired Styx (P-15) anti-ship missiles — sank PNS Khaibar (destroyer), PNS Muhafiz (minesweeper), MV Venus Challenger (ammunition ship) and hit Kemari oil depot at Karachi. Op Python (8–9 Dec) followed up — further damage to Karachi harbour. Fuel depot burned for days. 4 December = Indian Navy Day.' },
+      { battle: 'Battle of Hilli (22 Nov – 11 Dec)', detail: 'Bloodiest battle of the eastern front — fought in two phases (22–24 Nov and 10–11 Dec). 8 Guards bore the brunt of frontal assaults on Pakistani 4 FF defences. Hilli captured 11 Dec. 8 Guards earned 3 Maha Vir Chakras + 2 Vir Chakras — most decorated Indian unit of the battle.' },
       { battle: 'Dhaka capture (16 Dec 1971)', detail: 'General Niazi (Pakistan) surrendered to Lt Gen Jagjit Singh Aurora at Dhaka Racecourse. 93,000 POW — largest surrender since WWII (German surrender at Stalingrad was similar scale).' },
     ],
     significance: '1971 = India\'s finest military hour. 13 days for one of the quickest decisive wars in history. Bangladesh created — India changed the map of Asia. 93,000 POW = unprecedented. PM Indira Gandhi "Iron Lady" = her Churchill moment. Gen Sam Manekshaw = India\'s greatest military mind. INS Vikrant carrier blockade + Navy missile attack + Para airdrop = true joint warfare.',
@@ -71,11 +71,11 @@ export const operations = [
   {
     id: 'op-meghdoot', name: 'Operation Meghdoot (Siachen 1984)', type: 'Military Operation',
     year: '1984 (13 April)', theatre: 'Siachen Glacier, Ladakh',
-    forces: 'Indian Army (Special Frontier Force + Army units) vs Pakistani attempt',
-    objective: 'Occupy Siachen Glacier before Pakistan could claim it under Simla Agreement\'s ambiguous boundary',
-    outcome: 'India occupies all strategic passes (Sia La, Bilafond La). World\'s highest military positions secured at 6,000+ m.',
+    forces: 'Indian Army (Kumaon Regiment + Ladakh Scouts) + IAF helicopters vs Pakistani Op Ababeel',
+    objective: 'Pre-empt Pakistan\'s Op Ababeel and occupy Siachen Glacier passes (Simla Agreement\'s ambiguous boundary NJ9842 onwards)',
+    outcome: 'India occupies strategic passes — Bilafond La (13 April) and Sia La (17 April 1984). World\'s highest military positions secured at 5,400–6,700 m.',
     keyBattles: [
-      { battle: 'Race to Sia La (April 1984)', detail: 'India got intelligence that Pakistan was about to occupy Siachen. Army moved within 48 hours — helicopters flew troops to glacier before Pakistani forces arrived. Pakistan was 2 weeks late. India got the high ground permanently.' },
+      { battle: 'Race to Bilafond La & Sia La (April 1984)', detail: 'RAW intelligence warned Pakistan was preparing Op Ababeel. Indian Army launched Op Meghdoot on morning of 13 April 1984 — four days before Pakistan\'s planned move. Kumaon Regiment (1 Kumaon, 2 Kumaon) and Ladakh Scouts airlifted by IAF Mi-17/Cheetah helicopters to glacier heights. Pakistan arrived 4 days late. India held the high ground permanently.' },
     ],
     significance: 'India\'s most brilliant pre-emptive military operation. Siachen controls water supply to Pakistan\'s Punjab (Indus tributaries). India\'s intelligence network gave just enough warning. If Pakistan had occupied Siachen first, Indian Army would have been fighting uphill at 6,000 m. Op Meghdoot = intelligence → military speed = strategic outcome.',
   },
@@ -98,13 +98,13 @@ export const operations = [
   {
     id: 'op-cactus-maldives', name: 'Operation Cactus (Maldives 1988)', type: 'Military Operation',
     year: '3 November 1988', theatre: 'Male, Republic of Maldives',
-    forces: 'Para SF (60 commandos) + INS Godavari + IL-76 transport',
-    objective: 'Restore President Maumoon Abdul Gayoom after mercenary coup (Sri Lankan Tamil group)',
-    outcome: 'President restored in 12 hours. Mercenaries fled by boat; intercepted by INS Tabar in Indian Ocean.',
+    forces: '50 Independent Parachute Brigade (6 Para Battalion) + IAF IL-76 + Mirage 2000 escort + Indian Navy (INS Godavari, INS Betwa)',
+    objective: 'Restore President Maumoon Abdul Gayoom after coup attempt by PLOTE mercenaries (Sri Lankan Tamil group led by Abdullah Luthufi)',
+    outcome: 'President restored within hours of Indian landing. Mercenaries fled by hijacked freighter MV Progress Light; intercepted and captured by INS Godavari and INS Betwa in the Arabian Sea.',
     keyBattles: [
-      { battle: 'Para SF landing (3 Nov 1988)', detail: 'Para SF flew ~3,700 km from Agra to Male in IL-76 — arrived before mercenaries knew India had sent forces. Landed at Male airport at night, rapid advance to Presidential Palace, secured Gayoom within hours.' },
+      { battle: 'Paratrooper landing at Hulhule (night of 3 Nov 1988)', detail: 'Two IL-76s from Agra (escorted by Mirage 2000s) flew ~2,500 km non-stop — first wave of 6 Para Battalion (50 Indep Para Bde under Brig Farukh Bulsara) landed at Hulhulé airport ~2130 hrs local time. Troops crossed lagoon by boat to Male, secured President Gayoom at Presidential Palace. Coup crushed within hours.' },
     ],
-    significance: 'Fastest power projection operation in Indian military history. ~3,700 km in one night. India demonstrated it could deploy special forces anywhere in Indian Ocean Region within hours. IOR = India\'s sphere of influence. Maldives gratitude lasted decades (until 2018 political shifts). Template for future Indian IOR interventions.',
+    significance: 'One of India\'s fastest power projection operations. Non-stop airlift from Agra to Hulhulé demonstrated India\'s ability to deploy forces across the Indian Ocean Region within hours. IOR = India\'s sphere of influence. Maldives gratitude lasted decades (until 2018 political shifts). Template for future Indian IOR interventions.',
   },
 
   // ── MODERN OPERATIONS ────────────────────────────────────────────────────
@@ -115,16 +115,16 @@ export const operations = [
     objective: 'Evict Pakistani intruders from Kargil heights (Tiger Hill, Tololing, Point 4875, Batalik sector)',
     outcome: 'Complete Indian victory. All occupied peaks retaken by 26 July 1999 (60 days). Pakistan Army withdrawn. 527 Indian soldiers martyred.',
     keyBattles: [
-      { battle: 'Tololing (June 1999)', detail: '2 Rajputana Rifles captured Tololing under artillery and direct fire. Captain Vijayant Thapar (21 years old) leading assault, killed moments after radio message to father (who is also an army officer) "Papa, mission accomplished, see you after capture."' },
-      { battle: 'Tiger Hill (3–4 July)', detail: '8 Sikh regiment and 18 Grenadiers — assault at night in -20°C. Grenadier Yogendra Yadav (19 years old) — first to reach summit despite 3 bullet wounds. PVC awardee. India\'s youngest ever.' },
-      { battle: 'IAF Op Safed Sagar', detail: 'IAF deployed Mirage 2000 and MiG-21 for ground attack in high altitude. First IAF use of laser-guided bombs in combat. MiG-21 and MiG-27 lost (K2 Wing Commander K. Nachiketa ejected over Pakistan — returned). IAF provided decisive air-to-ground support that reduced Indian casualties.' },
+      { battle: 'Tololing (May–July 1999)', detail: '2 Rajputana Rifles led the final assault that recaptured Tololing (final push began 2 July; position secured by 7 July). Capt Vijayant Thapar (22) — a fourth-generation army officer — was killed in action at Knoll/Black Rocks on 29 June 1999 leading his platoon. Awarded Vir Chakra (posthumous). His last letter home is one of Indian Army\'s most famous.' },
+      { battle: 'Tiger Hill (3–4 July 1999)', detail: '18 Grenadiers (Ghatak Platoon) + 8 Sikh + 2 Naga — assault at night at ~16,500 ft. Grenadier Yogendra Singh Yadav (19 years old) volunteered as lead for the rope climb; sustained 15 bullet wounds + 2 grenade injuries, killed 4 enemy soldiers in close combat, yet secured a key bunker. PVC — youngest ever recipient.' },
+      { battle: 'IAF Op Safed Sagar', detail: 'IAF deployed Mirage 2000 (with laser-guided bombs — first IAF LGB combat use), MiG-21, MiG-27 and Mi-17 helicopters in high-altitude strike role. Losses: one MiG-21 (Sqn Ldr Ajay Ahuja — KIA), one MiG-27 (Flt Lt K. Nachiketa — ejected over Batalik sector on 27 May 1999, POW for 8 days, returned 3 June 1999 via ICRC; later promoted Group Captain), and one Mi-17. IAF LGB strikes on Tiger Hill and Muntho Dhalo camps were decisive.' },
     ],
     keyPersons: [
-      'Captain Vikram Batra (PVC, "Sher Shah" — Tiger Hill and Point 4875; KIA while saving fellow officer)',
-      'Grenadier Yogendra Yadav (PVC — youngest PVC)',
-      'Capt Vijayant Thapar (Vir Chakra, KIA Tololing)',
-      'Sqn Ldr K. Nachiketa (POW returned by Pakistan)',
-      'Gen VP Malik (COAS who said "We will fight with what we have")',
+      'Captain Vikram Batra, 13 JAK Rif (PVC, "Sher Shah" — captured Pt 5140; KIA 7 Jul 1999 at Pt 4875 while rescuing wounded officer)',
+      'Grenadier Yogendra Singh Yadav, 18 Grenadiers (PVC — youngest PVC recipient; survived 15 bullet wounds at Tiger Hill)',
+      'Capt Vijayant Thapar, 2 Rajputana Rifles (Vir Chakra posthumous, KIA 29 Jun 1999 at Knoll, Tololing)',
+      'Flt Lt K. Nachiketa, MiG-27 pilot (POW for 8 days, returned via ICRC)',
+      'Gen V.P. Malik (COAS — "We will fight with what we have")',
     ],
     significance: 'Kargil = India\'s modern defining victory. TV-age war watched live by 100 crore Indians. Vikram Batra = generation\'s hero. IAF support = joint warfare concept proved. Nuclear shadow: Both countries had tested nukes in 1998 — world watched if nuclear war would start. India\'s military restraint (staying within Indian territory) was strategically brilliant.',
   },
@@ -141,11 +141,11 @@ export const operations = [
     id: 'surgical-strikes-2016', name: 'Surgical Strikes (2016 + Balakot 2019)', type: 'Special Forces / Air Operation',
     year: '2016 (Sep) + 2019 (Feb)', theatre: 'Pakistan-administered Kashmir + Pakistan (KPK)',
     forces: 'Para SF (2016) + IAF Mirage 2000 (2019)',
-    objective: '2016: Destroy terror launch pads after Uri attack (18 soldiers killed). 2019: Destroy JeM training camp after Pulwama (40 CRPF killed).',
+    objective: '2016: Destroy terror launch pads after Uri attack (19 soldiers killed). 2019: Destroy JeM training camp after Pulwama (40 CRPF killed).',
     outcome: '2016: Para SF crossed LoC, destroyed 7 terror launch pads, returned before dawn. 2019: Mirage 2000 struck Balakot with SPICE-2000 bombs.',
     keyBattles: [
       { battle: '2016 Surgical Strikes', detail: 'Para SF crossed multiple LoC points simultaneously at 12:30 AM. 7 launch pads neutralised. Back across LoC before Pakistani Army could respond. Government announced it publicly — first such acknowledgement.' },
-      { battle: 'Balakot 2019 + Abhinandan', detail: 'IAF Mirage 2000 with SPICE-2000 hit JeM camp at Balakot (inside Pakistan, not PoK — unprecedented since 1971). Next day Pakistan F-16s crossed LoC; WC Abhinandan Varthaman\'s MiG-21 Bison shot down an F-16 (AMRAAM wreckage found); his aircraft was shot, ejected over Pakistan; returned in 60 hours under diplomatic pressure.' },
+      { battle: 'Balakot 2019 + Abhinandan', detail: 'IAF Mirage 2000s with SPICE-2000 guided bombs hit a JeM facility at Balakot, KPK (inside Pakistan, not PoK — unprecedented since 1971) on 26 Feb 2019. On 27 Feb, PAF crossed LoC in retaliation; in the dogfight Wing Commander Abhinandan Varthaman\'s MiG-21 Bison engaged PAF jets — IAF claims a Pakistani F-16 was shot down (Pakistan and US dispute this). Abhinandan\'s aircraft was hit; he ejected over Pakistan-administered Kashmir, was captured, and released on 1 March 2019 (~60 hours). Later awarded Vir Chakra and promoted to Group Captain.' },
     ],
     significance: '2016 Surgical Strikes = India changed rules of engagement — cross-border response to terror is now India\'s stated policy. Balakot 2019 = India crossed into Pakistan for first time since 1971 — massive escalation. Abhinandan = became national hero; promoted to Group Captain. The f-16 shoot-down by a MiG-21 = testament to IAF pilot training.',
   },
@@ -179,52 +179,16 @@ export const operations = [
     significance: 'Taliban takeover in 11 days caught everyone — including USA — off guard. India evacuated Sikh community from Kabul in a state of chaos. C-17 capability = India can fly strategic airlift missions to 8,000 km distance.',
   },
 
-  // ── BILATERAL EXERCISES ──────────────────────────────────────────────────
-  {
-    id: 'ex-malabar', name: 'Exercise Malabar (India-USA-Japan-Australia)', type: 'Naval Exercise',
-    year: '1992 (India-US bilateral); Quad format 2020',
-    theatre: 'Bay of Bengal, Arabian Sea, Philippine Sea (rotates)',
-    frequency: 'Annual',
-    participants: 'Indian Navy, US Navy, Japan Maritime Self-Defence Force (JMSDF), Royal Australian Navy (from 2020)',
-    focus: 'Anti-submarine warfare, carrier operations, surface warfare, air defence integration',
-    significance: 'Malabar becoming Quad naval exercise = geopolitical signal to China. Australia inclusion over Chinese objections = India willing to challenge China diplomatically. Complex anti-submarine exercises = Quad nations can jointly track Chinese submarines. Most strategically important exercise India conducts.',
-  },
-  {
-    id: 'ex-tasman-saber', name: 'Bilateral Exercises Portfolio', type: 'Military Exercises',
-    year: 'Ongoing',
-    theatre: 'Various',
-    frequency: 'Annual or biennial',
-    participants: 'India + partner nations',
-    focus: 'Combat training, interoperability, doctrine exchange',
-    keyExercises: [
-      { name: 'Ex Tarkash (India-USA SOCOM)', type: 'Special Forces', significance: 'Para SF + US SOF anti-terror drills' },
-      { name: 'Ex Vajra Prahar (India-USA Army)', type: 'Army', significance: 'Counter-terrorism and air assault' },
-      { name: 'Ex Garuda (India-France IAF)', type: 'Air Force', significance: 'Rafale interoperability' },
-      { name: 'Ex Indradhanush (India-UK RAF)', type: 'Air Force', significance: 'RAF + IAF air combat exercise' },
-      { name: 'Ex Shakti (India-France Army)', type: 'Army', significance: 'Mountain warfare + counter-terrorism' },
-      { name: 'Ex Konkan (India-UK Royal Navy)', type: 'Navy', significance: 'Anti-submarine + surface warfare' },
-      { name: 'Ex Pitch Black (India-Australia IAF)', type: 'Air Force', significance: 'Complex air warfare scenarios' },
-      { name: 'Ex Tasman Saber (India-USA-Australia)', type: 'Joint', significance: 'Amphibious + air assault' },
-      { name: 'Ex Shakti (India-France)', type: 'Army', significance: 'Mountain warfare' },
-      { name: 'Ex Prabal Dostyk (India-Kazakhstan)', type: 'Army', significance: 'Central Asia outreach' },
-    ],
-    significance: 'India conducts exercises with ALL major democracies — and Russia. This is India\'s strategic autonomy in action. India trains with US (Tarkash), France (Garuda), UK (Indradhanush), Israel, Japan — while maintaining SCO membership. More exercise partners = more capability + more geopolitical signal.',
-  },
-  {
-    id: 'ex-shakti-india-france', name: 'Exercise Shakti (India-France Joint Army)', type: 'Bilateral Army Exercise',
-    year: '2011 (first); biennial', theatre: 'France / India (alternates)',
-    participants: 'Indian Army (Garhwal Rifles typically) + French Army (Foreign Legion)',
-    focus: 'Counter-terrorism, mountain warfare, CBRN decontamination',
-    significance: 'India-France military relationship is India\'s deepest defence partnership outside India-Israel. France = Rafale seller, Scorpene submarine builder, Rafale Marine buyer for IN. Ex Shakti = deepens French Army familiarity. France strongly supports India in UNSC on Kashmir (abstains vs censure).',
-  },
-
   // ── RECENT OPERATIONS ────────────────────────────────────────────────────
+  // NOTE: Bilateral and multilateral military exercises have been moved to
+  // src/data/militaryExercises.js (rendered on the dedicated "Exercises" page).
+
   {
     id: 'op-blue-star', name: 'Operation Blue Star (1984)', type: 'Internal Security Operation',
     year: '1984 (June 1–10)', theatre: 'Golden Temple Complex, Amritsar, Punjab',
     forces: 'Indian Army (9 Infantry Division) + CRPF vs Khalistan militants (Jarnail Singh Bhindranwale)',
     objective: 'Flush out Sikh militants led by Bhindranwale who had fortified the Golden Temple complex with weapons.',
-    outcome: 'Bhindranwale and ~500 militants killed. Indian Army suffered ~90 killed + 287 wounded. Akal Takht damaged. Operation succeeded militarily but created political backlash.',
+    outcome: 'Bhindranwale and militants killed. Indian Army official figures: 83 killed (4 officers + 79 other ranks) + 236 wounded; 554 militants/civilians killed (Army figure — independent estimates are higher and disputed). Akal Takht severely damaged. Operation succeeded militarily but created deep political backlash.',
     keyBattles: [
       { battle: 'Assault on Akal Takht (5–6 Jun 1984)', detail: 'Army used tanks (Vijayanta) and artillery inside Golden Temple complex — first time in Indian military history. Bhindranwale killed in basement of Akal Takht. Heavily fortified building required armour due to militants\' rocket launchers and MMGs.' },
       { battle: 'Battle for Langar Hall', detail: 'Militants had converted kitchen/langar area into firing positions. Para Commandos led close-quarter clearing operations. Lt Col Israr Khan KIA leading assault.' },
@@ -243,15 +207,15 @@ export const operations = [
     significance: 'Brasstacks was planned by Gen K. Sundarji (COAS) — India\'s most aggressive military doctrine exercise. Pakistan mobilised 6 divisions in counter-response. Rajiv Gandhi-Benazir Bhutto back-channel call defused crisis. First time both nuclear-armed India and Pakistan faced each other with mobilised armies. Template for all future crisis management between two nuclear powers.',
   },
   {
-    id: 'op-sindoor', name: 'Operation Sindoor (May 2026)', type: 'Air + Missile Strike',
-    year: 'May 2026', theatre: 'Pakistan and Pakistan-Occupied Kashmir (PoK)',
-    forces: 'Indian Air Force (Rafale jets) + Indian Army (BrahMos batteries) + Indian Navy (standby)',
-    objective: 'Destroy terrorist infrastructure of Jaish-e-Mohammed (JeM) and Lashkar-e-Taiba (LeT) in Pakistan and PoK following the Pahalgam terror attack (22 April 2025) in which 26 tourists were killed.',
-    outcome: 'India struck 9 terrorist targets — 4 in Pakistan (Bahawalpur, Muridke near Lahore) and 5 in PoK (Muzaffarabad, Kotli, Bhimber). India claimed 100+ terrorists eliminated. Pakistan denied significant damage. Ceasefire agreed within days after international mediation.',
+    id: 'op-sindoor', name: 'Operation Sindoor (May 2025)', type: 'Air + Missile Strike',
+    year: 'May 2025', theatre: 'Pakistan and Pakistan-Occupied Kashmir (PoK)',
+    forces: 'Indian Air Force (Rafale with SCALP/Hammer, Su-30MKI) + Indian Army (BrahMos) + Indian Navy (Arabian Sea forward presence)',
+    objective: 'Destroy terrorist infrastructure of Jaish-e-Mohammed (JeM), Lashkar-e-Taiba (LeT) and Hizbul Mujahideen in Pakistan and PoK following the Pahalgam terror attack (22 April 2025) in which 26 civilians — mostly tourists — were killed by The Resistance Front (TRF, a LeT proxy).',
+    outcome: 'Launched on the night of 7–8 May 2025. India struck 9 terror-linked targets — 4 inside Pakistan proper (incl. Bahawalpur and Muridke) and 5 in PoK (incl. Muzaffarabad, Kotli, Bhimber). India claimed 100+ terrorists eliminated. Conflict escalated over ~88 hours across air and missile domains; both sides reached an understanding on the evening of 10 May 2025.',
     keyBattles: [
-      { battle: 'Strike on JeM HQ, Bahawalpur (7 May 2026)', detail: 'SCALP/ECA cruise missiles fired from Rafale jets (WAC, Gwalior) hit Jaish-e-Mohammed\'s training complex at Bahawalpur — Pakistan\'s Punjab province, 100+ km inside Pakistan. First Indian strike deep inside Pakistani Punjab since 1971. JeM Masood Azhar\'s family compound reportedly targeted.' },
-      { battle: 'Strike on LeT complex, Muridke (7 May 2026)', detail: 'BrahMos supersonic cruise missiles fired from mobile launchers hit Lashkar-e-Taiba\'s Markaz Taiba headquarters near Muridke (25 km from Lahore). Complex destroyed. LeT used Muridke for 26/11 Mumbai attackers\' training.' },
-      { battle: 'PoK strikes — Muzaffarabad, Kotli, Bhimber', detail: 'IAF Rafales and army BrahMos batteries targeted 5 LaunchPad camps in PoK from where fidayeen attacks were planned. Muzaffarabad camp (Hizbul Mujahideen) and Kotli camp (JeM training) destroyed.' },
+      { battle: 'Strike on JeM HQ, Bahawalpur (night of 7–8 May 2025)', detail: 'Stand-off precision munitions hit Jaish-e-Mohammed\'s Markaz Subhan Allah complex at Bahawalpur — in Pakistan\'s Punjab province, ~100 km inside Pakistan. Deepest Indian strike into Pakistani Punjab since 1971.' },
+      { battle: 'Strike on LeT complex, Muridke (night of 7–8 May 2025)', detail: 'Markaz Taiba — Lashkar-e-Taiba\'s headquarters near Muridke (~30 km from Lahore) — struck. Complex had been used to train the 26/11 Mumbai attackers.' },
+      { battle: 'PoK strikes — Muzaffarabad, Kotli, Bhimber', detail: 'IAF and Indian Army targeted launch-pad camps across PoK from which fidayeen infiltrations were planned. Sites attributed to Hizbul Mujahideen and JeM training.' },
     ],
     lessons: [
       'Precision standoff strike capability gives India non-contact warfare option',

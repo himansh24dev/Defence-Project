@@ -10,6 +10,7 @@ const navLinks = [
   { label: 'Geopolitics',     path: '/geopolitics' },
   { label: 'Defence Orgs',    path: '/orgs' },
   { label: 'Operations',      path: '/operations' },
+  { label: 'Exercises',       path: '/exercises' },
   { label: 'Ranks & Medals',  path: '/ranks' },
   { label: 'Practice',        path: '/practice' },
   { label: 'Know Your Forces', path: '/forces' },
@@ -42,9 +43,9 @@ export default function Header({ onSearchOpen }) {
 
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 16px' }}>
         {/* Logo + actions row */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', position: 'relative' }}>
-          {/* Logo — centred absolutely so nav buttons don't shift it */}
-          <Link to="/" style={{
+        <div className="header-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', position: 'relative' }}>
+          {/* Logo — centred absolutely on desktop; flows left on mobile */}
+          <Link to="/" className="header-brand" style={{
             position: 'absolute', left: '50%', transform: 'translateX(-50%)',
             display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none',
           }}>
@@ -65,7 +66,7 @@ export default function Header({ onSearchOpen }) {
           </Link>
 
           {/* Invisible spacer so flex layout still pushes right side to the end */}
-          <div style={{ visibility: 'hidden', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div className="header-spacer" style={{ visibility: 'hidden', display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ width: 44, height: 44 }} />
             <div style={{ width: 140 }} />
           </div>
@@ -190,6 +191,16 @@ export default function Header({ onSearchOpen }) {
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
+        }
+        /* On narrow screens, let the brand flow naturally on the left so it
+           doesn't overlap with the action buttons on the right. */
+        @media (max-width: 520px) {
+          .header-brand {
+            position: static !important;
+            transform: none !important;
+            gap: 8px !important;
+          }
+          .header-spacer { display: none !important; }
         }
         @keyframes pulse {
           0%, 100% { opacity: 1; }

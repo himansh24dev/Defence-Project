@@ -170,7 +170,7 @@ export default function Geopolitics() {
 
       <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>Showing {filtered.length} of {geopoliticsData.length} topics</p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 14 }}>
+      <div className="content-grid">
         {filtered.map(item => <GeoCard key={item.id} item={item} />)}
       </div>
     </div>

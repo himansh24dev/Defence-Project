@@ -244,13 +244,14 @@ export default function Regiments() {
       />
 
       {/* Service tabs */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
+      <div className="service-tabs-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
         {TABS.map(t => {
           const Icon = t.icon
           const active = tab === t.id
           return (
             <button
               key={t.id}
+              className="service-tab-btn"
               onClick={() => { setTab(t.id); setCat('All'); setSearch('') }}
               style={{
                 display: 'flex', alignItems: 'center', gap: 10,
@@ -330,7 +331,7 @@ export default function Regiments() {
 
       {/* Cards grid */}
       {filtered.length > 0 ? (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 14 }}>
+        <div className="content-grid">
           {filtered.map(u => <UnitCard key={u.id} unit={u} accentColor={current.color} />)}
         </div>
       ) : (
